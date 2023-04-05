@@ -29,7 +29,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
   }, [])
     
   const regionChange = async (e: any) => {
-    const region = regions?.find(region => region.regionName === e.target.value)
+    const region = regions?.find(region => region.regionName === e.target.value.toUpperCase())
     const request = await axios.get(`https://testservices.wschilexpress.com/georeference/api/v1.0/coverage-areas?RegionCode=${region?.regionId}&type=0`, {
       headers: {
         'Cache-Control': 'no-cache',
@@ -71,12 +71,12 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
 
   return (
     <div>
-      <h2 className='text-xl mb-2 font-light'>Calcula los costos de envío</h2>
+      <h2 className='text-[16px] font-bold mb-2'>CALCULA LOS COSTOS DE ENVÍO</h2>
       <select className='text-sm border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={regionChange}>
         <option className='font-light'>Seleccionar Región</option>
         {
         regions !== undefined
-          ? regions.map(region => <option className='font-light' key={region.regionId}>{region.regionName}</option>)
+          ? regions.map(region => <option className='font-light' key={region.regionId}>{region.regionName.toLocaleLowerCase()}</option>)
           : ''
         }
       </select>
@@ -97,9 +97,9 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
               return <div className='flex justify-between p-2 border rounded-md dark:border-neutral-500' key={cityFree}>
                 <div className='flex gap-2'>
                   <input type='radio' name='shipping' className='envio express' value={0} onChange={inputChange} />
-                  <span className='font-light text-sm'>Envío gratis en 24 a 48 horas</span>
+                  <span className='font-light text-sm text-[#444444] dark:text-neutral-400'>Envío gratis en 24 a 48 horas</span>
                 </div>
-                <span className='text-sm'>$0</span>
+                <span className='text-sm text-[#444444] dark:text-neutral-400'>$0</span>
               </div>
             }
             return null
@@ -109,9 +109,9 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
             <div key={service.serviceDescription} className='flex justify-between p-2 border rounded-md dark:border-neutral-500'>
               <div className='flex gap-2'>
                 <input type='radio' name='shipping' className={service.serviceDescription} value={service.serviceValue} onChange={inputChange} />
-                <span className='font-light text-sm'>{service.serviceDescription}</span>
+                <span className='font-light text-sm text-[#444444] dark:text-neutral-400'>{service.serviceDescription}</span>
               </div>
-              <span className='text-sm'>${NumberFormat(Number(service.serviceValue))}</span>
+              <span className='text-sm text-[#444444] dark:text-neutral-400'>${NumberFormat(Number(service.serviceValue))}</span>
             </div>
           ))}
         </div>

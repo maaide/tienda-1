@@ -34,6 +34,7 @@ module.exports = {
       },
       colors: {
         'main': '#000000',
+        'button': '#007DB5',
         'blackv2': '#000000e6',
         'green': '#00a650',
         'nose': '#f5f5f7'

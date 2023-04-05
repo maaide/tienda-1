@@ -49,7 +49,7 @@ export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
   }
 
   return (
-    <button onClick={addToCart} className='pt-1.5 pb-1.5 h-fit pl-7 pr-7 rounded-md bg-main text-white'>
+    <button onClick={addToCart} className='pt-1.5 pb-1.5 h-fit pl-7 pr-7 rounded-md bg-button text-white'>
       {text}
     </button>
   )

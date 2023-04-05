@@ -16,7 +16,7 @@ const Shop = () => {
       </Head>
       <div className='bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex pl-4 pr-4'>
         <div className='w-1280 m-auto'>
-          <h1 className='text-5xl text-white mb-4 text-center'>Tienda</h1>
+          <h1 className='text-[25px] text-white mb-4 text-center md:text-[32px]'>TIENDA</h1>
           <p className='font-light text-lg text-white w-full text-center'>Encuentra los productos de la más alta calidad y siempre con increíbles precios.</p>
         </div>
       </div>

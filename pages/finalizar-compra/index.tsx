@@ -9,7 +9,7 @@ import Head from 'next/head'
 import Cookies from 'js-cookie'
 import axios from 'axios'
 import { Spinner2 } from '../../components/ui'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
 const CheckOut = () => {
 
@@ -98,7 +98,7 @@ const CheckOut = () => {
       <Head>
         <title>Finalizar compra</title>
       </Head>
-      <div className='sticky top-14 bg-gray-50 w-full border border-white p-4 shadow-md block 1010:hidden dark:bg-neutral-800 dark:border-neutral-700'>
+      <div className='sticky top-14 bg-[#F5F5F5] w-full border border-[#F5F5F5] p-4 shadow-md block 1010:hidden dark:bg-neutral-800 dark:border-neutral-700'>
         <div className={`mb-2 ${details}`}>
           <h2 className='text-lg mb-2 font-light'>Carrito</h2>
           {
@@ -155,7 +155,7 @@ const CheckOut = () => {
       <div className='flex p-4'>
         <form className='w-1280 m-auto block 1010:flex' id='formBuy'>
           <div className='w-full pr-0 1010:w-7/12 1010:pr-8'>
-            <h1 className='text-3xl mb-6 font-light'>Finalizar compra</h1>
+            <h1 className='text-[20px] mb-6 font-bold md:text-[25px]'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
               <h2 className='text-lg mb-2 font-light'>Información de contacto</h2>
               <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded font-light w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -244,21 +244,21 @@ const CheckOut = () => {
               <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><AiOutlineLeft className='mt-auto mb-auto' />Regresar al carrito</span></Link></div>
               {
                 sell.pay === ''
-                  ? <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-main/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                  ? <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
                   : sell.pay === 'WebPay Plus'
                     ? (
                       <form action={url} method="POST" id='formTransbank'>
                         <input type="hidden" name="token_ws" value={token} />
-                        <button onClick={transbankSubmit} className='w-24 h-9 rounded-md bg-main text-white cursor-pointer'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                        <button onClick={transbankSubmit} className='w-24 h-9 rounded-md bg-button text-white cursor-pointer'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
                       </form>
                     )
                     : sell.pay === 'Pago en la entrega'
-                      ? <button onClick={handleSubmit} className='w-24 h-9 rounded-md bg-main text-white'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
-                      : <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-main/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                      ? <button onClick={handleSubmit} className='w-24 h-9 rounded-md bg-button text-white'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                      : <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
               }
             </div>
           </div>
-          <div className='w-5/12 h-fit shadow-md border border-white rounded-md p-4 hidden sticky top-28 bg-gray-50 dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
+          <div className='w-5/12 h-fit border border-[#F5F5F5] p-4 hidden sticky top-28 bg-[#F5F5F5] dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
               <h2 className='text-lg mb-2 font-light'>Carrito</h2>
               {

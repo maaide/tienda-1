@@ -11,7 +11,7 @@ interface Props {
 export const Reviews: React.FC<Props> = ({ stars, quantity, reviews }) => {
   return (
     <div className='flex gap-1 mb-2'>
-      <span className='mr-1 font-light text-sm'>{(stars / quantity).toFixed(1)}</span>
+      <span className='mr-1 font-light text-sm text-[#444444] dark:text-neutral-400'>{(stars / quantity).toFixed(1)}</span>
       {stars / quantity === 0
         ? <BsStar className='text-lg text-yellow-400' />
         : stars / quantity <= 0.9
@@ -37,7 +37,7 @@ export const Reviews: React.FC<Props> = ({ stars, quantity, reviews }) => {
         : stars / quantity <= 4.9
           ? <BsStarHalf className='text-lg text-yellow-400' />
           : <BsStarFill className='text-lg text-yellow-400' />}
-      <span className='font-light text-sm'>({reviews?.length})</span>
+      <span className='font-light text-sm text-[#444444] dark:text-neutral-400'>({reviews?.length})</span>
     </div>
   )
 }
@@ -45,12 +45,12 @@ export const Reviews: React.FC<Props> = ({ stars, quantity, reviews }) => {
 export const NoReviews = () => {
   return (
     <div className='flex gap-1 mb-2'>
-      <span className='mr-1'>0</span>
-      <BsStar className='text-lg' />
-      <BsStar className='text-lg' />
-      <BsStar className='text-lg' />
-      <BsStar className='text-lg' />
-      <BsStar className='text-lg' />
+      <span className='mr-1 text-[#444444] dark:text-neutral-400'>0</span>
+      <BsStar className='text-lg text-[#444444] dark:text-neutral-400' />
+      <BsStar className='text-lg text-[#444444] dark:text-neutral-400' />
+      <BsStar className='text-lg text-[#444444] dark:text-neutral-400' />
+      <BsStar className='text-lg text-[#444444] dark:text-neutral-400' />
+      <BsStar className='text-lg text-[#444444] dark:text-neutral-400' />
     </div>
   )
 }

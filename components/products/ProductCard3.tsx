@@ -67,7 +67,7 @@ export const ProductCard3: React.FC<Props> = ({ product }) => {
         }
         <span className='font-light cursor-pointer' onClick={() => router.push(`/productos/${product.slug}`)}>{ product.name }</span>
         <div className='flex gap-2 mt-1 mb-1'>
-          <span className='font-light'>${ NumberFormat(product.price) }</span>
+          <span className='font-semibold'>${ NumberFormat(product.price) }</span>
           {
             product.beforePrice
               ? <span className='text-sm line-through font-light'>${ NumberFormat(product.beforePrice) }</span>
@@ -77,7 +77,7 @@ export const ProductCard3: React.FC<Props> = ({ product }) => {
         {
           product.variations?.length
             ? product.variations[0].variation !== ''
-              ? <button className='pt-1.5 pb-1.5 text-sm rounded-md bg-main text-white pl-6 pr-6 450:pl-8 450:pr-8' onClick={() => router.push(product.slug)}>Ver variantes</button>
+              ? <button className='pt-1.5 pb-1.5 text-sm rounded-md bg-button text-white pl-6 pr-6 450:pl-8 450:pr-8' onClick={() => router.push(product.slug)}>Ver variantes</button>
               : <Button2AddToCart tempCartProduct={tempCartProduct} />
             : <Button2AddToCart tempCartProduct={tempCartProduct} />
         }

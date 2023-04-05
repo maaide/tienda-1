@@ -28,7 +28,7 @@ const CartPage = () => {
       </Head>
       <div className='p-4 flex'>
         <div className='m-auto w-1280'>
-          <h1 className='text-3xl font-light mb-4'>Carrito</h1>
+          <h1 className='text-[20px] font-bold mb-4 md:text-[25px]'>CARRITO</h1>
           <div className='block gap-8 1010:flex'>
             <div className='w-full 1010:w-7/12'>
               {
@@ -41,19 +41,19 @@ const CartPage = () => {
                         </Link>
                         <div className='mt-auto mb-auto'>
                           <Link href={`/productos/${product.slug}`}>
-                            <h2 className='font-light text-lg'>{product.name}</h2>
+                            <h2 className='font-light text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h2>
                           </Link>
                           <div className='flex gap-2'>
-                            <span className='font-light'>${NumberFormat(product.price)}</span>
+                            <span className='font-bold'>${NumberFormat(product.price)}</span>
                             {
                               product.beforePrice
-                                ? <span className='text-sm font-light line-through'>${NumberFormat(product.beforePrice)}</span>
+                                ? <span className='text-sm font-light line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
                                 : ''
                             }
                           </div>
                           {
                             product.variation
-                              ? <span className='font-light'>{product.variation.variation}</span>
+                              ? <span className='font-light text-[#444444] dark:text-neutral-400'>{product.variation.variation}</span>
                               : ''
                           }
                         </div>
@@ -119,7 +119,7 @@ const CartPage = () => {
               }
             </div>
             <div className='w-full 1010:w-5/12'>
-              <div className='bg-gray-50 p-4 border border-white rounded-md shadow-md 450:p-6 dark:bg-neutral-800 dark:border-neutral-700'>
+              <div className='bg-[#F5F5F5] p-4 border border-[#F5F5F5] 450:p-6 dark:bg-neutral-800 dark:border-neutral-700'>
                 <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
                   <div className='mb-4 border-b pb-4 dark:border-neutral-700'>
                     <ShippingCart setShippingCost={setShippingCost} />
@@ -138,15 +138,15 @@ const CartPage = () => {
                   </div>
                 </div>
                 <div className='flex gap-2 justify-between'>
-                  <span className='text-lg'>Total</span>
+                  <span className='font-bold'>Total</span>
                   {
                     cartProducts?.length
-                      ? <span className='text-lg'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
+                      ? <span className='font-bold'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
                       : ''
                   }
                 </div>
                 <div className='mt-3 ml-auto w-full flex'>
-                  <Link className='pt-1.5 pb-1.5 w-full rounded-md bg-main text-white' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
+                  <Link className='pt-1.5 pb-1.5 w-full rounded-md bg-button text-white' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
                 </div>
               </div>
             </div>

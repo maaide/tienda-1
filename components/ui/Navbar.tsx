@@ -62,8 +62,8 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
-          ? <div className='bg-main text-white flex pt-1 pb-1 pl-2 pr-2 text-center'>
-            <p className='m-auto text-15'>Envío gratis en 24 horas para todo Santiago</p>
+          ? <div className='bg-main text-white flex p-2 text-center'>
+            <p className='m-auto text-[14px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
           : ''
       }
@@ -86,11 +86,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             router.pathname !== '/finalizar-compra'
               ? <>
                 <div className='hidden gap-6 575:flex'>
-                  <Link className='mt-auto mb-auto font-light' href='/'>Inicio</Link>
+                  <Link className='mt-auto mb-auto font-light' href='/'>INICIO</Link>
                   <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} onClick={() => setNavCategories('hidden')} >
-                    <div className='mt-auto mb-auto font-light'>Tienda</div>
+                    <div className='mt-auto mb-auto font-light'>TIENDA</div>
                   </Link>
-                  <Link className='mt-auto mb-auto font-light' href='/contacto'>Contacto</Link>
+                  <Link className='mt-auto mb-auto font-light' href='/contacto'>CONTACTO</Link>
                   {
                     cartView === 'hidden'
                       ? (
@@ -187,7 +187,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setTimeout(() => {
                 setIndex('hidden')
               }, 150)
-            }} href='/'>Inicio<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
+            }} href='/'>INICIO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
             <div className={`border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
               <div className={` font-light flex justify-between pb-2`}>
                 <Link onClick={() => {
@@ -195,7 +195,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   setTimeout(() => {
                     setIndex('hidden')
                   }, 150)
-                }} href='/tienda'>Tienda</Link>
+                }} href='/tienda'>TIENDA</Link>
                 {
                   categoriesPhone === 'hidden'
                     ? <button onClick={() => setCategoriesPhone('block') }><AiOutlineDown className='ml-auto text-lg text-neutral-500' /></button>
@@ -214,7 +214,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         }, 150)
                       }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
                         <img className='w-28' src={category.image} />
-                        <h2 className='mt-auto mb-auto'>{category.category}</h2>
+                        <h2 className='mt-auto mb-auto'>{category.category.toUpperCase()}</h2>
                       </Link>
                     ))
                     : ''
@@ -226,7 +226,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setTimeout(() => {
                 setIndex('hidden')
               }, 140)
-            }} href='/contacto'>Contacto<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
+            }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
         <div className={`${navCategories} absolute top-57 w-full`} onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')}>
@@ -237,7 +237,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   {categories.map(category => (
                     <div key={category._id}>
                       <img className='w-64 mb-2 cursor-pointer' onClick={() => router.push(`/tienda/${category.slug}`)} src={category.image} />
-                      <Link href={`/tienda/${category.slug}`} className='m-auto'>{category.category}</Link>
+                      <Link href={`/tienda/${category.slug}`} className='m-auto'>{category.category.toUpperCase()}</Link>
                     </div>
                   ))}
                 </div>
