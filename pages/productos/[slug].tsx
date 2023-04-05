@@ -113,7 +113,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             </div>
           </div>
           <div className='w-full mt-2 lg:w-5/12 lg:mt-11'>
-            <h1 className='text-[18px] font-bold mb-2 md:text-[25px]'>{ product.name.toUpperCase() }</h1>
+            <h1 className='text-[18px] font-semibold mb-2 md:text-[25px]'>{ product.name.toUpperCase() }</h1>
             {
               product.reviews?.length
                 ? product.reviews.map(review => {
@@ -129,7 +129,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 : ''
             }
             <div className='flex gap-2 mb-2'>
-              <span className='text-[16px] font-bold'>${ NumberFormat(product.price) }</span>
+              <span className='text-[16px] font-medium'>${ NumberFormat(product.price) }</span>
               {
                 product.beforePrice
                   ? <span className='text-sm line-through font-light text-[#444444] dark:text-neutral-400'>${ NumberFormat(product.beforePrice) }</span>
@@ -140,7 +140,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               product.variations?.length
                 ? product.variations[0].variation !== ''
                   ? <div className='mb-2'>
-                    <span className='text-sm font-light'>{product.nameVariations}: </span>
+                    <span className='text-sm font-medium'>{product.nameVariations}: </span>
                     <span className='text-sm font-light text-[#444444] dark:text-neutral-400'>{tempCartProduct.variation?.variation}</span>
                     <div className='flex gap-2 mt-1'>
                       {product.variations.map(variation => (
@@ -155,7 +155,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                   : ''
                 : ''
             }
-            <span className='mb-2 font-light text-[14px] text-[#444444] block dark:text-neutral-400'><span className='text-black dark:text-white'>Stock:</span> { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
+            <span className='mb-2 text-[14px] text-[#444444] block dark:text-neutral-400'><span className='text-black font-medium dark:text-white'>Stock:</span> { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
             <div className='flex gap-2 pb-4 border-b dark:border-neutral-800'>
               <ItemCounter
                 currentValue={ tempCartProduct.quantity }
@@ -176,7 +176,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               product.productsOffer?.length
               ? product.productsOffer[0].productsSale.length
                 ? <div className='mt-4 border-b pb-4 dark:border-neutral-800'>
-                  <h5 className='text-[14px] font-bold mb-2 md:text-[16px]'>OFERTAS POR LA COMPRA DE ESTE PRODUCTO</h5>
+                  <h5 className='text-[14px] font-semibold mb-2 md:text-[16px]'>OFERTAS POR LA COMPRA DE ESTE PRODUCTO</h5>
                   {
                     product.productsOffer.map(offer => <ProductOffer key={offer.productsSale[0].slug} offer={offer} />)
                   }
@@ -193,7 +193,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                   setDescriptionView(true)
                 }
               }} className='flex gap-2 w-full justify-between'>
-                <h5 className='text-[14px] font-bold md:text-[16px]'>DESCRIPCIÓN</h5>
+                <h5 className='text-[14px] font-semibold md:text-[16px]'>DESCRIPCIÓN</h5>
                 {
                   descriptionView
                     ? <AiOutlineUp className='mt-auto mb-auto' />
@@ -205,7 +205,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                   ? (
                     <div className='flex flex-col gap-2 mt-2'>
                       {product.description.split('/').map(des => {
-                        return <p className='font-light text-[#444444] mb-1 text-sm dark:text-neutral-400' key={des}>{des}</p>
+                        return <p className='text-[#444444] mb-1 text-sm dark:text-neutral-400 md:text-[16px]' key={des}>{des}</p>
                       })}
                     </div>
                   )
@@ -221,7 +221,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                   setShippingView(true)
                 }
               }} className='flex gap-2 justify-between w-full'>
-                <h5 className='text-[14px] font-bold md:text-[16px]'>CALCULA LOS COSTOS DE ENVIO</h5>
+                <h5 className='text-[14px] font-semibold md:text-[16px]'>CALCULA LOS COSTOS DE ENVIO</h5>
                 {
                   shippingView
                     ? <AiOutlineUp className='mt-auto mb-auto' />
@@ -247,7 +247,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                   setReturnView(true)
                 }
               }} className='flex gap-2 w-full justify-between'>
-                <h5 className='text-[14px] font-bold md:text-[16px]'>ENVÍOS Y RETORNOS</h5>
+                <h5 className='text-[14px] font-semibold md:text-[16px]'>ENVÍOS Y RETORNOS</h5>
                 {
                   returnView
                     ? <AiOutlineUp className='mt-auto mb-auto' />
@@ -258,8 +258,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 returnView
                   ? (
                     <div className='mt-2'>
-                      <p className='text-sm font-light mb-2 text-[#444444] dark:text-neutral-400'>Nuestros envios pueden demorar 1500 años habiles, lo que habiles es muy importante por que puede llegar el dia 1 del año 1500 o el dia 2 del año 1500</p>
-                      <p className='text-sm font-light mb-2 text-[#444444] dark:text-neutral-400'>Si te llega malo el producto cagaste, no haremos nada para solucionar tu problema asi que busca ayuda por otro lado</p>
+                      <p className='text-sm mb-2 text-[#444444] dark:text-neutral-400 md:text-[16px]'>Nuestros envios pueden demorar 1500 años habiles, lo que habiles es muy importante por que puede llegar el dia 1 del año 1500 o el dia 2 del año 1500</p>
+                      <p className='text-sm mb-2 text-[#444444] dark:text-neutral-400 md:text-[16px]'>Si te llega malo el producto cagaste, no haremos nada para solucionar tu problema asi que busca ayuda por otro lado</p>
                     </div>
                   )
                   : ''
@@ -270,13 +270,15 @@ const ProductPage: React.FC<Props> = ({ product }) => {
       </div>
       <div className='flex p-4'>
         <div className='w-1280 m-auto'>
-          <h2 className='text-[16px] mb-2 font-bold md:text-[20px]'>EVALUACIONES DE CLIENTES</h2>
-          <span className='font-light mb-1 text-[#444444] dark:text-neutral-400'>Valoracion media</span>
-          {
-            product.reviews?.length
-              ? <ReviewsProduct quantity={quantity} stars={stars} reviews={product.reviews} />
-              : <NoReviewsProduct />
-          }
+          <h2 className='text-[16px] mb-2 font-semibold md:text-[20px]'>EVALUACIONES DE CLIENTES</h2>
+          <span className='text-[#444444] text-[14px] md:text-[16px] dark:text-neutral-400'>Valoracion media</span>
+          <div className='mt-2'>
+            {
+              product.reviews?.length
+                ? <ReviewsProduct quantity={quantity} stars={stars} reviews={product.reviews} />
+                : <NoReviewsProduct />
+            }
+          </div>
         </div>
       </div>
       {

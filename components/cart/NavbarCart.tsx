@@ -16,7 +16,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
 
   return (
     <div onMouseEnter={() => setCartPc(false)} onMouseLeave={() => setCartPc(true)} className={`ml-auto p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96`}>
-      <h4 className='text-center mb-3 text-[14px] font-bold pb-2 border-b w-full dark:border-neutral-800'>CARRITO</h4>
+      <h4 className='text-center mb-3 font-semibold pb-2 border-b w-full dark:border-neutral-800 text-[16px]'>CARRITO</h4>
       {
         cart?.length
           ? <>
@@ -30,7 +30,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
                     <div className='mt-auto mb-auto'>
                       <Link href={`/productos/${product.slug}`} onClick={() => setCartView('hidden')}><h3 className='text-[16px] text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h3></Link>
                       <div className='flex gap-1 mb-1'>
-                        <span className='font-bold'>${NumberFormat(product.price)}</span>
+                        <span className='font-medium'>${NumberFormat(product.price)}</span>
                         {
                           product.beforePrice
                             ? <span className='font-light text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>

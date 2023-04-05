@@ -66,9 +66,9 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
             ? <ReviewsProductCard product={product} quantity={quantity} stars={stars} />
             : <div className='w-1 h-2' />
         }
-        <Link href={`/productos/${product.slug}`} className='font-light cursor-pointer'>{ product.name }</Link>
+        <Link href={`/productos/${product.slug}`} className='cursor-pointer'>{ product.name }</Link>
         <div className='flex gap-2 mt-1 mb-1'>
-          <span className='font-semibold'>${ NumberFormat(product.price) }</span>
+          <span className='font-medium'>${ NumberFormat(product.price) }</span>
           {
             product.beforePrice
               ? <span className='text-sm line-through font-light'>${ NumberFormat(product.beforePrice) }</span>

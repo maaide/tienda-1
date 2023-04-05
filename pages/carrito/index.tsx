@@ -28,7 +28,7 @@ const CartPage = () => {
       </Head>
       <div className='p-4 flex'>
         <div className='m-auto w-1280'>
-          <h1 className='text-[20px] font-bold mb-4 md:text-[25px]'>CARRITO</h1>
+          <h1 className='text-[20px] font-semibold mb-4 md:text-[25px]'>CARRITO</h1>
           <div className='block gap-8 1010:flex'>
             <div className='w-full 1010:w-7/12'>
               {
@@ -41,10 +41,10 @@ const CartPage = () => {
                         </Link>
                         <div className='mt-auto mb-auto'>
                           <Link href={`/productos/${product.slug}`}>
-                            <h2 className='font-light text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h2>
+                            <h2 className='text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h2>
                           </Link>
                           <div className='flex gap-2'>
-                            <span className='font-bold'>${NumberFormat(product.price)}</span>
+                            <span className='font-medium'>${NumberFormat(product.price)}</span>
                             {
                               product.beforePrice
                                 ? <span className='text-sm font-light line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
@@ -125,7 +125,7 @@ const CartPage = () => {
                     <ShippingCart setShippingCost={setShippingCost} />
                   </div>
                   <div className='flex gap-2 justify-between mb-1'>
-                    <span className='font-light'>Subtotal</span>
+                    <span>Subtotal</span>
                     {
                       cartProducts?.length
                         ? <span>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
@@ -133,15 +133,15 @@ const CartPage = () => {
                     }
                   </div>
                   <div className='flex gap-2 justify-between'>
-                    <span className='font-light'>Envío</span>
+                    <span>Envío</span>
                     <span>${NumberFormat(shippingCost)}</span>
                   </div>
                 </div>
                 <div className='flex gap-2 justify-between'>
-                  <span className='font-bold'>Total</span>
+                  <span className='font-semibold'>Total</span>
                   {
                     cartProducts?.length
-                      ? <span className='font-bold'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
+                      ? <span className='font-semibold'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
                       : ''
                   }
                 </div>
@@ -162,7 +162,7 @@ const CartPage = () => {
               </div>
             </div>
           )
-          : <ProductList products={ products } title='Más Vendidos' />
+          : <ProductList products={ products } title='MÁS VENDIDOS' />
       }
     </>
   )

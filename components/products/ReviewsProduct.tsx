@@ -13,7 +13,7 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
   return (
     <>
       <div className='flex gap-1 mb-1'>
-        <span className='mr-1 font-light'>{(stars / quantity).toFixed(1)}</span>
+        <span className='mr-1 text-[14px] md:text-[16px]'>{(stars / quantity).toFixed(1)}</span>
         {stars / quantity === 0
           ? <BsStar className='text-xl text-yellow-400' />
           : stars / quantity <= 0.9
@@ -42,7 +42,7 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
       </div>
       <div>
         <div className='mb-2'>
-          <span className='font-light text-[#444444] dark:text-neutral-400'>{reviews.length} {reviews.length === 1 ? 'calificación' : 'calificaciones'}</span>
+          <span className='text-[#444444] text-[14px] md:text-[16px] dark:text-neutral-400'>{reviews.length} {reviews.length === 1 ? 'calificación' : 'calificaciones'}</span>
         </div>
         {
           reviews.map(review => {
@@ -50,16 +50,16 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
             return (
               <div key={review._id} className='pb-2 mb-2 border p-2 rounded-md dark:border-neutral-800'>
                 <div className='flex gap-2 justify-between'>
-                  <span className='text-[#444444] dark:text-neutral-400'>{review.name}</span>
-                  <span className='mt-auto mb-auto font-light text-[#444444] text-[14px] dark:text-neutral-400'>{date.toLocaleTimeString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
+                  <span className='text-[#444444] dark:text-neutral-400 text-[14px] md:text-[16px]'>{review.name}</span>
+                  <span className='mt-auto mb-auto text-[#444444] text-[14px] md:text-[16px] dark:text-neutral-400'>{date.toLocaleTimeString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit" })}</span>
                 </div>
                 <Review stars={review.calification} />
                 {
                   review.title
-                    ? <span className='font-light text-lg'>{review.title}</span>
+                    ? <span className='text-lg'>{review.title}</span>
                     : ''
                 }
-                <span className='font-light'>{review.review}</span>
+                <span className='text-[14px] md:text-[16px]'>{review.review}</span>
               </div>
             )
           })
@@ -72,7 +72,7 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
 export const NoReviewsProduct = () => {
   return (
     <div className='flex gap-1'>
-      <span className='text-lg font-light text-[#444444] dark:text-neutral-400'>0</span>
+      <span className='text-[#444444] dark:text-neutral-400'>0</span>
       <BsStar className='text-2xl text-[#444444] dark:text-neutral-400' />
       <BsStar className='text-2xl text-[#444444] dark:text-neutral-400' />
       <BsStar className='text-2xl text-[#444444] dark:text-neutral-400' />

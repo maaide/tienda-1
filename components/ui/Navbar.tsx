@@ -63,7 +63,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
       {
         router.pathname !== '/finalizar-compra'
           ? <div className='bg-main text-white flex p-2 text-center'>
-            <p className='m-auto text-[14px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
+            <p className='m-auto text-[14px]'>Envío gratis en 24 horas para todo Santiago</p>
           </div>
           : ''
       }
@@ -99,7 +99,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           {
                             cart?.length
                               ? (
-                                <div className='bg-main w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
+                                <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
                                 <span className='m-auto text-xs font-light text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
                               </div>
                               )
@@ -120,7 +120,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           {
                             cart?.length
                               ? (
-                                <div className='bg-main w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
+                                <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
                                 <span className='m-auto text-xs font-light text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
                               </div>
                               )

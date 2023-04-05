@@ -71,7 +71,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
 
   return (
     <div>
-      <h2 className='text-[16px] font-bold mb-2'>CALCULA LOS COSTOS DE ENVÍO</h2>
+      <h2 className='text-[16px] font-semibold mb-2 md:text-[20px]'>CALCULA LOS COSTOS DE ENVÍO</h2>
       <select className='text-sm border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={regionChange}>
         <option className='font-light'>Seleccionar Región</option>
         {
