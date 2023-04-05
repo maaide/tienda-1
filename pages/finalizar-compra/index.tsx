@@ -99,8 +99,9 @@ const CheckOut = () => {
         <title>Finalizar compra</title>
       </Head>
       <div className='sticky top-14 bg-[#F5F5F5] w-full border border-[#F5F5F5] p-4 shadow-md block 1010:hidden dark:bg-neutral-800 dark:border-neutral-700'>
+        <button className='text-[14px] mb-4 flex gap-2' onClick={() => details === 'hidden' ? setDetails('block') : setDetails('hidden')}>{details === 'hidden' ? <AiOutlineDown className='mt-auto mb-auto' /> : <AiOutlineUp className='mt-auto mb-auto' /> } {details === 'hidden' ? 'Mostrar' : 'Ocultar'} resumen del pedido</button>
         <div className={`mb-2 ${details}`}>
-          <h2 className='text-lg mb-2 font-light'>Carrito</h2>
+          <h2 className='text-[16px] mb-2 md:text-[18px]'>Carrito</h2>
           {
             cart?.length !== 0
               ? cart?.map(product => (
@@ -117,7 +118,7 @@ const CheckOut = () => {
                     </div>
                   </div>
                   <div className='flex gap-2 mt-auto mb-auto'>
-                    <span>${NumberFormat(product.price * product.quantity)}</span>
+                    <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
                     {
                       product.beforePrice
                         ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
@@ -129,28 +130,27 @@ const CheckOut = () => {
               : ''
           }
           <div className='pb-3 border-b dark:border-neutral-700'>
-            <h2 className='mb-2 text-lg'>Cupon de descuento</h2>
+            <h2 className='mb-2 text-[16px] md:text-[18px]'>Cupon de descuento</h2>
             <div className='flex gap-2'>
-              <input type='text' placeholder='Cupon' className='border p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Cupon' className='border font-light text-[14px] p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <Button2>Agregar</Button2>
             </div>
           </div>
           <div className='mt-2 mb-2 pb-2 border-b dark:border-neutral-700'>
             <div className='flex gap-2 justify-between mb-1'>
-              <span>Subtotal</span>
-              <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+              <span className='text-[14px]'>Subtotal</span>
+              <span className='text-[14px]'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
             </div>
             <div className='flex gap-2 justify-between'>
-              <span>Envío</span>
-              <span>${NumberFormat(Number(sell.shipping))}</span>
+              <span className='text-[14px]'>Envío</span>
+              <span className='text-[14px]'>${NumberFormat(Number(sell.shipping))}</span>
             </div>
           </div>
         </div>
-        <div className='flex gap-2 justify-between mb-2'>
-          <span className='text-lg'>Total</span>
-          <span className='text-lg'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
+        <div className='flex gap-2 justify-between'>
+          <span className='font-medium'>Total</span>
+          <span className='font-medium'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
         </div>
-        <button className='font-light flex gap-2' onClick={() => details === 'hidden' ? setDetails('block') : setDetails('hidden')}>{details === 'hidden' ? <AiOutlineDown className='mt-auto mb-auto' /> : <AiOutlineUp className='mt-auto mb-auto' /> } {details === 'hidden' ? 'Mostrar' : 'Ocultar'} resumen del pedido</button>
       </div>
       <div className='flex p-4'>
         <form className='w-1280 m-auto block 1010:flex' id='formBuy'>
@@ -174,7 +174,7 @@ const CheckOut = () => {
               <input type='text' placeholder='Dirección' name='address' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
-                <span className='mt-auto mb-auto text-sm font-light'>+56</span>
+                <span className='mt-auto mb-auto text-sm'>+56</span>
                 <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
             </div>
@@ -260,7 +260,7 @@ const CheckOut = () => {
           </div>
           <div className='w-5/12 h-fit border border-[#F5F5F5] p-4 hidden sticky top-28 bg-[#F5F5F5] dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
-              <h2 className='mb-2'>Carrito</h2>
+              <h2 className='mb-2 text-[18px]'>Carrito</h2>
               {
                 cart?.length !== 0
                   ? cart?.map(product => (
@@ -269,7 +269,7 @@ const CheckOut = () => {
                         <img className='w-20 border rounded-md p-1 dark:border-neutral-700' src={product.image} />
                         <div className='mt-auto mb-auto'>
                           <span className='block'>{product.name}</span>
-                          <span className='block font-light'>Cantidad: {product.quantity}</span>
+                          <span className='block'>Cantidad: {product.quantity}</span>
                           {
                             product.variation
                               ? <span className='block font-light'>Variación: {product.variation.variation}</span>
@@ -278,7 +278,7 @@ const CheckOut = () => {
                         </div>
                       </div>
                       <div className='flex gap-2 mt-auto mb-auto'>
-                        <span>${NumberFormat(product.price * product.quantity)}</span>
+                        <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
                         {
                           product.beforePrice
                             ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
@@ -291,20 +291,20 @@ const CheckOut = () => {
               }
             </div>
             <div className='mb-2 pb-3 border-b dark:border-neutral-700'>
-              <h2 className='mb-2'>Cupon de descuento</h2>
+              <h2 className='mb-2 text-[18px]'>Cupon de descuento</h2>
               <div className='flex gap-2'>
-                <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Cupon' className='border p-1 rounded font-light text-[14px] w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <Button2>Agregar</Button2>
               </div>
             </div>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
               <div className='flex gap-2 justify-between mb-1'>
-                <span>Subtotal</span>
-                <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+                <span className='text-[14px]'>Subtotal</span>
+                <span className='text-[14px]'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
               </div>
               <div className='flex gap-2 justify-between'>
-                <span>Envío</span>
-                <span>${NumberFormat(Number(sell.shipping))}</span>
+                <span className='text-[14px]'>Envío</span>
+                <span className='text-[14px]'>${NumberFormat(Number(sell.shipping))}</span>
               </div>
             </div>
             <div className='flex gap-2 justify-between'>

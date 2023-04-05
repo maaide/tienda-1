@@ -125,16 +125,16 @@ const CartPage = () => {
                     <ShippingCart setShippingCost={setShippingCost} />
                   </div>
                   <div className='flex gap-2 justify-between mb-1'>
-                    <span>Subtotal</span>
+                    <span className='text-[14px]'>Subtotal</span>
                     {
                       cartProducts?.length
-                        ? <span>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+                        ? <span className='text-[14px]'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
                         : ''
                     }
                   </div>
                   <div className='flex gap-2 justify-between'>
-                    <span>Envío</span>
-                    <span>${NumberFormat(shippingCost)}</span>
+                    <span className='text-[14px]'>Envío</span>
+                    <span className='text-[14px]'>${NumberFormat(shippingCost)}</span>
                   </div>
                 </div>
                 <div className='flex gap-2 justify-between'>

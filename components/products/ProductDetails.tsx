@@ -29,9 +29,9 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
         <div className='flex mb-2 justify-around gap-2 sm:mb-0'>
           <img className='w-20 h-20 mt-auto mb-auto' src={product.images[0]} />
           <div className='mt-auto mb-auto'>
-            <h3 className='text-lg'>{product.name}</h3>
+            <h3>{product.name}</h3>
             <div className='flex gap-1'>
-              <span>${NumberFormat(product.price)}</span>
+              <span className='font-medium'>${NumberFormat(product.price)}</span>
               {
                 product.beforePrice
                   ? <span className='line-through text-sm'>${NumberFormat(product.beforePrice)}</span>
