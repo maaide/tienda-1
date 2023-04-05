@@ -24,7 +24,7 @@ export const Subscribe = () => {
     <>
       <div className='w-full bg-neutral-100 pl-4 pr-4 flex dark:bg-neutral-900'>
         <form className='m-auto w-1280 mt-16 mb-16'>
-          <h4 className='mb-4 text-[20px] font-bold text-center'>SUSCRIBETE EN NUESTRA LISTA PARA RECIBIR OFERTAS EXCLUSIVAS, SORTEOS Y MUCHO MÁS</h4>
+          <h4 className='mb-4 text-[16px] font-semibold text-center md:text-[20px]'>SUSCRIBETE EN NUESTRA LISTA PARA RECIBIR OFERTAS EXCLUSIVAS, SORTEOS Y MUCHO MÁS</h4>
           <div className='flex'>
             <input type='email' placeholder='Email' value={subscribeData.email} onChange={inputChange} className='font-light p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:bg-neutral-800' />
             <button onClick={handleSubmit} className='pt-2 pb-2 pl-10 pr-10 bg-main text-white'>Envíar</button>

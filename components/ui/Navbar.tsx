@@ -62,7 +62,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
-          ? <div className='bg-main text-white flex p-2 text-center'>
+          ? <div className='bg-main text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
             <p className='m-auto text-[14px]'>Envío gratis en 24 horas para todo Santiago</p>
           </div>
           : ''
@@ -86,11 +86,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             router.pathname !== '/finalizar-compra'
               ? <>
                 <div className='hidden gap-6 575:flex'>
-                  <Link className='mt-auto mb-auto font-light' href='/'>INICIO</Link>
+                  <Link className='mt-auto mb-auto' href='/'>INICIO</Link>
                   <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} onClick={() => setNavCategories('hidden')} >
-                    <div className='mt-auto mb-auto font-light'>TIENDA</div>
+                    <div className='mt-auto mb-auto'>TIENDA</div>
                   </Link>
-                  <Link className='mt-auto mb-auto font-light' href='/contacto'>CONTACTO</Link>
+                  <Link className='mt-auto mb-auto' href='/contacto'>CONTACTO</Link>
                   {
                     cartView === 'hidden'
                       ? (
@@ -182,14 +182,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }, 150)
           }} />
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
-            <Link className={`mb-4 font-light flex pb-2 min-w-[250px] border-b dark:border-neutral-600`} onClick={() => {
+            <Link className={`mb-4 flex pb-2 min-w-[250px] border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
               }, 150)
             }} href='/'>INICIO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
             <div className={`border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
-              <div className={` font-light flex justify-between pb-2`}>
+              <div className={`flex justify-between pb-2`}>
                 <Link onClick={() => {
                   setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
                   setTimeout(() => {
@@ -221,7 +221,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 }
               </div>
             </div>
-            <Link className={`mb-4 font-light flex pb-2 min-w-[250px] border-b dark:border-neutral-600`} onClick={() => {
+            <Link className={`mb-4 flex pb-2 min-w-[250px] border-b dark:border-neutral-600`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')

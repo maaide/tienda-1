@@ -138,10 +138,10 @@ const CartPage = () => {
                   </div>
                 </div>
                 <div className='flex gap-2 justify-between'>
-                  <span className='font-semibold'>Total</span>
+                  <span className='font-medium'>Total</span>
                   {
                     cartProducts?.length
-                      ? <span className='font-semibold'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
+                      ? <span className='font-medium'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
                       : ''
                   }
                 </div>

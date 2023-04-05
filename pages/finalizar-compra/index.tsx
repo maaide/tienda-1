@@ -111,7 +111,7 @@ const CheckOut = () => {
                       <span>{product.name}</span>
                       {
                         product.variation
-                          ? <span className='font-light block'>{product.variation.variation}</span>
+                          ? <span className='block'>{product.variation.variation}</span>
                           : ''
                       }
                     </div>
@@ -120,7 +120,7 @@ const CheckOut = () => {
                     <span>${NumberFormat(product.price * product.quantity)}</span>
                     {
                       product.beforePrice
-                        ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
+                        ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                         : ''
                     }
                   </div>
@@ -129,19 +129,19 @@ const CheckOut = () => {
               : ''
           }
           <div className='pb-3 border-b dark:border-neutral-700'>
-            <h2 className='mb-2 text-lg font-light'>Cupon de descuento</h2>
+            <h2 className='mb-2 text-lg'>Cupon de descuento</h2>
             <div className='flex gap-2'>
-              <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Cupon' className='border p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <Button2>Agregar</Button2>
             </div>
           </div>
           <div className='mt-2 mb-2 pb-2 border-b dark:border-neutral-700'>
             <div className='flex gap-2 justify-between mb-1'>
-              <span className='font-light'>Subtotal</span>
+              <span>Subtotal</span>
               <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
             </div>
             <div className='flex gap-2 justify-between'>
-              <span className='font-light'>Envío</span>
+              <span>Envío</span>
               <span>${NumberFormat(Number(sell.shipping))}</span>
             </div>
           </div>
@@ -157,15 +157,15 @@ const CheckOut = () => {
           <div className='w-full pr-0 1010:w-7/12 1010:pr-8'>
             <h1 className='text-[20px] mb-6 font-bold md:text-[25px]'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
-              <h2 className='text-lg mb-2 font-light'>Información de contacto</h2>
+              <h2 className='text-[16px] mb-2 md:text-[18px]'>Información de contacto</h2>
               <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded font-light w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' />
-                <span className='font-light text-sm'>Suscribirse a nuestra lista de emails</span>
+                <span className='text-sm'>Suscribirse a nuestra lista de emails</span>
               </div>
             </div>
             <div className='mb-6'>
-              <h2 className='text-lg mb-2 font-light'>Dirección de envío</h2>
+              <h2 className='mb-2 text-[16px] md:text-[18px]'>Dirección de envío</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
                 <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -260,7 +260,7 @@ const CheckOut = () => {
           </div>
           <div className='w-5/12 h-fit border border-[#F5F5F5] p-4 hidden sticky top-28 bg-[#F5F5F5] dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
-              <h2 className='text-lg mb-2 font-light'>Carrito</h2>
+              <h2 className='mb-2'>Carrito</h2>
               {
                 cart?.length !== 0
                   ? cart?.map(product => (
@@ -291,7 +291,7 @@ const CheckOut = () => {
               }
             </div>
             <div className='mb-2 pb-3 border-b dark:border-neutral-700'>
-              <h2 className='mb-2 text-lg font-light'>Cupon de descuento</h2>
+              <h2 className='mb-2'>Cupon de descuento</h2>
               <div className='flex gap-2'>
                 <input type='text' placeholder='Cupon' className='border p-1 rounded font-light w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <Button2>Agregar</Button2>
@@ -299,17 +299,17 @@ const CheckOut = () => {
             </div>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
               <div className='flex gap-2 justify-between mb-1'>
-                <span className='font-light'>Subtotal</span>
+                <span>Subtotal</span>
                 <span>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
               </div>
               <div className='flex gap-2 justify-between'>
-                <span className='font-light'>Envío</span>
+                <span>Envío</span>
                 <span>${NumberFormat(Number(sell.shipping))}</span>
               </div>
             </div>
             <div className='flex gap-2 justify-between'>
-              <span className='text-lg'>Total</span>
-              <span className='text-lg'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
+              <span className='font-medium'>Total</span>
+              <span className='font-medium'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
             </div>
           </div>
         </form>
