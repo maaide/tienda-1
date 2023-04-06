@@ -118,38 +118,44 @@ const CartPage = () => {
                   )
               }
             </div>
-            <div className='w-full 1010:w-5/12'>
-              <div className='bg-[#F5F5F5] p-4 border border-[#F5F5F5] 450:p-6 dark:bg-neutral-800 dark:border-neutral-700'>
-                <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
-                  <div className='mb-4 border-b pb-4 dark:border-neutral-700'>
-                    <ShippingCart setShippingCost={setShippingCost} />
+            {
+              cartProducts?.length
+                ? (
+                  <div className='w-full 1010:w-5/12'>
+                    <div className='bg-[#F5F5F5] p-4 border border-[#F5F5F5] 450:p-6 dark:bg-neutral-800 dark:border-neutral-700'>
+                      <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
+                        <div className='mb-4 border-b pb-4 dark:border-neutral-700'>
+                          <ShippingCart setShippingCost={setShippingCost} />
+                        </div>
+                        <div className='flex gap-2 justify-between mb-1'>
+                          <span className='text-[14px]'>Subtotal</span>
+                          {
+                            cartProducts?.length
+                              ? <span className='text-[14px]'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+                              : ''
+                          }
+                        </div>
+                        <div className='flex gap-2 justify-between'>
+                          <span className='text-[14px]'>Envío</span>
+                          <span className='text-[14px]'>${NumberFormat(shippingCost)}</span>
+                        </div>
+                      </div>
+                      <div className='flex gap-2 justify-between'>
+                        <span className='font-medium'>Total</span>
+                        {
+                          cartProducts?.length
+                            ? <span className='font-medium'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
+                            : ''
+                        }
+                      </div>
+                      <div className='mt-3 ml-auto w-full flex'>
+                        <Link className='pt-1.5 pb-1.5 w-full rounded-md bg-button text-white' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
+                      </div>
+                    </div>
                   </div>
-                  <div className='flex gap-2 justify-between mb-1'>
-                    <span className='text-[14px]'>Subtotal</span>
-                    {
-                      cartProducts?.length
-                        ? <span className='text-[14px]'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
-                        : ''
-                    }
-                  </div>
-                  <div className='flex gap-2 justify-between'>
-                    <span className='text-[14px]'>Envío</span>
-                    <span className='text-[14px]'>${NumberFormat(shippingCost)}</span>
-                  </div>
-                </div>
-                <div className='flex gap-2 justify-between'>
-                  <span className='font-medium'>Total</span>
-                  {
-                    cartProducts?.length
-                      ? <span className='font-medium'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
-                      : ''
-                  }
-                </div>
-                <div className='mt-3 ml-auto w-full flex'>
-                  <Link className='pt-1.5 pb-1.5 w-full rounded-md bg-button text-white' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
-                </div>
-              </div>
-            </div>
+                )
+                : ''
+            }
           </div>
         </div>
       </div>
