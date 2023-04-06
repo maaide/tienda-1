@@ -59,10 +59,10 @@ const CartPage = () => {
                         </div>
                       </div>
                       <div className='flex gap-4'>
-                        <div className='flex border border-main w-fit h-fit mt-auto mb-auto rounded-md'>
+                        <div className='flex border border-main w-fit h-fit mt-auto mb-auto rounded-md dark:border-neutral-500'>
                           {
                             product.quantity > 1
-                            ? <button className='pt-1 pb-1 pl-3 pr-2 text-main text-sm' onClick={() => {
+                            ? <button className='pt-1 pb-1 pl-3 pr-2 text-main text-sm dark:border-neutral-500' onClick={() => {
                               const index = cartProducts.findIndex((item: ICartProduct) => item === product)
                               const productEdit: ICartProduct = cartProducts[index]
                               const updateProduct: ICartProduct = { ...productEdit, quantity: productEdit.quantity - 1 }
@@ -72,12 +72,12 @@ const CartPage = () => {
                               setCart(JSON.parse(localStorage.getItem('cart')!))
                               setCartProducts(JSON.parse(localStorage.getItem('cart')!))
                             }}>-</button>
-                            : <button className='pt-1 pb-1 pl-3 pr-2 text-main/50 cursor-not-allowed text-sm'>-</button>
+                            : <button className='pt-1 pb-1 pl-3 pr-2 text-main/50 cursor-not-allowed text-sm dark:text-neutral-500'>-</button>
                           }
-                          <span className='text-main m-auto w-4 text-center text-sm'>{product.quantity}</span>
+                          <span className='text-main m-auto w-4 text-center text-sm dark:text-neutral-500'>{product.quantity}</span>
                           {
                             product.quantity < product.stock!
-                            ? <button className='pt-1 pb-1 pl-2 pr-3 text-main text-sm' onClick={() => {
+                            ? <button className='pt-1 pb-1 pl-2 pr-3 text-main text-sm dark:text-neutral-500' onClick={() => {
                               const index = cartProducts.findIndex((item: ICartProduct) => item === product)
                               const productEdit: ICartProduct = cartProducts[index]
                               const updateProduct: ICartProduct = { ...productEdit, quantity: productEdit.quantity + 1 }
@@ -87,7 +87,7 @@ const CartPage = () => {
                               setCart(JSON.parse(localStorage.getItem('cart')!))
                               setCartProducts(JSON.parse(localStorage.getItem('cart')!))
                             }}>+</button>
-                            : <button className='pt-1 pb-1 pl-2 pr-3 text-main/50 cursor-not-allowed'>+</button>
+                            : <button className='pt-1 pb-1 pl-2 pr-3 text-main/50 cursor-not-allowed dark:text-neutral-500'>+</button>
                           }
                         </div>
                         <button onClick={() => {

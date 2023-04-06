@@ -17,12 +17,12 @@ export const CategoriesShop: React.FC<Props> = ({ categories }) => {
         {
           `/tienda` === router.asPath
             ? (
-              <Link href={'/tienda'} className='border border-main text-main pt-0.5 pb-0.5 pl-2 pr-2 rounded-full'>
+              <Link href={'/tienda'} className='border border-main text-main pt-0.5 pb-0.5 pl-2 pr-2 rounded-full dark:border-neutral-600 dark:text-neutral-600'>
                 <span className='font-light text-sm'>Todos</span>
               </Link>
             )
             : (
-              <Link href={'/tienda'} className='border pt-0.5 pb-0.5 pl-2 pr-2 rounded-full dark:border-neutral-500 hover:border-main hover:text-main  hover:dark:border-main hover:dark:text-main'>
+              <Link href={'/tienda'} className='border pt-0.5 pb-0.5 pl-2 pr-2 rounded-full dark:border-neutral-500 hover:border-main hover:text-main hover:dark:border-neutral-600 hover:dark:text-neutral-600'>
                 <span className='font-light text-sm'>Todos</span>
               </Link>
             )
@@ -32,13 +32,13 @@ export const CategoriesShop: React.FC<Props> = ({ categories }) => {
             ? categories.map(category => {
               if (`/tienda/${category.slug}` === router.asPath) {
                 return (
-                  <Link href={`/tienda/${category.slug}`} className='border border-main text-main pt-0.5 pb-0.5 pl-2 pr-2 rounded-full' key={category._id}>
+                  <Link href={`/tienda/${category.slug}`} className='border border-main text-main pt-0.5 pb-0.5 pl-2 pr-2 rounded-full dark:border-neutral-600 dark:text-neutral-600' key={category._id}>
                     <span className='font-light text-sm'>{category.category}</span>
                   </Link>
                 )
               } else {
                 return (
-                    <Link href={`/tienda/${category.slug}`} className='border pt-0.5 pb-0.5 pl-2 pr-2 rounded-full dark:border-neutral-500 hover:border-main hover:text-main  hover:dark:border-main hover:dark:text-main' key={category._id}>
+                    <Link href={`/tienda/${category.slug}`} className='border pt-0.5 pb-0.5 pl-2 pr-2 rounded-full dark:border-neutral-400 hover:border-main hover:text-main  hover:dark:border-neutral-600 hover:dark:text-neutral-600' key={category._id}>
                       <span className='font-light text-sm'>{category.category}</span>
                     </Link>
                   )
