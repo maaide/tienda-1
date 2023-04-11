@@ -40,7 +40,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
       <div className='bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex pl-4 pr-4'>
         <div className='w-1280 m-auto'>
           <h1 className='text-[25px] text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
-          <p className='font-light text-lg text-white w-full text-center'>{category.description}</p>
+          <p className='text-lg text-white w-full text-center'>{category.description}</p>
         </div>
       </div>
       <CategoriesShop categories={categories} />
@@ -50,7 +50,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
             ? (
               <div className='flex'>
                 <div className='w-1280 m-auto flex gap-2 pt-4 pb-4 flex-wrap'>
-                  <p className='text-lg font-light'>No hay productos en esta categoria</p>
+                  <p className='text-lg'>No hay productos en esta categoria</p>
                 </div>
               </div>
             )

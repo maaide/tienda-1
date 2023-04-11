@@ -33,7 +33,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
                         <span className='font-medium'>${NumberFormat(product.price)}</span>
                         {
                           product.beforePrice
-                            ? <span className='font-light text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
+                            ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
                             : ''
                         }
                       </div>
@@ -88,11 +88,11 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
             }
             <div className='mt-4'>
               <Link className='pt-1.5 pb-1.5 rounded-md bg-button text-white' onClick={() => setCartView('hidden')} href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
-              <Link href='/carrito' onClick={() => setCartView('hidden')}><button className='w-full mt-4 underline font-light text-[#444444] dark:text-neutral-400'>Ir al carrito</button></Link>
+              <Link href='/carrito' onClick={() => setCartView('hidden')}><button className='w-full mt-4 underline text-[#444444] dark:text-neutral-400'>Ir al carrito</button></Link>
             </div>
           </>
           : <>
-            <p className='font-light mb-4 text-[#444444] dark:text-neutral-400'>No tienes productos añadidos al carrito</p>
+            <p className='mb-4 text-[#444444] dark:text-neutral-400'>No tienes productos añadidos al carrito</p>
             <Link className='pt-1.5 pb-1.5 rounded-md bg-main text-white' href='/tienda' onClick={() => setCartView('hidden')}><button className='w-full'>Ir a la tienda</button></Link>
           </>
       }

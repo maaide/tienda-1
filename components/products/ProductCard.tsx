@@ -72,7 +72,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           <span className='font-medium'>${ NumberFormat(product.price) }</span>
           {
             product.beforePrice
-              ? <span className='text-sm line-through font-light'>${ NumberFormat(product.beforePrice) }</span>
+              ? <span className='text-sm line-through'>${ NumberFormat(product.beforePrice) }</span>
               : ''
           }
         </div>

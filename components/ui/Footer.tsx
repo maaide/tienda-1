@@ -9,7 +9,7 @@ export const Footer = () => {
         <div className='flex gap-4 justify-between flex-wrap pb-6 border-b'>
           <div>
             <img className='w-56 mb-3' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' />
-            <p className='text-white font-light mb-4 text-sm'>contacto@blaspod.cl</p>
+            <p className='text-white mb-4 text-sm'>contacto@blaspod.cl</p>
             <div className='flex gap-4'>
               <FaFacebookF className='text-white text-xl' />
               <FaInstagram className='text-white text-xl' />
@@ -18,20 +18,20 @@ export const Footer = () => {
           </div>
           <div className='mt-6'>
             <h3 className='text-white mb-2'>TIENDA</h3>
-            <Link className='block text-white font-light text-sm mb-1' href='/tienda'>Productos</Link>
-            <Link className='block text-white font-light text-sm mb-1' href='/audifonos'>Audífonos inalámbricos</Link>
-            <Link className='block text-white font-light text-sm mb-1' href='/relojes'>Relojes inteligentes</Link>
-            <Link className='block text-white font-light text-sm mb-1' href='/carcasas'>Carcasas Airpods</Link>
+            <Link className='block text-white text-sm mb-1' href='/tienda'>Productos</Link>
+            <Link className='block text-white text-sm mb-1' href='/audifonos'>Audífonos inalámbricos</Link>
+            <Link className='block text-white text-sm mb-1' href='/relojes'>Relojes inteligentes</Link>
+            <Link className='block text-white text-sm mb-1' href='/carcasas'>Carcasas Airpods</Link>
           </div>
           <div className='mt-6'>
             <h3 className='text-white mb-2'>POLITICAS</h3>
-            <Link className='block text-white font-light text-sm mb-1' href='/politicas-privacidad'>Politicas de privacidad</Link>
-            <Link className='block text-white font-light text-sm mb-1' href='/terminos-y-condiciones'>Terminos y condiciones</Link>
-            <Link className='block text-white font-light text-sm mb-1' href='/envio'>Información de envío</Link>
+            <Link className='block text-white text-sm mb-1' href='/politicas-privacidad'>Politicas de privacidad</Link>
+            <Link className='block text-white text-sm mb-1' href='/terminos-y-condiciones'>Terminos y condiciones</Link>
+            <Link className='block text-white text-sm mb-1' href='/envio'>Información de envío</Link>
           </div>
         </div>
         <div className='mt-6'>
-          <span className='text-white font-light text-sm'>© 2022 Blaspod Store. Todos los derechos reservados</span>
+          <span className='text-white text-sm'>© 2022 Blaspod Store. Todos los derechos reservados</span>
         </div>
       </div>
     </div>

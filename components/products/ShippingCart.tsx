@@ -72,19 +72,19 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
   return (
     <div>
       <h2 className='text-[16px] font-semibold mb-2 md:text-[20px]'>CALCULA LOS COSTOS DE ENVÍO</h2>
-      <select className='text-sm border p-1 rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={regionChange}>
-        <option className='font-light'>Seleccionar Región</option>
+      <select className='text-sm border p-1 rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={regionChange}>
+        <option>Seleccionar Región</option>
         {
         regions !== undefined
-          ? regions.map(region => <option className='font-light' key={region.regionId}>{region.regionName.toLocaleLowerCase()}</option>)
+          ? regions.map(region => <option key={region.regionId}>{region.regionName.toLocaleLowerCase()}</option>)
           : ''
         }
       </select>
       {
         citys !== undefined
-        ? <select className='text-sm block border p-1 rounded-md mt-2 font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={cityChange}>
-          <option className='font-light'>Seleccionar Ciudad</option>
-          {citys.map(city => <option className='font-light' key={city.countyCode}>{city.countyName}</option>)}
+        ? <select className='text-sm block border p-1 rounded-md mt-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={cityChange}>
+          <option>Seleccionar Ciudad</option>
+          {citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)}
         </select>
         : ''
       }
@@ -97,7 +97,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
               return <div className='flex justify-between p-2 border rounded-md dark:border-neutral-500' key={cityFree}>
                 <div className='flex gap-2'>
                   <input type='radio' name='shipping' className='envio express' value={0} onChange={inputChange} />
-                  <span className='font-light text-sm text-[#444444] dark:text-neutral-400'>Envío gratis en 24 a 48 horas</span>
+                  <span className='text-sm text-[#444444] dark:text-neutral-400'>Envío gratis en 24 a 48 horas</span>
                 </div>
                 <span className='text-sm text-[#444444] dark:text-neutral-400'>$0</span>
               </div>
@@ -109,7 +109,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
             <div key={service.serviceDescription} className='flex justify-between p-2 border rounded-md dark:border-neutral-500'>
               <div className='flex gap-2'>
                 <input type='radio' name='shipping' className={service.serviceDescription} value={service.serviceValue} onChange={inputChange} />
-                <span className='font-light text-sm text-[#444444] dark:text-neutral-400'>{service.serviceDescription}</span>
+                <span className='text-sm text-[#444444] dark:text-neutral-400'>{service.serviceDescription}</span>
               </div>
               <span className='text-sm text-[#444444] dark:text-neutral-400'>${NumberFormat(Number(service.serviceValue))}</span>
             </div>

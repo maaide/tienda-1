@@ -132,7 +132,7 @@ const CheckOut = () => {
           <div className='pb-3 border-b dark:border-neutral-700'>
             <h2 className='mb-2 text-[16px] md:text-[18px]'>Cupon de descuento</h2>
             <div className='flex gap-2'>
-              <input type='text' placeholder='Cupon' className='border font-light text-[14px] p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Cupon' className='border text-[14px] p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <Button2>Agregar</Button2>
             </div>
           </div>
@@ -158,7 +158,7 @@ const CheckOut = () => {
             <h1 className='text-[20px] mb-6 font-bold md:text-[25px]'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
               <h2 className='text-[16px] mb-2 md:text-[18px]'>Información de contacto</h2>
-              <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded font-light w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' />
                 <span className='text-sm'>Suscribirse a nuestra lista de emails</span>
@@ -168,21 +168,21 @@ const CheckOut = () => {
               <h2 className='mb-2 text-[16px] md:text-[18px]'>Dirección de envío</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
-                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
-              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <span className='mt-auto mb-auto text-sm'>+56</span>
-                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} className='border text-sm p-2 rounded font-light w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
             </div>
             {
               shipping !== undefined
                 ? (
                   <div className='mb-6'>
-                    <h2 className='mb-2 text-lg font-light'>Envío</h2>
+                    <h2 className='mb-2 text-lg'>Envío</h2>
                     <div className='flex flex-col gap-1'>
                       {
                         FreeShipping.find(free => free === sell.city)
@@ -190,9 +190,9 @@ const CheckOut = () => {
                             <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700'>
                               <div className='flex gap-2'>
                                 <input type='radio' name='shipping' className='ENVIO EXPRESS' value='0' onChange={shippingChange} />
-                                <p className='text-sm font-light mt-auto mb-auto'>Envío express</p>
+                                <p className='text-sm mt-auto mb-auto'>Envío express</p>
                               </div>
-                              <p className='text-sm font-light'>$0</p>
+                              <p className='text-sm'>$0</p>
                             </div>
                           )
                           : ''
@@ -202,9 +202,9 @@ const CheckOut = () => {
                             <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700' key={item.serviceDescription}>
                               <div className='flex gap-2'>
                                 <input type='radio' name='shipping' className={item.serviceDescription} value={item.serviceValue} onChange={shippingChange} />
-                                <p className='text-sm font-light mt-auto mb-auto'>{item.serviceDescription}</p>
+                                <p className='text-sm mt-auto mb-auto'>{item.serviceDescription}</p>
                               </div>
-                              <p className='text-sm font-light'>${NumberFormat(Number(item.serviceValue))}</p>
+                              <p className='text-sm'>${NumberFormat(Number(item.serviceValue))}</p>
                             </div>
                           ))
                       }
@@ -217,30 +217,30 @@ const CheckOut = () => {
               sell.shippingMethod
                 ? (
                   <div className='mb-6'>
-                    <h2 className='text-xl font-light mb-2'>Pago</h2>
+                    <h2 className='text-xl mb-2'>Pago</h2>
                     {
                       sell.shippingMethod === 'ENVIO EXPRESS'
                         ? (
                           <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
                             <input type='radio' name='pay' value='Pago en la entrega' onChange={payChange} />
-                            <p className='font-light text-sm'>Pago en la entrega</p>
+                            <p className='text-sm'>Pago en la entrega</p>
                           </div>
                         )
                         : ''
                     }
                     <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
                       <input type='radio' name='pay' value='WebPay Plus' onChange={inputChange} />
-                      <p className='font-light text-sm'>WebPay Plus</p>
+                      <p className='text-sm'>WebPay Plus</p>
                     </div>
                     <div className='flex gap-2 p-3 border rounded-md dark:border-neutral-700'>
                       <input type='radio' name='pay' value='MercadoPago' onChange={inputChange} />
-                      <p className='font-light text-sm'>MercadoPago</p>
+                      <p className='text-sm'>MercadoPago</p>
                     </div>
                   </div>
                 )
                 : ''
             }
-            <div className='flex gap-2 justify-between mt-auto mb-auto font-light'>
+            <div className='flex gap-2 justify-between mt-auto mb-auto'>
               <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><AiOutlineLeft className='mt-auto mb-auto' />Regresar al carrito</span></Link></div>
               {
                 sell.pay === ''
@@ -272,7 +272,7 @@ const CheckOut = () => {
                           <span className='block'>Cantidad: {product.quantity}</span>
                           {
                             product.variation
-                              ? <span className='block font-light'>Variación: {product.variation.variation}</span>
+                              ? <span className='block'>Variación: {product.variation.variation}</span>
                               : ''
                           }
                         </div>
@@ -281,7 +281,7 @@ const CheckOut = () => {
                         <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
                         {
                           product.beforePrice
-                            ? <span className='font-light text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
+                            ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                             : ''
                         }
                       </div>
@@ -293,7 +293,7 @@ const CheckOut = () => {
             <div className='mb-2 pb-3 border-b dark:border-neutral-700'>
               <h2 className='mb-2 text-[18px]'>Cupon de descuento</h2>
               <div className='flex gap-2'>
-                <input type='text' placeholder='Cupon' className='border p-1 rounded font-light text-[14px] w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Cupon' className='border p-1 rounded text-[14px] w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <Button2>Agregar</Button2>
               </div>
             </div>

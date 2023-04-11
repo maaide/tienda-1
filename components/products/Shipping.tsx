@@ -67,19 +67,19 @@ export const Shipping: React.FC<Props> = ({ setShipping, sell, setSell }) => {
 
   return (
     <div className=''>
-      <select className='border text-sm p-2 rounded font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={regionChange}>
-        <option className='font-light'>Seleccionar Región</option>
+      <select className='border text-sm p-2 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={regionChange}>
+        <option>Seleccionar Región</option>
         {
         regions !== undefined
-          ? regions.map(region => <option className='font-light' key={region.regionId}>{region.regionName}</option>)
+          ? regions.map(region => <option key={region.regionId}>{region.regionName}</option>)
           : ''
         }
       </select>
       {
         citys !== undefined
-        ? <select className='block border text-sm p-2 rounded font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={cityChange}>
-          <option className='font-light'>Seleccionar Ciudad</option>
-          {citys.map(city => <option className='font-light' key={city.countyCode}>{city.countyName}</option>)}
+        ? <select className='block border text-sm p-2 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={cityChange}>
+          <option>Seleccionar Ciudad</option>
+          {citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)}
         </select>
         : ''
       }

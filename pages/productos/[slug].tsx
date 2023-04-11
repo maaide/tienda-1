@@ -106,7 +106,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
         <div className='block m-auto w-full gap-4 lg:flex xl2:w-1280 xl2:gap-8'>
           <div className='w-full lg:w-7/12'>
             <div className='mb-2'>
-              <span className='text-15 font-light'><Link href='/tienda'>Tienda</Link> / <Link href={`/category/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/product/${ product.slug }`}>{ product.name }</Link></span>
+              <span className='text-15'><Link href='/tienda'>Tienda</Link> / <Link href={`/tienda/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/productos/${ product.slug }`}>{ product.name }</Link></span>
             </div>
             <div className='relative top-0 mb-0 1010:mb-5 1010:sticky 1010:top-32'>
               <ProductSlider images={ product.images } />
@@ -132,7 +132,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               <span className='text-[16px] font-medium'>${ NumberFormat(product.price) }</span>
               {
                 product.beforePrice
-                  ? <span className='text-sm line-through font-light text-[#444444] dark:text-neutral-400'>${ NumberFormat(product.beforePrice) }</span>
+                  ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${ NumberFormat(product.beforePrice) }</span>
                   : ''
               }
             </div>
@@ -141,7 +141,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 ? product.variations[0].variation !== ''
                   ? <div className='mb-2'>
                     <span className='text-sm font-medium'>{product.nameVariations}: </span>
-                    <span className='text-sm font-light text-[#444444] dark:text-neutral-400'>{tempCartProduct.variation?.variation}</span>
+                    <span className='text-sm text-[#444444] dark:text-neutral-400'>{tempCartProduct.variation?.variation}</span>
                     <div className='flex gap-2 mt-1'>
                       {product.variations.map(variation => (
                         <div key={variation.variation}>

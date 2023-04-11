@@ -100,7 +100,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                             cart?.length
                               ? (
                                 <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
-                                <span className='m-auto text-xs font-light text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
+                                <span className='m-auto text-xs text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
                               </div>
                               )
                               : ''
@@ -121,7 +121,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                             cart?.length
                               ? (
                                 <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
-                                <span className='m-auto text-xs font-light text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
+                                <span className='m-auto text-xs text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
                               </div>
                               )
                               : ''
@@ -151,7 +151,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </>
               : <div className='flex gap-4'>
                 {renderThemeChanger()}
-                <Link href='/tienda' className='font-light mt-auto mb-auto text-sm text-neutral-500'>Continuar comprando</Link>
+                <Link href='/tienda' className='mt-auto mb-auto text-sm text-neutral-500'>Continuar comprando</Link>
               </div>
           }
         </div>

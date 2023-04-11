@@ -11,7 +11,7 @@ interface Props {
 export const ReviewsProductCard: React.FC<Props> = ({ stars, quantity, product }) => {
   return (
     <div className='flex gap-1 mt-2'>
-      <span className='mr-1 font-light'>{(stars / quantity).toFixed(1)}</span>
+      <span className='mr-1'>{(stars / quantity).toFixed(1)}</span>
       {stars / quantity === 0
         ? <BsStar className='text-lg text-yellow-400' />
         : stars / quantity <= 0.9
@@ -37,7 +37,7 @@ export const ReviewsProductCard: React.FC<Props> = ({ stars, quantity, product }
         : stars / quantity <= 4.9
           ? <BsStarHalf className='text-lg text-yellow-400' />
           : <BsStarFill className='text-lg text-yellow-400' />}
-      <span className='font-light'>({product.reviews?.length})</span>
+      <span>({product.reviews?.length})</span>
     </div>
   )
 }

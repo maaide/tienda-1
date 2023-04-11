@@ -53,23 +53,23 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
         {
           offer.productsSale.length === 1
             ? <span>{tempCartProduct.name}</span>
-            : <select onChange={productChange} className='text-sm p-1 border rounded-md font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500'>
+            : <select onChange={productChange} className='text-sm p-1 border rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500'>
               {
-                offer.productsSale.map(product => <option className='font-light' key={product.slug}>{product.name}</option>)
+                offer.productsSale.map(product => <option key={product.slug}>{product.name}</option>)
               }
             </select>
         }
         <div className='flex gap-2'>
           <span>${NumberFormat(tempCartProduct.price)}</span>
-          <span className='text-sm line-through font-light'>${NumberFormat(tempCartProduct.beforePrice!)}</span>
+          <span className='text-sm line-through'>${NumberFormat(tempCartProduct.beforePrice!)}</span>
         </div>
         {
           tempCartProduct.variation !== undefined
-            ? <select className='text-sm p-1 border rounded-md block mb-1 font-light focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
+            ? <select className='text-sm p-1 border rounded-md block mb-1 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
               {
                 offer.productsSale.map(product => {
                   if (tempCartProduct.name === product.name) {
-                    return product.variations?.map(variation => <option className='font-light' key={variation.variation}>{variation.variation}</option>)
+                    return product.variations?.map(variation => <option key={variation.variation}>{variation.variation}</option>)
                   }
                   return null
                 })

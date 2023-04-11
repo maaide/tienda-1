@@ -47,13 +47,13 @@ const CartPage = () => {
                             <span className='font-medium'>${NumberFormat(product.price)}</span>
                             {
                               product.beforePrice
-                                ? <span className='text-sm font-light line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
+                                ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
                                 : ''
                             }
                           </div>
                           {
                             product.variation
-                              ? <span className='font-light text-[#444444] dark:text-neutral-400'>{product.variation.variation}</span>
+                              ? <span className='text-[#444444] dark:text-neutral-400'>{product.variation.variation}</span>
                               : ''
                           }
                         </div>
@@ -112,7 +112,7 @@ const CartPage = () => {
                   ))
                   : (
                     <div>
-                      <p className='font-light mb-4'>No tienes productos agregados al carrito</p>
+                      <p className='mb-4'>No tienes productos agregados al carrito</p>
                       <Link href='/tienda' className='pt-1.5 pb-1.5 pl-4 pr-4 rounded-md bg-main text-white'>Ir a la tienda</Link>
                     </div>
                   )

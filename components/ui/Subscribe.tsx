@@ -26,11 +26,11 @@ export const Subscribe = () => {
         <form className='m-auto w-1280 mt-16 mb-16'>
           <h4 className='mb-4 text-[16px] font-semibold text-center md:text-[20px]'>SUSCRIBETE EN NUESTRA LISTA PARA RECIBIR OFERTAS EXCLUSIVAS, SORTEOS Y MUCHO MÁS</h4>
           <div className='flex'>
-            <input type='email' placeholder='Email' value={subscribeData.email} onChange={inputChange} className='font-light p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:bg-neutral-800' />
+            <input type='email' placeholder='Email' value={subscribeData.email} onChange={inputChange} className='p-2 w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:bg-neutral-800' />
             <button onClick={handleSubmit} className='pt-2 pb-2 pl-10 pr-10 bg-main text-white'>Envíar</button>
           </div>
           <div className={successSubscribe}>
-            <p className='text-green mt-2 font-light'>Suscripción realizada con exito</p>
+            <p className='text-green mt-2'>Suscripción realizada con exito</p>
           </div>
         </form>
       </div>
@@ -38,15 +38,15 @@ export const Subscribe = () => {
         <div className='w-1280 m-auto flex flex-wrap gap-4 justify-between'>
           <div className='flex gap-2'>
             <BsTruck className='text-white text-4xl' />
-            <span className='text-white m-auto font-light'>Envío gratis a todo Santiago</span>
+            <span className='text-white m-auto'>Envío gratis a todo Santiago</span>
           </div>
           <div className='flex gap-2'>
             <IoIosTimer className='text-white text-4xl' />
-            <span className='text-white m-auto font-light'>Recibe en 24 y 48 horas en todo Santiago</span>
+            <span className='text-white m-auto'>Recibe en 24 y 48 horas en todo Santiago</span>
           </div>
           <div className='flex gap-2'>
             <BsCreditCard2Back className='text-white text-4xl' />
-            <span className='text-white m-auto font-light'>Pago seguro en nuestra web</span>
+            <span className='text-white m-auto'>Pago seguro en nuestra web</span>
           </div>
         </div>
       </div>

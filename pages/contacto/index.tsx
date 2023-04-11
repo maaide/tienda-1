@@ -64,9 +64,9 @@ const ContactPage = () => {
             <div className='rounded-md shadow-2xl p-4 420:p-6 650:p-10 dark:shadow-none dark:border dark:border-neutral-700 dark:bg-neutral-800'>
               <h2 className='text-[20px] font-medium mb-4 md:text-[25px]'>PARA PONERTE EN CONTACTO CON NOSOTROS LLENA EL SIGUIENTE FORMULARIO</h2>
               <form>
-                <input type='text' placeholder='Nombre' name='name' onChange={inputChange} value={formContact.name} className='p-2 text-sm font-light w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-                <input type='email' placeholder='Email' name='email' onChange={inputChange} value={formContact.email} className='p-2 text-sm font-light w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-                <textarea placeholder='Mensaje' name='message' onChange={inputChange} value={formContact.message} className='p-2 font-light text-sm w-full rounded border h-20 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Nombre' name='name' onChange={inputChange} value={formContact.name} className='p-2 text-sm w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='email' placeholder='Email' name='email' onChange={inputChange} value={formContact.email} className='p-2 text-sm w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <textarea placeholder='Mensaje' name='message' onChange={inputChange} value={formContact.message} className='p-2 text-sm w-full rounded border h-20 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <input type='file' onChange={imageChange} className='text-sm mt-2 mb-4 block w-full file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-main/10 file:text-main hover:file:bg-main/20' />
                 <button onClick={handleSubmit} className=' w-full h-9 pl-7 pr-7 rounded-md bg-main text-white'>
                   {
