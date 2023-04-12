@@ -16,7 +16,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
 
   return (
     <div onMouseEnter={() => setCartPc(false)} onMouseLeave={() => setCartPc(true)} className={`ml-auto p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96`}>
-      <h4 className='text-center mb-3 font-semibold pb-2 border-b w-full dark:border-neutral-800 text-[16px]'>CARRITO</h4>
+      <h4 className='text-center tracking-widest text-[#1c1b1b] mb-3 font-semibold pb-2 border-b w-full dark:border-neutral-800 text-[16px] dark:text-white'>CARRITO</h4>
       {
         cart?.length
           ? <>

@@ -17,7 +17,7 @@ export const OtherProductList: React.FC<Props> = ({ products, title }) => {
   return (
     <div className='flex w-full p-4'>
       <div className='m-auto w-full relative items-center 1300:w-1280'>
-        <h2 className='text-[16px] font-semibold mb-2 md:text-[20px]'>{ title }</h2>
+        <h2 className='text-[16px] tracking-widest text-[#1c1b1b] font-semibold mb-2 md:text-[20px] dark:text-white'>{ title }</h2>
         <Swiper
           className={styles.mySwiper}
           slidesPerView={window.innerWidth > 1100 ? 4 : window.innerWidth > 850 ? 3 : 2}

@@ -25,7 +25,7 @@ export const Categories: React.FC<Props> = ({ categories }) => {
                   categories.map(category => (
                     <Link href={`/tienda/${category.slug}`} key={category._id} className=' mb-2 p-1 bg-contain bg-center w-1/2 800:w-1/3 hover:opacity-70'>
                       <img onLoad={() => setImgLoad(true)} src={category.image} alt={category.category} />
-                      <h2 style={{ display: imgLoad ? 'block' : 'none' }} className='text-[16px] text-center font-semibold mt-2 md:text-[20px]'>{category.category.toUpperCase()}</h2>
+                      <h2 style={{ display: imgLoad ? 'block' : 'none' }} className='text-[16px] text-[#1c1b1b] tracking-widest text-center font-semibold mt-2 md:text-[20px] dark:text-white'>{category.category.toUpperCase()}</h2>
                     </Link>
                   ))
                 }

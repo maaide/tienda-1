@@ -62,8 +62,8 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
-          ? <div className='bg-main text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
-            <p className='m-auto text-[14px]'>Envío gratis en 24 horas para todo Santiago</p>
+          ? <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
+            <p className='m-auto tracking-widest font-medium text-[13px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
           : ''
       }
@@ -86,11 +86,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             router.pathname !== '/finalizar-compra'
               ? <>
                 <div className='hidden gap-6 575:flex'>
-                  <Link className='mt-auto mb-auto' href='/'>INICIO</Link>
+                  <Link className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>INICIO</Link>
                   <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} onClick={() => setNavCategories('hidden')} >
-                    <div className='mt-auto mb-auto'>TIENDA</div>
+                    <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
-                  <Link className='mt-auto mb-auto' href='/contacto'>CONTACTO</Link>
+                  <Link className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>CONTACTO</Link>
                   {
                     cartView === 'hidden'
                       ? (
@@ -182,7 +182,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }, 150)
           }} />
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
-            <Link className={`mb-4 flex pb-2 min-w-[250px] border-b dark:border-neutral-600`} onClick={() => {
+            <Link className={`mb-4 tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
@@ -195,13 +195,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   setTimeout(() => {
                     setIndex('hidden')
                   }, 150)
-                }} href='/tienda'>TIENDA</Link>
+                }} className='tracking-widest font-medium text-[#1c1b1b] dark:text-white' href='/tienda'>TIENDA</Link>
                 {
                   categoriesPhone === 'hidden'
                     ? <button onClick={() => setCategoriesPhone('block') }><AiOutlineDown className='ml-auto text-lg text-neutral-500' /></button>
                     : <button onClick={() => setCategoriesPhone('hidden') }><AiOutlineUp className='ml-auto text-lg text-neutral-500' /></button>
                 }
-                
               </div>
               <div className={`${categoriesPhone} flex flex-col gap-2 mb-4`}>
                 {
@@ -214,14 +213,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         }, 150)
                       }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
                         <img className='w-28' src={category.image} />
-                        <h2 className='mt-auto mb-auto'>{category.category.toUpperCase()}</h2>
+                        <h2 className='mt-auto tracking-widest text-[#1c1b1b] font-medium mb-auto dark:text-white'>{category.category.toUpperCase()}</h2>
                       </Link>
                     ))
                     : ''
                 }
               </div>
             </div>
-            <Link className={`mb-4 flex pb-2 min-w-[250px] border-b dark:border-neutral-600`} onClick={() => {
+            <Link className={`mb-4 tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
@@ -237,7 +236,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   {categories.map(category => (
                     <div key={category._id}>
                       <img className='w-64 mb-2 cursor-pointer' onClick={() => router.push(`/tienda/${category.slug}`)} src={category.image} />
-                      <Link href={`/tienda/${category.slug}`} className='m-auto'>{category.category.toUpperCase()}</Link>
+                      <Link href={`/tienda/${category.slug}`} className='m-auto tracking-widest font-medium text-[#1c1b1b] dark:text-white'>{category.category.toUpperCase()}</Link>
                     </div>
                   ))}
                 </div>
