@@ -20,12 +20,15 @@ export const Categories: React.FC<Props> = ({ categories }) => {
         categories.length
           ? (
             <div className='flex pt-4 pl-3 pr-3'>
-              <div className='w-1280 m-auto flex flex-wrap justify-around'>
+              <div className='m-auto block flex-wrap justify-around 830:flex'>
                 {
                   categories.map(category => (
-                    <Link href={`/tienda/${category.slug}`} key={category._id} className=' mb-2 p-1 bg-contain bg-center w-1/2 800:w-1/3 hover:opacity-70'>
-                      <img onLoad={() => setImgLoad(true)} src={category.image} alt={category.category} />
-                      <h2 style={{ display: imgLoad ? 'block' : 'none' }} className='text-[16px] text-[#1c1b1b] tracking-widest text-center font-semibold mt-2 md:text-[20px] dark:text-white'>{category.category.toUpperCase()}</h2>
+                    <Link href={`/tienda/${category.slug}`} key={category._id} className='mb-2 p-1 bg-contain w-full flex gap-4 bg-center hover:opacity-70 830:block 830:w-96'>
+                      <img className='w-1/2 830:w-96' onLoad={() => setImgLoad(true)} src={category.image} alt={category.category} />
+                      <div className='m-auto'>
+                        <h2 style={{ display: imgLoad ? 'block' : 'none' }} className='text-[16px] mb-1 text-[#1c1b1b] tracking-widest font-semibold mt-2 md:text-[20px] dark:text-white'>{category.category.toUpperCase()}</h2>
+                        <p className='text-sm text-main md:text-base'>{category.description}</p>
+                      </div>
                     </Link>
                   ))
                 }

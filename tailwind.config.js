@@ -33,7 +33,7 @@ module.exports = {
         '1920': '1920px'
       },
       colors: {
-        'main': '#000000',
+        'main': '#1c1b1b',
         'button': '#007DB5',
         'blackv2': '#000000e6',
         'green': '#00a650',
@@ -60,7 +60,8 @@ module.exports = {
         '396': '396px',
         '450': '450px',
         '800': '800px',
-        '500': '500px'
+        '500': '500px',
+        '830': '830px'
       },
       fontSize: {
         '15': '15px'
