@@ -155,9 +155,9 @@ const CheckOut = () => {
       <div className='flex p-4'>
         <form className='w-1280 m-auto block 1010:flex' id='formBuy'>
           <div className='w-full pr-0 1010:w-7/12 1010:pr-8'>
-            <h1 className='text-[20px] mb-6 font-bold md:text-[25px]'>FINALIZAR COMPRA</h1>
+            <h1 className='text-[20px] text-main tracking-widest mb-6 font-semibold md:text-[25px] dark:text-white'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
-              <h2 className='text-[16px] mb-2 md:text-[18px]'>Información de contacto</h2>
+              <h2 className='text-[16px] tracking-widest font-semibold mb-2 md:text-[18px]'>INFORMACIÓN DE CONTACTO</h2>
               <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' />
@@ -165,7 +165,7 @@ const CheckOut = () => {
               </div>
             </div>
             <div className='mb-6'>
-              <h2 className='mb-2 text-[16px] md:text-[18px]'>Dirección de envío</h2>
+              <h2 className='mb-2 tracking-widest font-semibold text-[16px] md:text-[18px]'>DIRECCIÓN DE ENVÍO</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
                 <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -182,7 +182,7 @@ const CheckOut = () => {
               shipping !== undefined
                 ? (
                   <div className='mb-6'>
-                    <h2 className='mb-2 text-lg'>Envío</h2>
+                    <h2 className='mb-2 tracking-widest font-semibold text-[16px] md:text-[18px]'>ENVÍO</h2>
                     <div className='flex flex-col gap-1'>
                       {
                         FreeShipping.find(free => free === sell.city)
@@ -217,7 +217,7 @@ const CheckOut = () => {
               sell.shippingMethod
                 ? (
                   <div className='mb-6'>
-                    <h2 className='text-xl mb-2'>Pago</h2>
+                    <h2 className='text-[16px] tracking-widest font-semibold mb-2 md:text-[18px]'>PAGO</h2>
                     {
                       sell.shippingMethod === 'ENVIO EXPRESS'
                         ? (

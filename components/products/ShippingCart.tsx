@@ -71,8 +71,8 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
 
   return (
     <div>
-      <h2 className='text-[16px] font-semibold mb-2 md:text-[20px]'>CALCULA LOS COSTOS DE ENVÍO</h2>
-      <select className='text-sm border p-1 rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={regionChange}>
+      <h2 className='text-[15px] tracking-widest text-main font-semibold mb-2 md:text-[18px] dark:text-white'>CALCULA LOS COSTOS DE ENVÍO</h2>
+      <select className='text-sm text-main border p-1 rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500 dark:text-white' onChange={regionChange}>
         <option>Seleccionar Región</option>
         {
         regions !== undefined
@@ -82,7 +82,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
       </select>
       {
         citys !== undefined
-        ? <select className='text-sm block border p-1 rounded-md mt-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' onChange={cityChange}>
+        ? <select className='text-sm text-main block border p-1 rounded-md mt-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500 dark:text-white' onChange={cityChange}>
           <option>Seleccionar Ciudad</option>
           {citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)}
         </select>
@@ -91,7 +91,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
       {
         shipping !== undefined
         ? <div className='flex flex-col gap-1 mt-2 '>
-          <span className='mt-1'>Envíos express:</span>
+          <span className='mt-1 text-main dark:text-white'>Envíos express:</span>
           {FreeShipping.map(cityFree => {
             if (cityFree === city) {
               return <div className='flex justify-between p-2 border rounded-md dark:border-neutral-500' key={cityFree}>
@@ -104,7 +104,7 @@ export const ShippingCart: React.FC<Props> = ({ setShippingCost }) => {
             }
             return null
           })}
-          <span className='mt-1'>Chilexpress:</span>
+          <span className='mt-1 text-main dark:text-white'>Chilexpress:</span>
           {shipping.map(service => (
             <div key={service.serviceDescription} className='flex justify-between p-2 border rounded-md dark:border-neutral-500'>
               <div className='flex gap-2'>

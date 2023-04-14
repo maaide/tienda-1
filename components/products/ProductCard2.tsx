@@ -66,12 +66,12 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
             ? <ReviewsProductCard product={product} quantity={quantity} stars={stars} />
             : <div className='w-1 h-2' />
         }
-        <Link href={`/productos/${product.slug}`} className='cursor-pointer'>{ product.name }</Link>
+        <Link href={`/productos/${product.slug}`} className='cursor-pointer text-main dark:text-white'>{ product.name }</Link>
         <div className='flex gap-2 mt-1 mb-1'>
-          <span className='font-medium'>${ NumberFormat(product.price) }</span>
+          <span className='font-medium text-main dark:text-white'>${ NumberFormat(product.price) }</span>
           {
             product.beforePrice
-              ? <span className='text-sm line-through'>${ NumberFormat(product.beforePrice) }</span>
+              ? <span className='text-sm line-through text-main dark:text-white'>${ NumberFormat(product.beforePrice) }</span>
               : ''
           }
         </div>

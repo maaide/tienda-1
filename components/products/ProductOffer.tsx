@@ -52,20 +52,20 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
       <div className='mt-auto mb-auto'>
         {
           offer.productsSale.length === 1
-            ? <span>{tempCartProduct.name}</span>
-            : <select onChange={productChange} className='text-sm p-1 border rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500'>
+            ? <span className='text-main dark:text-white'>{tempCartProduct.name}</span>
+            : <select onChange={productChange} className='text-sm p-1 border text-main rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500 dark:text-white'>
               {
                 offer.productsSale.map(product => <option key={product.slug}>{product.name}</option>)
               }
             </select>
         }
         <div className='flex gap-2'>
-          <span>${NumberFormat(tempCartProduct.price)}</span>
-          <span className='text-sm line-through'>${NumberFormat(tempCartProduct.beforePrice!)}</span>
+          <span className='text-main dark:text-white'>${NumberFormat(tempCartProduct.price)}</span>
+          <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(tempCartProduct.beforePrice!)}</span>
         </div>
         {
           tempCartProduct.variation !== undefined
-            ? <select className='text-sm p-1 border rounded-md block mb-1 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500' name={tempCartProduct.name} onChange={variationChange}>
+            ? <select className='text-sm p-1 border rounded-md text-main block mb-1 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-500 dark:text-white' name={tempCartProduct.name} onChange={variationChange}>
               {
                 offer.productsSale.map(product => {
                   if (tempCartProduct.name === product.name) {

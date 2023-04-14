@@ -28,7 +28,7 @@ const CartPage = () => {
       </Head>
       <div className='p-4 flex'>
         <div className='m-auto w-1280'>
-          <h1 className='text-[20px] font-semibold mb-4 md:text-[25px]'>CARRITO</h1>
+          <h1 className='text-[20px] tracking-widest text-main font-semibold mb-4 md:text-[25px] dark:text-white'>CARRITO</h1>
           <div className='block gap-8 1010:flex'>
             <div className='w-full 1010:w-7/12'>
               {
@@ -41,10 +41,10 @@ const CartPage = () => {
                         </Link>
                         <div className='mt-auto mb-auto'>
                           <Link href={`/productos/${product.slug}`}>
-                            <h2 className='text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h2>
+                            <h2 className='text-main dark:text-white'>{product.name}</h2>
                           </Link>
                           <div className='flex gap-2'>
-                            <span className='font-medium'>${NumberFormat(product.price)}</span>
+                            <span className='font-medium text-main dark:text-white'>${NumberFormat(product.price)}</span>
                             {
                               product.beforePrice
                                 ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
@@ -128,7 +128,7 @@ const CartPage = () => {
                           <ShippingCart setShippingCost={setShippingCost} />
                         </div>
                         <div className='flex gap-2 justify-between mb-1'>
-                          <span className='text-[14px]'>Subtotal</span>
+                          <span className='text-[14px] text-[#444444] dark:text-neutral-400'>Subtotal</span>
                           {
                             cartProducts?.length
                               ? <span className='text-[14px]'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
@@ -136,7 +136,7 @@ const CartPage = () => {
                           }
                         </div>
                         <div className='flex gap-2 justify-between'>
-                          <span className='text-[14px]'>Envío</span>
+                          <span className='text-[14px] text-[#444444] dark:text-neutral-400'>Envío</span>
                           <span className='text-[14px]'>${NumberFormat(shippingCost)}</span>
                         </div>
                       </div>

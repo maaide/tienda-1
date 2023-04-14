@@ -63,7 +63,7 @@ export const ShippingCost = () => {
 
   return (
     <div>
-      <select className='text-sm border p-1 rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' onChange={regionChange}>
+      <select className='text-sm text-main border p-1 rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 dark:text-white' onChange={regionChange}>
         <option>Seleccionar Región</option>
         {
         regions !== undefined
@@ -73,7 +73,7 @@ export const ShippingCost = () => {
       </select>
       {
         citys !== undefined
-        ? <select className='text-sm block border p-1 rounded-md mt-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' onChange={cityChange}>
+        ? <select className='text-sm text-main block border p-1 rounded-md mt-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 dark:text-white' onChange={cityChange}>
           <option>Seleccionar Ciudad</option>
           {citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)}
         </select>
@@ -82,20 +82,20 @@ export const ShippingCost = () => {
       {
         shipping !== undefined
         ? <div className='flex flex-col gap-1 mt-2 '>
-          <span className='mt-1'>Envíos express:</span>
+          <span className='mt-1 text-main dark:text-white'>Envíos express:</span>
           {FreeShipping.map(cityFree => {
             if (cityFree === city) {
               return <div className='flex justify-between p-2 border rounded-md dark:border-neutral-600' key={cityFree}>
-                <span className='text-sm'>Envío gratis en 24 a 48 horas</span>
+                <span className='text-sm text-[#444444] dark:text-neutral-400'>Envío gratis en 24 a 48 horas</span>
                 <span className='text-sm'>$0</span>
               </div>
             }
             return null
           })}
-          <span className='mt-1'>Chilexpress:</span>
+          <span className='mt-1 text-main dark:text-white'>Chilexpress:</span>
           {shipping.map(service => (
             <div key={service.serviceDescription} className='flex justify-between p-2 border rounded-md dark:border-neutral-600'>
-              <span className='text-sm'>{service.serviceDescription}</span>
+              <span className='text-sm text-[#444444] dark:text-neutral-400'>{service.serviceDescription}</span>
               <span className='text-sm'>${NumberFormat(Number(service.serviceValue))}</span>
             </div>
           ))}

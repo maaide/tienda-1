@@ -87,13 +87,13 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc }) => {
               ))
             }
             <div className='mt-4'>
-              <Link className='pt-1.5 pb-1.5 rounded-md bg-button text-white' onClick={() => setCartView('hidden')} href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
+              <Link className='pt-1.5 pb-1.5 rounded-md transition-colors duration-200 bg-button text-white hover:bg-main' onClick={() => setCartView('hidden')} href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
               <Link href='/carrito' onClick={() => setCartView('hidden')}><button className='w-full mt-4 underline text-[#444444] dark:text-neutral-400'>Ir al carrito</button></Link>
             </div>
           </>
           : <>
             <p className='mb-4 text-[#444444] dark:text-neutral-400'>No tienes productos añadidos al carrito</p>
-            <Link className='pt-1.5 pb-1.5 rounded-md bg-main text-white' href='/tienda' onClick={() => setCartView('hidden')}><button className='w-full'>Ir a la tienda</button></Link>
+            <Link className='pt-1.5 pb-1.5 rounded-md transition-colors duration-200 bg-main text-white hover:bg-white hover:text-main dark:bg-[#22262c] dark:hover:text-main dark:hover:bg-white' href='/tienda' onClick={() => setCartView('hidden')}><button className='w-full'>Ir a la tienda</button></Link>
           </>
       }
     </div>

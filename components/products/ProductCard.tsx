@@ -66,13 +66,13 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
             : <div className='w-1 h-2' />
         }
         <Link href={`productos/${ product.slug }`} prefetch={ false }>
-          <span>{ product.name }</span>
+          <span className='text-main dark:text-white'>{ product.name }</span>
         </Link>
         <div className='flex gap-2 mt-1 mb-1'>
-          <span className='font-medium'>${ NumberFormat(product.price) }</span>
+          <span className='font-medium text-main dark:text-white'>${ NumberFormat(product.price) }</span>
           {
             product.beforePrice
-              ? <span className='text-sm line-through'>${ NumberFormat(product.beforePrice) }</span>
+              ? <span className='text-sm line-through text-main dark:text-white'>${ NumberFormat(product.beforePrice) }</span>
               : ''
           }
         </div>

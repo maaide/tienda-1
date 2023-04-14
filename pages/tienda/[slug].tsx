@@ -39,7 +39,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
       </Head>
       <div className='bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex pl-4 pr-4'>
         <div className='w-1280 m-auto'>
-          <h1 className='text-[25px] text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
+          <h1 className='text-[25px] font-semibold tracking-widest text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
           <p className='text-lg text-white w-full text-center'>{category.description}</p>
         </div>
       </div>

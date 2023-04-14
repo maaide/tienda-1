@@ -13,7 +13,7 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
   return (
     <>
       <div className='flex gap-1 mb-1'>
-        <span className='mr-1 text-[14px] md:text-[16px]'>{(stars / quantity).toFixed(1)}</span>
+        <span className='mr-1 text-[#444444] text-[14px] md:text-[16px] dark:text-neutral-400'>{(stars / quantity).toFixed(1)}</span>
         {stars / quantity === 0
           ? <BsStar className='text-xl text-yellow-400' />
           : stars / quantity <= 0.9
@@ -56,10 +56,10 @@ export const ReviewsProduct: React.FC<Props> = ({ stars, quantity, reviews }) =>
                 <Review stars={review.calification} />
                 {
                   review.title
-                    ? <span className='text-lg'>{review.title}</span>
+                    ? <span className='text-lg text-main dark:text-white'>{review.title}</span>
                     : ''
                 }
-                <span className='text-[14px] md:text-[16px]'>{review.review}</span>
+                <span className='text-[14px] text-main md:text-[16px] dark:text-white'>{review.review}</span>
               </div>
             )
           })
