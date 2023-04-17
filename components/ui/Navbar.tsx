@@ -5,7 +5,7 @@ import { BsFillMoonFill, BsFillSunFill, BsBag } from 'react-icons/bs'
 import { NavbarCart } from '../cart'
 import { FiMenu } from 'react-icons/fi'
 import { IoCloseOutline } from 'react-icons/io5'
-import { AiOutlineRight, AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
+import { AiOutlineRight, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import CartContext from '../../context/cart/CartContext'
 import { useCategories } from '../../hooks'
@@ -26,6 +26,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [cartPc, setCartPc] = useState(true)
   const [loading, setLoading] = useState('block')
   const [navCategories, setNavCategories] = useState('hidden')
+  const [navCategoriesOpacity, setNavCategoriesOpacity] = useState('opacity-0')
   const [categoriesPhone, setCategoriesPhone] = useState('hidden')
 
   const { categories } = useCategories('/categories')
@@ -68,7 +69,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           : ''
       }
       <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
-        <div className='m-auto w-1280 flex justify-between z-40 pl-2 pr-2'>
+        <div className='m-auto bg-white w-1280 flex justify-between z-40 pl-2 pr-2'>
           <div className='flex gap-2'>
             {
               !mounted
@@ -86,11 +87,35 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             router.pathname !== '/finalizar-compra'
               ? <>
                 <div className='hidden gap-6 575:flex'>
-                  <Link className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>INICIO</Link>
-                  <Link className='flex h-full' href='/tienda' onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} onClick={() => setNavCategories('hidden')} >
+                  <Link onMouseEnter={() => {
+                    setNavCategoriesOpacity('opacity-0')
+                    setTimeout(() => {
+                      setNavCategories('hidden')
+                    }, 200)
+                  }} className='mt-auto flex text-[15px] h-full font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>
+                    <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>INICIO</div>
+                  </Link>
+                  <Link className='flex h-full' href='/tienda' onMouseEnter={() => {
+                    setNavCategories('flex')
+                    setTimeout(() => {
+                      setNavCategoriesOpacity('opacity-1')
+                    }, 50)
+                  }} onClick={() => {
+                    setNavCategoriesOpacity('opacity-0')
+                    setTimeout(() => {
+                      setNavCategories('hidden')
+                    }, 200)
+                  }} >
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
-                  <Link className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>CONTACTO</Link>
+                  <Link onMouseEnter={() => {
+                    setNavCategoriesOpacity('opacity-0')
+                    setTimeout(() => {
+                      setNavCategories('hidden')
+                    }, 200)
+                  }} className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>
+                    <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>CONTACTO</div>
+                  </Link>
                   {
                     cartView === 'hidden'
                       ? (
@@ -228,11 +253,21 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
-        <div className={`${navCategories} absolute top-57 w-full`} onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')}>
+        <div className={`${navCategories} ${navCategoriesOpacity} transition-opacity duration-200 z-0 absolute top-57 w-full`} onMouseEnter={() => {
+          setNavCategories('flex')
+          setTimeout(() => {
+            setNavCategoriesOpacity('opacity-1')
+          }, 50)
+        }} onMouseLeave={() => {
+          setNavCategoriesOpacity('opacity-0')
+          setTimeout(() => {
+            setNavCategories('hidden')
+          }, 200)
+        }}>
           {
             categories?.length
               ? (
-                <div onMouseEnter={() => setNavCategories('flex')} onMouseLeave={() => setNavCategories('hidden')} className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
+                <div onMouseEnter={() => setNavCategories('opacity-1')} onMouseLeave={() => setNavCategories('opacity-0')} className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
                   {categories.map(category => (
                     <div key={category._id}>
                       <img className='w-64 mb-2 cursor-pointer' onClick={() => router.push(`/tienda/${category.slug}`)} src={category.image} />

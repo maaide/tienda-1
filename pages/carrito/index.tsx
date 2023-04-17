@@ -149,7 +149,7 @@ const CartPage = () => {
                         }
                       </div>
                       <div className='mt-3 ml-auto w-full flex'>
-                        <Link className='pt-1.5 pb-1.5 w-full rounded-md bg-button text-white' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
+                        <Link className='pt-1.5 w-full pb-1.5 rounded-md transition-colors duration-200 bg-button text-white hover:bg-white hover:text-main' href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
                       </div>
                     </div>
                   </div>

@@ -61,7 +61,7 @@ const ContactPage = () => {
             <p>Para cualquier pregunta o consulta que tengas, no dudes en ponerte en contacto con nosotros a traves del siguiente formulario, desde el chat del sitio web o desde nuestras redes sociales.</p>
           </div>
           <div className='w-full m-auto mt-6 mb-6 650:w-560 1010:w-1/2'>
-            <div className='rounded-md shadow-2xl p-4 420:p-6 650:p-10 dark:shadow-none dark:border dark:border-neutral-700 dark:bg-neutral-800'>
+            <div className='rounded-md border border-white shadow-2xl p-4 420:p-6 650:p-10 dark:shadow-none dark:border dark:border-neutral-700 dark:bg-neutral-800'>
               <h2 className='text-[20px] text-main font-medium tracking-widest mb-4 md:text-[25px] dark:text-white'>LLENA EL SIGUIENTE FORMULARIO</h2>
               <form>
                 <input type='text' placeholder='Nombre' name='name' onChange={inputChange} value={formContact.name} className='p-2 text-sm w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
