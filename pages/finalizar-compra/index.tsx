@@ -108,14 +108,15 @@ const CheckOut = () => {
                 ? cart?.map(product => (
                   <div className='flex gap-2 justify-between mb-2' key={product._id}>
                     <div className='flex gap-2'>
-                      <img className='w-20 border rounded-md p-1 dark:border-neutral-700' src={product.image} />
+                      <img className='w-20 h-20 m-auto border rounded-md p-1 dark:border-neutral-700' src={product.image} />
                       <div className='mt-auto mb-auto'>
-                        <span>{product.name}</span>
+                        <span className='font-medium'>{product.name}</span>
                         {
                           product.variation
                             ? <span className='block'>{product.variation.variation}</span>
                             : ''
                         }
+                        <span className='block'>Cantidad: {product.quantity}</span>
                       </div>
                     </div>
                     <div className='flex gap-2 mt-auto mb-auto'>
@@ -159,7 +160,7 @@ const CheckOut = () => {
           <div className='w-full pr-0 1010:w-7/12 1010:pr-8'>
             <h1 className='text-[20px] text-main tracking-widest mb-6 font-semibold md:text-[25px] dark:text-white'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
-              <h2 className='text-[16px] tracking-widest font-semibold mb-2 md:text-[18px]'>INFORMACIÓN DE CONTACTO</h2>
+              <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px]'>INFORMACIÓN DE CONTACTO</h2>
               <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' />
@@ -167,7 +168,7 @@ const CheckOut = () => {
               </div>
             </div>
             <div className='mb-6'>
-              <h2 className='mb-2 tracking-widest font-semibold text-[16px] md:text-[18px]'>DIRECCIÓN DE ENVÍO</h2>
+              <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px]'>DIRECCIÓN DE ENVÍO</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
                 <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -184,7 +185,7 @@ const CheckOut = () => {
               shipping !== undefined
                 ? (
                   <div className='mb-6'>
-                    <h2 className='mb-2 tracking-widest font-semibold text-[16px] md:text-[18px]'>ENVÍO</h2>
+                    <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px]'>ENVÍO</h2>
                     <div className='flex flex-col gap-1'>
                       {
                         FreeShipping.find(free => free === sell.city)
@@ -219,7 +220,7 @@ const CheckOut = () => {
               sell.shippingMethod
                 ? (
                   <div className='mb-6'>
-                    <h2 className='text-[16px] tracking-widest font-semibold mb-2 md:text-[18px]'>PAGO</h2>
+                    <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px]'>PAGO</h2>
                     {
                       sell.shippingMethod === 'ENVIO EXPRESS'
                         ? (
@@ -262,7 +263,7 @@ const CheckOut = () => {
           </div>
           <div className='w-5/12 h-fit border border-[#F5F5F5] p-4 hidden sticky top-28 bg-[#F5F5F5] dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
-              <h2 className='mb-2 text-[18px]'>Carrito</h2>
+              <h2 className='mb-2 text-main font-medium tracking-widest text-[18px]'>CARRITO</h2>
               {
                 cart?.length !== 0
                   ? cart?.map(product => (
@@ -270,7 +271,7 @@ const CheckOut = () => {
                       <div className='flex gap-2'>
                         <img className='w-20 border rounded-md p-1 dark:border-neutral-700' src={product.image} />
                         <div className='mt-auto mb-auto'>
-                          <span className='block'>{product.name}</span>
+                          <span className='block font-medium'>{product.name.toLocaleUpperCase()}</span>
                           <span className='block'>Cantidad: {product.quantity}</span>
                           {
                             product.variation
@@ -293,7 +294,7 @@ const CheckOut = () => {
               }
             </div>
             <div className='mb-2 pb-3 border-b dark:border-neutral-700'>
-              <h2 className='mb-2 text-[18px]'>Cupon de descuento</h2>
+              <h2 className='mb-2 text-main tracking-widest font-medium text-[18px]'>CUPON DE DESCUENTO</h2>
               <div className='flex gap-2'>
                 <input type='text' placeholder='Cupon' className='border p-1 rounded text-[14px] w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <Button2>Agregar</Button2>
