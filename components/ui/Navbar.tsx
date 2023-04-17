@@ -182,7 +182,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }, 150)
           }} />
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
-            <Link className={`mb-4 tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
+            <Link className={`mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')
@@ -195,7 +195,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   setTimeout(() => {
                     setIndex('hidden')
                   }, 150)
-                }} className='tracking-widest font-medium text-[#1c1b1b] dark:text-white' href='/tienda'>TIENDA</Link>
+                }} className='tracking-widest font-montserrat font-medium text-[#1c1b1b] dark:text-white' href='/tienda'>TIENDA</Link>
                 {
                   categoriesPhone === 'hidden'
                     ? <button onClick={() => setCategoriesPhone('block') }><AiOutlineDown className='ml-auto text-lg text-neutral-500' /></button>
@@ -220,7 +220,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 }
               </div>
             </div>
-            <Link className={`mb-4 tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
+            <Link className={`mb-4 font-montserrat tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setTimeout(() => {
                 setIndex('hidden')

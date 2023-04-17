@@ -75,7 +75,8 @@ module.exports = {
       }
     },
     fontFamily: {
-      'poppins': ['poppins', 'system-ui', 'sans-serif']
+      'poppins': ['poppins', 'system-ui', 'sans-serif'],
+      'montserrat': ['montserrat', 'system-ui', 'sans-serif']
     }
   },
   plugins: [],

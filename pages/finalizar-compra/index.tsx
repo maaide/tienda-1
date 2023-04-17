@@ -101,36 +101,38 @@ const CheckOut = () => {
       <div className='sticky top-14 bg-[#F5F5F5] w-full border border-[#F5F5F5] p-4 shadow-md block 1010:hidden dark:bg-neutral-800 dark:border-neutral-700'>
         <button className='text-[14px] mb-4 flex gap-2' onClick={() => details === 'hidden' ? setDetails('block') : setDetails('hidden')}>{details === 'hidden' ? <AiOutlineDown className='mt-auto mb-auto' /> : <AiOutlineUp className='mt-auto mb-auto' /> } {details === 'hidden' ? 'Mostrar' : 'Ocultar'} resumen del pedido</button>
         <div className={`mb-2 ${details}`}>
-          <h2 className='text-[16px] mb-2 md:text-[18px]'>Carrito</h2>
-          {
-            cart?.length !== 0
-              ? cart?.map(product => (
-                <div className='flex gap-2 justify-between mb-2' key={product._id}>
-                  <div className='flex gap-2'>
-                    <img className='w-20 border rounded-md p-1 dark:border-neutral-700' src={product.image} />
-                    <div className='mt-auto mb-auto'>
-                      <span>{product.name}</span>
+          <div className='border-b mb-2 pb-1'>
+            <h2 className='text-[16px] font-medium tracking-widest mb-2 md:text-[18px]'>CARRITO</h2>
+            {
+              cart?.length !== 0
+                ? cart?.map(product => (
+                  <div className='flex gap-2 justify-between mb-2' key={product._id}>
+                    <div className='flex gap-2'>
+                      <img className='w-20 border rounded-md p-1 dark:border-neutral-700' src={product.image} />
+                      <div className='mt-auto mb-auto'>
+                        <span>{product.name}</span>
+                        {
+                          product.variation
+                            ? <span className='block'>{product.variation.variation}</span>
+                            : ''
+                        }
+                      </div>
+                    </div>
+                    <div className='flex gap-2 mt-auto mb-auto'>
+                      <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
                       {
-                        product.variation
-                          ? <span className='block'>{product.variation.variation}</span>
+                        product.beforePrice
+                          ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                           : ''
                       }
                     </div>
                   </div>
-                  <div className='flex gap-2 mt-auto mb-auto'>
-                    <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
-                    {
-                      product.beforePrice
-                        ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
-                        : ''
-                    }
-                  </div>
-                </div>
-              ))
-              : ''
-          }
+                ))
+                : ''
+            }
+          </div>
           <div className='pb-3 border-b dark:border-neutral-700'>
-            <h2 className='mb-2 text-[16px] md:text-[18px]'>Cupon de descuento</h2>
+            <h2 className='mb-2 font-medium tracking-widest text-[16px] md:text-[18px]'>CUPON DE DESCUENTO</h2>
             <div className='flex gap-2'>
               <input type='text' placeholder='Cupon' className='border text-[14px] p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <Button2>Agregar</Button2>
