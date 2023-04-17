@@ -23,6 +23,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   const [mounted, setMounted] = useState(false)
   const [cartView, setCartView] = useState('hidden')
+  const [cartOpacity, setCartOpacity] = useState('opacity-0')
   const [cartPc, setCartPc] = useState(true)
   const [loading, setLoading] = useState('block')
   const [navCategories, setNavCategories] = useState('hidden')
@@ -88,10 +89,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               ? <>
                 <div className='hidden gap-6 575:flex'>
                   <Link onMouseEnter={() => {
-                    setNavCategoriesOpacity('opacity-0')
-                    setTimeout(() => {
-                      setNavCategories('hidden')
-                    }, 200)
+                    if (navCategories === 'flex') {
+                      setNavCategoriesOpacity('opacity-0')
+                      setTimeout(() => {
+                        setNavCategories('hidden')
+                      }, 200)
+                    }
                   }} className='mt-auto flex text-[15px] h-full font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>INICIO</div>
                   </Link>
@@ -109,10 +112,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
                   <Link onMouseEnter={() => {
-                    setNavCategoriesOpacity('opacity-0')
-                    setTimeout(() => {
-                      setNavCategories('hidden')
-                    }, 200)
+                    if (navCategories === 'flex') {
+                      setNavCategoriesOpacity('opacity-0')
+                      setTimeout(() => {
+                        setNavCategories('hidden')
+                      }, 200)
+                    }
                   }} className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>CONTACTO</div>
                   </Link>
@@ -120,7 +125,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     cartView === 'hidden'
                       ? (
                         <div>
-                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('flex')} />
+                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => {
+                            setCartView('flex')
+                            setTimeout(() => {
+                              setCartOpacity('opacity-1')
+                            }, 50)
+                          }} />
                           {
                             cart?.length
                               ? (
@@ -132,7 +142,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           }
                         </div>
                         )
-                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('hidden')} />
+                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => {
+                        setCartOpacity('opacity-0')
+                        setTimeout(() => {
+                          setCartView('hidden')
+                        }, 200)
+                      }} />
                   }
                   {renderThemeChanger()}
                 </div>
@@ -141,7 +156,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     cartView === 'hidden'
                       ? (
                         <div>
-                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('flex')} />
+                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => {
+                            setCartView('flex')
+                            setTimeout(() => {
+                              setCartOpacity('opacity-1')
+                            }, 50)
+                          }} />
                           {
                             cart?.length
                               ? (
@@ -153,7 +173,12 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           }
                         </div>
                         )
-                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => setCartView('hidden')} />
+                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => {
+                        setCartOpacity('opacity-0')
+                        setTimeout(() => {
+                          setCartView('hidden')
+                        }, 200)
+                      }} />
                   }
                   {renderThemeChanger()}
                   {
@@ -180,10 +205,10 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </div>
           }
         </div>
-        <div className={`${cartView} w-full z-50 absolute top-57 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
+        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-57 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <NavbarCart setCartView={setCartView} />
+              <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} />
             </div>
             <div onClick={() => {
               setTimeout(() => {
@@ -192,10 +217,17 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }} className='h-full w-full' />
           </div>
         </div>
-        <div onClick={() => cartPc ? setCartView('hidden') : ''} className={`hidden w-full z-50 absolute top-57 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
+        <div onClick={() => {
+          if (cartPc) {
+            setCartOpacity('opacity-0')
+            setTimeout(() => {
+              setCartView('hidden')
+            }, 200)
+          }
+        }} className={`hidden w-full z-50 absolute top-57 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <NavbarCart setCartView={setCartView} setCartPc={setCartPc} />
+              <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} />
             </div>
           </div>
         </div>
