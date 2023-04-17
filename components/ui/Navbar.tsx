@@ -211,9 +211,10 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} />
             </div>
             <div onClick={() => {
+              setCartOpacity('opacity-0')
               setTimeout(() => {
                 setCartView('hidden')
-              }, 100)
+              }, 200)
             }} className='h-full w-full' />
           </div>
         </div>
