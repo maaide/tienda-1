@@ -64,13 +64,18 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
-          ? <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
+          ? <div onMouseEnter={() => {
+            setNavCategoriesOpacity('opacity-0')
+            setTimeout(() => {
+              setNavCategories('hidden')
+            }, 200)
+          }} className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
             <p className='m-auto tracking-widest font-medium text-[13px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
           : ''
       }
       <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
-        <div className='m-auto bg-white w-1280 flex justify-between z-40 pl-2 pr-2'>
+        <div className='m-auto w-1280 flex justify-between z-40 pl-2 pr-2'>
           <div className='flex gap-2'>
             {
               !mounted
@@ -108,7 +113,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     setTimeout(() => {
                       setNavCategories('hidden')
                     }, 200)
-                  }} >
+                  }}>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
                   <Link onMouseEnter={() => {
@@ -208,7 +213,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-57 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} />
+              <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
             </div>
             <div onClick={() => {
               setCartOpacity('opacity-0')
@@ -228,7 +233,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         }} className={`hidden w-full z-50 absolute top-57 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} />
+              <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
             </div>
           </div>
         </div>

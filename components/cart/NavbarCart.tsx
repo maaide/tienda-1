@@ -9,9 +9,10 @@ interface Props {
   setCartView: any
   setCartPc?: any
   cartOpacity: any
+  setCartOpacity: any
 }
 
-export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacity }) => {
+export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacity, setCartOpacity }) => {
 
   const {cart, setCart} = useContext(CartContext)
 
@@ -25,11 +26,21 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacit
               cart.map((product: ICartProduct) => (
                 <div key={product.slug} className='flex gap-1 justify-between mb-2'>
                   <div className='flex gap-2'>
-                    <Link href={`/productos/${product.slug}`} onClick={() => setCartView('hidden')}>
+                    <Link href={`/productos/${product.slug}`} onClick={() => {
+                      setCartOpacity('opacity-0')
+                      setTimeout(() => {
+                        setCartView('hidden')
+                      }, 200)
+                    }}>
                       <img src={product.image} className='w-24 h-24 mt-auto mb-auto' />
                     </Link>
                     <div className='mt-auto mb-auto'>
-                      <Link href={`/productos/${product.slug}`} onClick={() => setCartView('hidden')}><h3 className='text-[16px] text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h3></Link>
+                      <Link href={`/productos/${product.slug}`} onClick={() => {
+                        setCartOpacity('opacity-0')
+                        setTimeout(() => {
+                          setCartView('hidden')
+                        }, 200)
+                      }}><h3 className='text-[16px] text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h3></Link>
                       <div className='flex gap-1 mb-1'>
                         <span className='font-medium'>${NumberFormat(product.price)}</span>
                         {
@@ -88,13 +99,28 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacit
               ))
             }
             <div className='mt-4'>
-              <Link className='pt-1.5 pb-1.5 rounded-md transition-colors duration-200 bg-button text-white hover:bg-white hover:text-main' onClick={() => setCartView('hidden')} href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
-              <Link href='/carrito' onClick={() => setCartView('hidden')}><button className='w-full mt-4 underline text-[#444444] dark:text-neutral-400'>Ir al carrito</button></Link>
+              <Link className='pt-1.5 pb-1.5 rounded-md transition-colors duration-200 bg-button text-white hover:bg-white hover:text-main' onClick={() => {
+                setCartOpacity('opacity-0')
+                setTimeout(() => {
+                  setCartView('hidden')
+                }, 200)
+              }} href='/finalizar-compra'><button className='w-full'>Finalizar compra</button></Link>
+              <Link href='/carrito' onClick={() => {
+                setCartOpacity('opacity-0')
+                setTimeout(() => {
+                  setCartView('hidden')
+                }, 200)
+              }}><button className='w-full mt-4 underline text-[#444444] dark:text-neutral-400'>Ir al carrito</button></Link>
             </div>
           </>
           : <>
             <p className='mb-4 text-[#444444] dark:text-neutral-400'>No tienes productos añadidos al carrito</p>
-            <Link className='pt-1.5 pb-1.5 rounded-md transition-colors duration-200 bg-main text-white hover:bg-white hover:text-main dark:bg-[#22262c] dark:hover:text-main dark:hover:bg-white' href='/tienda' onClick={() => setCartView('hidden')}><button className='w-full'>Ir a la tienda</button></Link>
+            <Link className='pt-1.5 pb-1.5 rounded-md transition-colors duration-200 bg-main text-white hover:bg-white hover:text-main dark:bg-[#22262c] dark:hover:text-main dark:hover:bg-white' href='/tienda' onClick={() => {
+              setCartOpacity('opacity-0')
+              setTimeout(() => {
+                setCartView('hidden')
+              }, 200)
+            }}><button className='w-full'>Ir a la tienda</button></Link>
           </>
       }
     </div>
