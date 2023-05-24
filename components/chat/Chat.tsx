@@ -31,7 +31,7 @@ export const Chat = () => {
         {
           chat?.length
             ? chat.map(info => (
-              <div>
+              <div key={info.senderId}>
                 {
                   info.message
                     ? (
