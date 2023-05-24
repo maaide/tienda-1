@@ -66,9 +66,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         router.pathname !== '/finalizar-compra'
           ? <div onMouseEnter={() => {
             setNavCategoriesOpacity('opacity-0')
-            setTimeout(() => {
-              setNavCategories('hidden')
-            }, 200)
+            setNavCategories('hidden')
           }} className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
             <p className='m-auto tracking-widest font-medium text-[13px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
@@ -96,9 +94,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   <Link onMouseEnter={() => {
                     if (navCategories === 'flex') {
                       setNavCategoriesOpacity('opacity-0')
-                      setTimeout(() => {
-                        setNavCategories('hidden')
-                      }, 200)
+                      setNavCategories('hidden')
                     }
                   }} className='mt-auto flex text-[15px] h-full font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>INICIO</div>
@@ -110,24 +106,20 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     }, 50)
                   }} onClick={() => {
                     setNavCategoriesOpacity('opacity-0')
-                    setTimeout(() => {
-                      setNavCategories('hidden')
-                    }, 200)
+                    setNavCategories('hidden')
                   }}>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
                   <Link onMouseEnter={() => {
                     if (navCategories === 'flex') {
                       setNavCategoriesOpacity('opacity-0')
-                      setTimeout(() => {
-                        setNavCategories('hidden')
-                      }, 200)
+                      setNavCategories('hidden')
                     }
                   }} className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>CONTACTO</div>
                   </Link>
                   {
-                    cartView === 'hidden'
+                    cartOpacity === 'opacity-0'
                       ? (
                         <div>
                           <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => {
@@ -298,9 +290,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           }, 50)
         }} onMouseLeave={() => {
           setNavCategoriesOpacity('opacity-0')
-          setTimeout(() => {
-            setNavCategories('hidden')
-          }, 200)
+          setNavCategories('hidden')
         }}>
           {
             categories?.length
@@ -308,8 +298,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 <div onMouseEnter={() => setNavCategories('opacity-1')} onMouseLeave={() => setNavCategories('opacity-0')} className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
                   {categories.map(category => (
                     <div key={category._id}>
-                      <img className='w-64 mb-2 cursor-pointer' onClick={() => router.push(`/tienda/${category.slug}`)} src={category.image} />
-                      <Link href={`/tienda/${category.slug}`} className='m-auto tracking-widest font-medium text-[#1c1b1b] dark:text-white'>{category.category.toUpperCase()}</Link>
+                      <img className='w-64 mb-2 cursor-pointer' onClick={() => {
+                        setNavCategoriesOpacity('opacity-0')
+                        setNavCategories('hidden')
+                        router.push(`/tienda/${category.slug}`)
+                      }} src={category.image} />
+                      <Link href={`/tienda/${category.slug}`} onClick={() => {
+                        setNavCategoriesOpacity('opacity-0')
+                        setNavCategories('hidden')
+                      }} className='m-auto tracking-widest font-medium text-[#1c1b1b] dark:text-white'>{category.category.toUpperCase()}</Link>
                     </div>
                   ))}
                 </div>

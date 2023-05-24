@@ -41,18 +41,19 @@ export const Shipping: React.FC<Props> = ({ setShipping, sell, setSell }) => {
     
       const cityChange = async (e: any) => {
         const city = citys?.find(city => city.countyName === e.target.value)
+        console.log(city?.countyCode)
         const request = await axios.post('https://testservices.wschilexpress.com/rating/api/v1.0/rates/courier', {
           "originCountyCode": "QNOR",
           "destinationCountyCode": city?.countyCode,
           "package": {
-              "weight": "1",
-              "height": "10",
-              "width": "10",
-              "length": "2"
+              "weight": "5",
+              "height": "30",
+              "width": "30",
+              "length": "30"
           },
           "productType": 3,
           "contentType": 1,
-          "declaredWorth": "2333",
+          "declaredWorth": "10000",
           "deliveryTime": 0
         }, {
           headers: {

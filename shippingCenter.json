@@ -1,0 +1,600 @@
+{
+    "Región Metropolitana": {
+        "Alhué": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Buin": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Calera de Tango": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Cerrillos": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Cerro Navia": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Colina": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Conchalí": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Curacaví": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "El Bosque": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "El Monte": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Estación Central": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Huechuraba": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Independencia": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Isla de Maipo": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "La Cisterna": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "La Florida": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "La Granja": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "La Pintana": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "La Reina": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Lampa": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Las Condes": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Lo Barnechea": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Lo Espejo": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Lo Prado": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Macul": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Maipú": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "María Pinto": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Melipilla": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Padre Hurtado": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Paine": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Pedro Aguirre Cerda": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Peñaflor": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Peñalolén": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Pirque": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Providencia": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Pudahuel": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Puente Alto": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Quilicura": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Quinta Normal": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Recoleta": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Renca": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "San Bernardo": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "San Joaquín": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "San José de Maipo": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "San Miguel": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "San Pedro": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "San Ramón": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Santiago Centro": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Talagante": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Tiltil": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Vitacura": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        },
+        "Ñuñoa": {
+            "XS": 2300,
+            "S": 3200,
+            "M": 4200,
+            "L": 5000,
+            "time": "48 horas hábiles"
+        }
+    },
+    "Región de Aisén": {
+        "Aysén": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "10 Días hábiles"
+        },
+        "Chile Chico": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "15 Días hábiles"
+        },
+        "Cisnes": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "15 Días hábiles"
+        },
+        "Coichrane": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "15 Días hábiles"
+        },
+        "Coyhaique": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "10 Días hábiles"
+        },
+        "Guaitecas": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "4 Días hábiles"
+        },
+        "Lago Verde": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "15 Días hábiles"
+        },
+        "O'higgins": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "15 Días hábiles"
+        },
+        "Río Ibáñez": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "15 Días hábiles"
+        },
+        "Tortel": {
+            "XS": 95200,
+            "S": 95200,
+            "M": 95200,
+            "L": 95200,
+            "time": "15 Días hábiles"
+        }
+    },
+    "Región de Antofagasta": {
+        "Antofagasta": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "4 Días hábiles"
+        },
+        "Calama": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "4 Días hábiles"
+        },
+        "María Elena": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        },
+        "Mejillones": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        },
+        "Ollagüe": {
+            "XS": 95200,
+            "S": 95200,
+            "M": 95200,
+            "L": 95200,
+            "time": "8 Días hábiles"
+        },
+        "San Pedro de Atacama": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        },
+        "Sierra Gorda": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        },
+        "Taltal": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "4 Días hábiles"
+        },
+        "Tocopilla": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        }
+    },
+    "Región de Arica y Parinacota": {
+        "Arica": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "5 Días hábiles"
+        },
+        "Camarones": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        },
+        "General Lagos": {
+            "XS": 4000,
+            "S": 8000,
+            "M": 9500,
+            "L": 12000,
+            "time": "8 Días hábiles"
+        },
+        "Putre": {
+            "XS": 95200,
+            "S": 95200,
+            "M": 95200,
+            "L": 95200,
+            "time": "8 Días hábiles"
+        }
+    },
+    "Región de Atacama": {
+        "Alto del Carmen": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Caldera": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Chañaral": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "4 días hábiles"
+        },
+        "Copiapó": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Diego de Almagro": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "4 días hábiles"
+        },
+        "Freirina": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "4 días hábiles"
+        },
+        "Huasco": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Tierra Amarilla": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        },
+        "Vallenar": {
+            "XS": 3300,
+            "S": 4500,
+            "M": 5500,
+            "L": 8500,
+            "time": "48 horas hábiles"
+        }
+    }
+}

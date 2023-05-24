@@ -188,19 +188,6 @@ const CheckOut = () => {
                     <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px]'>ENVÍO</h2>
                     <div className='flex flex-col gap-1'>
                       {
-                        FreeShipping.find(free => free === sell.city)
-                          ? (
-                            <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700'>
-                              <div className='flex gap-2'>
-                                <input type='radio' name='shipping' className='ENVIO EXPRESS' value='0' onChange={shippingChange} />
-                                <p className='text-sm mt-auto mb-auto'>Envío express</p>
-                              </div>
-                              <p className='text-sm'>$0</p>
-                            </div>
-                          )
-                          : ''
-                      }
-                      {
                         shipping.map(item => (
                             <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700' key={item.serviceDescription}>
                               <div className='flex gap-2'>
@@ -221,23 +208,9 @@ const CheckOut = () => {
                 ? (
                   <div className='mb-6'>
                     <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px]'>PAGO</h2>
-                    {
-                      sell.shippingMethod === 'ENVIO EXPRESS'
-                        ? (
-                          <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
-                            <input type='radio' name='pay' value='Pago en la entrega' onChange={payChange} />
-                            <p className='text-sm'>Pago en la entrega</p>
-                          </div>
-                        )
-                        : ''
-                    }
                     <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
                       <input type='radio' name='pay' value='WebPay Plus' onChange={inputChange} />
                       <p className='text-sm'>WebPay Plus</p>
-                    </div>
-                    <div className='flex gap-2 p-3 border rounded-md dark:border-neutral-700'>
-                      <input type='radio' name='pay' value='MercadoPago' onChange={inputChange} />
-                      <p className='text-sm'>MercadoPago</p>
                     </div>
                   </div>
                 )

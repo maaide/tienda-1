@@ -4,6 +4,7 @@ import { ThemeProvider } from 'next-themes'
 import { SWRConfig } from 'swr'
 import { MainLayout } from '../components/layouts'
 import CartProvider from '../context/cart/CartProvider'
+import { Chat } from '../components/chat'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -16,6 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <CartProvider>
           <MainLayout>
             <Component {...pageProps} />
+            <Chat />
           </MainLayout>
         </CartProvider>
       </ThemeProvider>
