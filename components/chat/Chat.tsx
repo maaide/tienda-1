@@ -57,11 +57,11 @@ export const Chat = () => {
         <div className='h-28 w-full bg-main rounded-t-xl flex p-4'>
           <span className='text-white mt-auto mb-auto text-xl'>Maaibot</span>
         </div>
-        <div className='flex flex-col gap-2 pl-3 pr-3' style={{ overflow: 'overlay' }}>
+        <div className='flex flex-col gap-2 pl-3' style={{ overflow: 'overlay' }}>
           {
             chat?.length
               ? chat.map(info => (
-                <div key={info.response} className='flex flex-col gap-2'>
+                <div key={info.response} className='flex flex-col gap-2 mr-3'>
                   {
                     info.message
                       ? (
