@@ -54,7 +54,7 @@ export const Chat = () => {
   return (
     <div className='fixed bottom-8 right-8 z-50 flex flex-col gap-6'>
       <div className={`${chatDisplay} ${chatOpacity} p-4 justify-between flex-col gap-4 transition-opacity duration-200 bg-white shadow-md w-96 h-[600px] rounded-xl dark:bg-main`}>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2' style={{ overflow: 'overlay' }}>
           {
             chat?.length
               ? chat.map(info => (
