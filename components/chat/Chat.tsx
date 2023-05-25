@@ -61,7 +61,7 @@ export const Chat = () => {
           {
             chat?.length
               ? chat.map(info => (
-                <div key={info.response} className='flex flex-col gap-2 mr-3'>
+                <div key={info.response} className='flex flex-col gap-2 pr-3'>
                   {
                     info.message
                       ? (
