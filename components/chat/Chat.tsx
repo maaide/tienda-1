@@ -12,21 +12,6 @@ export const Chat = () => {
   const [chat, setChat] = useState<IMessage[]>([{
     agent: false,
     response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
-  },{
-    agent: false,
-    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
-  },{
-    agent: false,
-    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
-  },{
-    agent: false,
-    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
-  },{
-    agent: false,
-    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
-  },{
-    agent: false,
-    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
   }])
   const [newMessage, setNewMessage] = useState('')
 
