@@ -67,8 +67,8 @@ export const Chat = () => {
   }
 
   return (
-    <div className='fixed bottom-3 right-3 z-50 flex flex-col gap-3 sm:gap-6 sm:bottom-8 sm:right-8'>
-      <div className={`${chatDisplay} ${chatOpacity} justify-between flex-col gap-3 transition-opacity duration-200 bg-white shadow-md w-80 h-[460px] rounded-xl dark:bg-main sm:w-96 sm:h-[600px] sm:gap-4`}>
+    <div className='fixed bottom-3 right-3 z-50 flex flex-col gap-3 sm:gap-6 sm:bottom-6 sm:right-6'>
+      <div className={`${chatDisplay} ${chatOpacity} justify-between flex-col gap-3 transition-opacity duration-200 bg-white shadow-md w-80 h-[450px] rounded-xl dark:bg-main sm:w-96 sm:h-[600px] sm:gap-4`}>
         <div className='h-28 w-full bg-main rounded-t-xl flex p-4'>
           <span className='text-white mt-auto mb-auto text-xl'>Maaibot</span>
         </div>
