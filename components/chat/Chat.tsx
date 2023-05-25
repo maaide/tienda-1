@@ -82,7 +82,7 @@ export const Chat = () => {
               : ''
           }
         </div>
-        <form className='flex gap-2'>
+        <form className='flex gap-2 pr-4'>
           <input onChange={inputChange} value={newMessage} type='text' placeholder='Mensaje' className='border w-full p-1.5 rounded-md dark:border-neutral-600' />
           <button type='submit' onClick={submitMessage} className='bg-main text-white w-24 rounded-md dark:bg-neutral-700'>Enviar</button>
         </form>
