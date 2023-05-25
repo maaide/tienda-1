@@ -52,9 +52,12 @@ export const Chat = () => {
   }
 
   return (
-    <div className='fixed bottom-8 right-8 z-50 flex flex-col gap-6'>
-      <div className={`${chatDisplay} ${chatOpacity} pt-4 pb-4 pl-4 justify-between flex-col gap-4 transition-opacity duration-200 bg-white shadow-md w-96 h-[600px] rounded-xl dark:bg-main`}>
-        <div className='flex flex-col gap-2 pr-4' style={{ overflow: 'overlay' }}>
+    <div className='fixed bottom-4 right-4 z-50 flex flex-col gap-6 sm:bottom-8 sm:right-8'>
+      <div className={`${chatDisplay} ${chatOpacity} justify-between flex-col gap-3 transition-opacity duration-200 bg-white shadow-md w-80 h-[460px] rounded-xl dark:bg-main sm:w-96 sm:h-[600px]`}>
+        <div className='h-28 w-full bg-main rounded-t-xl flex p-4'>
+          <span className='text-white mt-auto mb-auto text-xl'>Maaibot</span>
+        </div>
+        <div className='flex flex-col gap-2 pl-3' style={{ overflow: 'overlay' }}>
           {
             chat?.length
               ? chat.map(info => (
@@ -82,7 +85,7 @@ export const Chat = () => {
               : ''
           }
         </div>
-        <form className='flex gap-2 pr-4'>
+        <form className='flex gap-2 pr-3 pl-3 pb-3'>
           <input onChange={inputChange} value={newMessage} type='text' placeholder='Mensaje' className='border w-full p-1.5 rounded-md dark:border-neutral-600' />
           <button type='submit' onClick={submitMessage} className='bg-main text-white w-24 rounded-md dark:bg-neutral-700'>Enviar</button>
         </form>
