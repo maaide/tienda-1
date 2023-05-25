@@ -150,7 +150,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 </div>
                 <div className='flex gap-4 575:hidden'>
                   {
-                    cartView === 'hidden'
+                    cartOpacity === 'opacity-0'
                       ? (
                         <div>
                           <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => {
