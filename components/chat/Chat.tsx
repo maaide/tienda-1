@@ -4,6 +4,9 @@ import React, { useEffect, useState } from 'react'
 import { BsChatDots } from 'react-icons/bs'
 import { IoCloseOutline } from 'react-icons/io5'
 import { v4 as uuidv4 } from 'uuid'
+import io from 'socket.io-client'
+
+const socket = io('http://localhost:4000')
 
 export const Chat = () => {
 
@@ -43,8 +46,9 @@ export const Chat = () => {
       senderId = uuidv4()
       localStorage.setItem('chatId', senderId)
     }
+    socket.emit('message', {message: message, senderId: senderId})
     if (chat.length === 1) {
-      await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response })
+      await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false })
     }
     const response = await axios.post('https://server-production-e234.up.railway.app/chat', { senderId: senderId, message: newMessage })
     setChat(chat.filter(mes => mes.message === message))
