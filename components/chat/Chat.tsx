@@ -30,6 +30,20 @@ export const Chat = () => {
     getMessages()
   }, [])
 
+  useEffect(() => {
+    socket.on('messageAdmin', message => {
+      console.log(localStorage.getItem('chat'))
+      console.log(message.senderId)
+      if (localStorage.getItem('chat') === message.senderId) {
+        setChat(chat.concat([{ senderId: message.senderId, message: message.message, agent: true }]))
+      }
+    })
+
+    return () => {
+      socket.off('messageAdmin', message => console.log(message))
+    }
+  }, [])
+
   const inputChange = (e: any) => {
     setNewMessage(e.target.value)
   }
