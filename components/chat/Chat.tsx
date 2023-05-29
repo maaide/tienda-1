@@ -39,7 +39,7 @@ export const Chat = () => {
   useEffect(() => {
     socket.on('messageAdmin', message => {
       if (localStorage.getItem('chatId') === message.senderId) {
-        setChat(chat.concat([{ senderId: message.senderId, response: message.response, agent: true }]))
+        setChat(chatRef.current.concat([{ senderId: message.senderId, response: message.response, agent: true }]))
       }
     })
 
