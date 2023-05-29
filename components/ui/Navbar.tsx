@@ -98,7 +98,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     }, 50)
                   }} onMouseLeave={() => {
                     setNavCategoriesOpacity('opacity-0')
-                    
                     setNavCategories('hidden')
                   }} onClick={() => {
                     setNavCategoriesOpacity('opacity-0')
@@ -274,7 +273,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
-        <div className={`${navCategories} ${navCategoriesOpacity} transition-opacity duration-200 absolute top-57 w-full`} onMouseEnter={() => {
+        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-57 w-full`} onMouseEnter={() => {
           setNavCategories('flex')
           setNavCategoriesOpacity('opacity-1')
         }} onMouseLeave={() => {
