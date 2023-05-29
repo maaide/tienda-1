@@ -18,6 +18,8 @@ export const Chat = () => {
   }])
   const [newMessage, setNewMessage] = useState('')
 
+  const chatRef = useRef(chat)
+
   const getMessages = async () => {
     if (localStorage.getItem('chatId')) {
       const senderId = localStorage.getItem('chatId')
@@ -31,11 +33,13 @@ export const Chat = () => {
   }, [])
 
   useEffect(() => {
+    chatRef.current = chat
+  }, [chat])
+
+  useEffect(() => {
     socket.on('messageAdmin', message => {
-      console.log(localStorage.getItem('chatId'))
-      console.log(message)
       if (localStorage.getItem('chatId') === message.senderId) {
-        setChat(chat.concat([{ senderId: message.senderId, response: message.message, agent: true }]))
+        setChat(chat.concat([{ senderId: message.senderId, response: message.response, agent: true }]))
       }
     })
 
