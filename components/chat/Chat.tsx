@@ -1,6 +1,6 @@
 import { IMessage } from '@/interfaces'
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { BsChatDots } from 'react-icons/bs'
 import { IoCloseOutline } from 'react-icons/io5'
 import { v4 as uuidv4 } from 'uuid'
@@ -32,9 +32,9 @@ export const Chat = () => {
 
   useEffect(() => {
     socket.on('messageAdmin', message => {
-      console.log(localStorage.getItem('chat'))
+      console.log(localStorage.getItem('chatId'))
       console.log(message.senderId)
-      if (localStorage.getItem('chat') === message.senderId) {
+      if (localStorage.getItem('chatId') === message.senderId) {
         setChat(chat.concat([{ senderId: message.senderId, message: message.message, agent: true }]))
       }
     })
