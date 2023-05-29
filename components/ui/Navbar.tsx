@@ -64,10 +64,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
-          ? <div onMouseEnter={() => {
-            setNavCategoriesOpacity('opacity-0')
-            setNavCategories('hidden')
-          }} className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
+          ? <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
             <p className='m-auto tracking-widest font-medium text-[13px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
           : ''
@@ -91,12 +88,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             router.pathname !== '/finalizar-compra'
               ? <>
                 <div className='hidden gap-6 575:flex'>
-                  <Link onMouseEnter={() => {
-                    if (navCategories === 'flex') {
-                      setNavCategoriesOpacity('opacity-0')
-                      setNavCategories('hidden')
-                    }
-                  }} className='mt-auto flex text-[15px] h-full font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>
+                  <Link className='mt-auto flex text-[15px] h-full font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/'>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>INICIO</div>
                   </Link>
                   <Link className='flex h-full' href='/tienda' onMouseEnter={() => {
@@ -104,18 +96,17 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     setTimeout(() => {
                       setNavCategoriesOpacity('opacity-1')
                     }, 50)
+                  }} onMouseLeave={() => {
+                    setNavCategoriesOpacity('opacity-0')
+                    
+                    setNavCategories('hidden')
                   }} onClick={() => {
                     setNavCategoriesOpacity('opacity-0')
                     setNavCategories('hidden')
                   }}>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
-                  <Link onMouseEnter={() => {
-                    if (navCategories === 'flex') {
-                      setNavCategoriesOpacity('opacity-0')
-                      setNavCategories('hidden')
-                    }
-                  }} className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>
+                  <Link className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white' href='/contacto'>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>CONTACTO</div>
                   </Link>
                   {
@@ -283,11 +274,9 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
-        <div className={`${navCategories} ${navCategoriesOpacity} transition-opacity duration-200 z-0 absolute top-57 w-full`} onMouseEnter={() => {
+        <div className={`${navCategories} ${navCategoriesOpacity} transition-opacity duration-200 absolute top-57 w-full`} onMouseEnter={() => {
           setNavCategories('flex')
-          setTimeout(() => {
-            setNavCategoriesOpacity('opacity-1')
-          }, 50)
+          setNavCategoriesOpacity('opacity-1')
         }} onMouseLeave={() => {
           setNavCategoriesOpacity('opacity-0')
           setNavCategories('hidden')
@@ -295,7 +284,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           {
             categories?.length
               ? (
-                <div onMouseEnter={() => setNavCategories('opacity-1')} onMouseLeave={() => setNavCategories('opacity-0')} className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
+                <div className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
                   {categories.map(category => (
                     <div key={category._id}>
                       <img className='w-64 mb-2 cursor-pointer' onClick={() => {

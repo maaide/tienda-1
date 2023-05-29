@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { v4 as uuidv4 } from 'uuid'
 import io from 'socket.io-client'
 
-const socket = io('http://localhost:4000')
+const socket = io('https://server-production-e234.up.railway.app/')
 
 export const Chat = () => {
 
