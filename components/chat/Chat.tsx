@@ -69,6 +69,7 @@ export const Chat = () => {
       await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false })
     }
     const response = await axios.post('https://server-production-e234.up.railway.app/chat', { senderId: senderId, message: newMessage })
+    console.log(response.data)
     if (response.data.message) {
       setChat(chat.filter(mes => mes.message === message))
     }
