@@ -56,7 +56,10 @@ export const Chat = () => {
   useEffect(() => {
     const container = containerRef.current
     if (container) {
-      container.scrollTop = container.scrollHeight
+      container.scrollTo({
+        top: container.scrollHeight,
+        behavior: 'smooth'
+      })
     }
   }, [chat])
 
