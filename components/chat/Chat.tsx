@@ -19,6 +19,7 @@ export const Chat = () => {
   const [newMessage, setNewMessage] = useState('')
 
   const chatRef = useRef(chat)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const getMessages = async () => {
     if (localStorage.getItem('chatId')) {
@@ -52,6 +53,13 @@ export const Chat = () => {
     setNewMessage(e.target.value)
   }
 
+  useEffect(() => {
+    const container = containerRef.current
+    if (container) {
+      container.scrollTop = container.scrollHeight
+    }
+  }, [chat])
+
   const submitMessage = async (e: any) => {
     e.preventDefault()
     let senderId
@@ -81,7 +89,7 @@ export const Chat = () => {
         <div className='h-28 w-full bg-main rounded-t-xl flex p-4'>
           <span className='text-white mt-auto mb-auto text-xl'>Maaibot</span>
         </div>
-        <div className='flex flex-col h-full gap-2 pl-3 sm:pl-4' style={{ overflow: 'overlay' }}>
+        <div ref={containerRef} className='flex flex-col h-full gap-2 pl-3 sm:pl-4' style={{ overflow: 'overlay' }}>
           {
             chat?.length
               ? chat.map(info => (
