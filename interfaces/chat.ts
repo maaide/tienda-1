@@ -3,6 +3,8 @@ export interface IMessage {
     agent: boolean
     message?: string
     response?: string
+    adminView?: boolean
+    userView?: boolean
 
     createdAt?: Date
     updatedAt?: Date

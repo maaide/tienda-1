@@ -14,7 +14,9 @@ export const Chat = () => {
   const [chatOpacity, setChatOpacity] = useState('opacity-0')
   const [chat, setChat] = useState<IMessage[]>([{
     agent: false,
-    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?'
+    response: '¡Hola! Mi nombre es Maaibot y soy un asistente virtual de la tienda Maaide, ¿En que te puedo ayudar?',
+    adminView: false,
+    userView: false
   }])
   const [newMessage, setNewMessage] = useState('')
 
@@ -77,7 +79,7 @@ export const Chat = () => {
     }
     socket.emit('message', {message: message, senderId: senderId})
     if (chat.length === 1) {
-      await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false })
+      await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false, adminView: false, userView: true })
     }
     const response = await axios.post('https://server-production-e234.up.railway.app/chat', { senderId: senderId, message: newMessage })
     if (response.data.response) {
@@ -125,7 +127,7 @@ export const Chat = () => {
           <button type='submit' onClick={submitMessage} className='bg-main text-white w-24 rounded-md dark:bg-neutral-700'>Enviar</button>
         </form>
       </div>
-      <button onClick={(e: any) => {
+      <button onClick={async (e: any) => {
         e.preventDefault()
         if (chatDisplay === 'hidden') {
           setChatDisplay('flex')
@@ -138,11 +140,32 @@ export const Chat = () => {
             setChatDisplay('hidden')
           }, 200)
         }
+        const senderId = localStorage.getItem('chatId')
+        if (senderId) {
+          await axios.put(`https://server-production-e234.up.railway.app/chat-user/${senderId}`)
+          getMessages()
+        } else {
+          chat[0].userView = true
+          setChat(chat)
+        }
       }} className='w-14 h-14 bg-main flex rounded-full ml-auto shadow-md'>
         {
           chatOpacity === 'opacity-0'
             ? <BsChatDots className='text-3xl text-white m-auto' />
             : <IoCloseOutline className='text-3xl text-white m-auto' />
+        }
+        {
+          chat.map((message, index) => (
+            <div key={index}>
+              {
+                index === chat.length - 1
+                  ? message.userView
+                      ? ''
+                      : <div className='h-3 w-3 rounded-full bg-button right-0 absolute' />
+                  : ''
+                }
+            </div>
+          ))
         }
       </button>
     </div>
