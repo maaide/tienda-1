@@ -70,7 +70,7 @@ export const Chat = () => {
     let senderId
     let message = newMessage
     setNewMessage('')
-    setChat(chat.concat({agent: false, message: message}))
+    setChat(chat.concat({agent: false, message: message, userView: true}))
     if (localStorage.getItem('chatId')) {
       senderId = localStorage.getItem('chatId')
     } else {
