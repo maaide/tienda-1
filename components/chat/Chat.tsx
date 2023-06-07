@@ -42,7 +42,7 @@ export const Chat = () => {
   useEffect(() => {
     socket.on('messageAdmin', message => {
       if (localStorage.getItem('chatId') === message.senderId) {
-        setChat(chatRef.current.concat([{ senderId: message.senderId, response: message.response, agent: true }]))
+        setChat(chatRef.current.concat([{ senderId: message.senderId, response: message.response, agent: true, adminView: true }]))
       }
     })
 
@@ -81,7 +81,7 @@ export const Chat = () => {
     if (chat.length === 1) {
       await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false, adminView: false, userView: true })
     }
-    const response = await axios.post('https://server-production-e234.up.railway.app/chat', { senderId: senderId, message: newMessage })
+    const response = await axios.post('https://server-production-e234.up.railway.app/chat', { senderId: senderId, message: newMessage, adminView: false, userView: true })
     if (response.data.response) {
       setChat(chat.filter(mes => mes.message === message))
     }
