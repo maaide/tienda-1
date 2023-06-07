@@ -22,6 +22,7 @@ export const Chat = () => {
 
   const chatRef = useRef(chat)
   const containerRef = useRef<HTMLDivElement>(null)
+  const chatOpacityRef = useRef(chatOpacity)
 
   const getMessages = async () => {
     if (localStorage.getItem('chatId')) {
@@ -40,9 +41,17 @@ export const Chat = () => {
   }, [chat])
 
   useEffect(() => {
+    chatOpacityRef.current = chatOpacity
+  }, [chatOpacity])
+
+  useEffect(() => {
     socket.on('messageAdmin', message => {
       if (localStorage.getItem('chatId') === message.senderId) {
-        setChat(chatRef.current.concat([{ senderId: message.senderId, response: message.response, agent: true, adminView: true }]))
+        if (chatOpacityRef.current === 'opacity-1') {
+          setChat(chatRef.current.concat([{ senderId: message.senderId, response: message.response, agent: true, adminView: true, userView: true }]))
+        } else {
+          setChat(chatRef.current.concat([{ senderId: message.senderId, response: message.response, agent: true, adminView: true, userView: false }]))
+        }
       }
     })
 
