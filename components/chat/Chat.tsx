@@ -86,7 +86,7 @@ export const Chat = () => {
       senderId = uuidv4()
       localStorage.setItem('chatId', senderId)
     }
-    socket.emit('message', {message: message, senderId: senderId})
+    socket.emit('message', {message: message, senderId: senderId, createdAt: new Date()})
     if (chat.length === 1) {
       await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false, adminView: false, userView: true })
     }
