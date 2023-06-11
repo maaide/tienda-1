@@ -29,6 +29,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [navCategories, setNavCategories] = useState('hidden')
   const [navCategoriesOpacity, setNavCategoriesOpacity] = useState('opacity-0')
   const [categoriesPhone, setCategoriesPhone] = useState('hidden')
+  const [menuButtons, setMenuButtons] = useState('opacity-0')
 
   const { categories } = useCategories('/categories')
   const router = useRouter()
@@ -65,7 +66,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
       {
         router.pathname !== '/finalizar-compra'
           ? <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
-            <p className='m-auto tracking-widest font-medium text-[13px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
+            <p className='m-auto tracking-widest font-medium text-[12px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
           : ''
       }
@@ -172,11 +173,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     menu === 'w-0 pl-0 pr-0 pt-6 pb-6'
                       ? <button onClick={() => {
                           setIndex('flex')
+                          setTimeout(() => {
+                            setMenuButtons('opacity-1')
+                          }, 150)
                         }}>
                         <FiMenu className='text-2xl' />
                       </button>
                       : <button onClick={() => {
                           setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                          setMenuButtons('opacity-0')
                           setTimeout(() => {
                             setIndex('hidden')
                           }, 150)
@@ -222,21 +227,24 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '57px', height: 'calc(100vh - 56px)' }}>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+            setMenuButtons('opacity-0')
             setTimeout(() => {
               setIndex('hidden')
             }, 150)
           }} />
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
-            <Link className={`mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
+            <Link className={`${menuButtons} transition-opacity duration-100 mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+              setMenuButtons('opacity-0')
               setTimeout(() => {
                 setIndex('hidden')
               }, 150)
             }} href='/'>INICIO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
-            <div className={`border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
+            <div className={`${menuButtons} transition-opacity duration-100 border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
               <div className={`flex justify-between pb-2`}>
                 <Link onClick={() => {
                   setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                  setMenuButtons('opacity-0')
                   setTimeout(() => {
                     setIndex('hidden')
                   }, 150)
@@ -253,6 +261,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     ? categories.map(category => (
                       <Link onClick={() => {
                         setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                        setMenuButtons('opacity-0')
                         setTimeout(() => {
                           setIndex('hidden')
                         }, 150)
@@ -265,15 +274,16 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 }
               </div>
             </div>
-            <Link className={`mb-4 font-montserrat tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
+            <Link className={`${menuButtons} transition-opacity duration-100 mb-4 font-montserrat tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+              setMenuButtons('opacity-0')
               setTimeout(() => {
                 setIndex('hidden')
               }, 140)
             }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
-        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-57 w-full`} onMouseEnter={() => {
+        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-57 w-full dark:border-neutral-800`} onMouseEnter={() => {
           setNavCategories('flex')
           setNavCategoriesOpacity('opacity-1')
         }} onMouseLeave={() => {
