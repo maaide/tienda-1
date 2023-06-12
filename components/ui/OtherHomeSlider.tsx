@@ -22,7 +22,7 @@ export const OtherHomeSlider = () => {
           setButtonView('opacity-1')
         }, 300)
       }, 300)
-    }, 1000)
+    }, 600)
   }, [])
 
   return (
