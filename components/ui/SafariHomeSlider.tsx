@@ -43,7 +43,7 @@ export const SafariHomeSlider = () => {
             <p className={`${textView} transition-opacity duration-200 text-white text-lg mb-4`}>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
             <Link className={`${buttonView} transition-opacity duration-200`} href='/ofertas'><Button>VER OFERTAS</Button></Link>
           </div>
-          <img className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/blasspod/image/upload/v1680628242/blaspod/pexels-xue-guangjian-1687845_ocry6n.jpg' />
+          <img className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/blasspod/image/upload/v1686583650/blaspod/banner_c2pec5.jpg' />
         </div>
       </SwiperSlide>
       <SwiperSlide>
@@ -53,7 +53,7 @@ export const SafariHomeSlider = () => {
             <p className='text-white text-lg mb-4'>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
             <Button>VER OFERTAS</Button>
           </div>
-          <img className={`absolute -z-10 object-cover h-full w-full`} src='https://res.cloudinary.com/blasspod/image/upload/v1680628242/blaspod/pexels-xue-guangjian-1687845_ocry6n.jpg' />
+          <img className={`absolute -z-10 object-cover h-full w-full`} src='https://res.cloudinary.com/blasspod/image/upload/v1686583650/blaspod/banner_c2pec5.jpg' />
         </div>
       </SwiperSlide>
     </Swiper>
