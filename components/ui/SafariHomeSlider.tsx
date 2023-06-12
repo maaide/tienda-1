@@ -22,7 +22,7 @@ export const SafariHomeSlider = () => {
           setButtonView('opacity-1')
         }, 300)
       }, 300)
-    }, 2000)
+    }, 800)
   }, [])
 
   return (
