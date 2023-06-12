@@ -6,15 +6,17 @@ import "swiper/css"
 import "swiper/css/pagination"
 import styles from "./css/OtherHomeSlider.module.css"
 import { Navigation, Pagination } from "swiper"
+import Image from 'next/image'
 
 export const OtherHomeSlider = () => {
 
+  const [loadingImage, setLoadingImage] = useState(false)
   const [imageView, setImageView] = useState('opacity-0')
   const [textView, setTextView] = useState('opacity-0')
   const [buttonView, setButtonView] = useState('opacity-0')
 
   useEffect(() => {
-    setTimeout(() => {
+    if (loadingImage) {
       setImageView('opacity-1')
       setTimeout(() => {
         setTextView('opacity-1')
@@ -22,8 +24,8 @@ export const OtherHomeSlider = () => {
           setButtonView('opacity-1')
         }, 300)
       }, 300)
-    }, 800)
-  }, [])
+    }
+  }, [loadingImage])
 
   return (
     <Swiper
@@ -42,7 +44,7 @@ export const OtherHomeSlider = () => {
             <p className={`${textView} text-white transition-opacity duration-200 text-lg mb-4`}>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
             <Link className={`${buttonView} transition-opacity duration-200`} href='/ofertas'><Button>VER OFERTAS</Button></Link>
           </div>
-          <img className={`object-cover h-full w-full absolute -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/blasspod/image/upload/v1686583847/blaspod/banner_xkwsci.jpg' />
+          <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`object-cover h-full w-full absolute -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/blasspod/image/upload/v1686583847/blaspod/banner_xkwsci.jpg' alt='banner' />
         </div>
       </SwiperSlide>
       <SwiperSlide>
@@ -52,7 +54,7 @@ export const OtherHomeSlider = () => {
             <p className='text-white text-lg mb-4'>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
             <Button>VER OFERTAS</Button>
           </div>
-          <img className='absolute -z-10 object-cover h-full w-full' src='https://res.cloudinary.com/blasspod/image/upload/v1686583847/blaspod/banner_xkwsci.jpg' />
+          <Image width={1920} height={1080} className='absolute -z-10 object-cover h-full w-full' src='https://res.cloudinary.com/blasspod/image/upload/v1686583847/blaspod/banner_xkwsci.jpg' alt='banner' />
         </div>
       </SwiperSlide>
     </Swiper>
