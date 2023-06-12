@@ -9,7 +9,6 @@ import { Navigation, Pagination } from "swiper"
 
 export const OtherHomeSlider = () => {
 
-  const [loadImage, setLoadImage] = useState(false)
   const [imageView, setImageView] = useState('opacity-0')
   const [textView, setTextView] = useState('opacity-0')
   const [buttonView, setButtonView] = useState('opacity-0')
@@ -23,8 +22,8 @@ export const OtherHomeSlider = () => {
           setButtonView('opacity-1')
         }, 300)
       }, 300)
-    }, 300)
-  }, [loadImage])
+    }, 2000)
+  }, [])
 
   return (
     <Swiper
@@ -43,7 +42,7 @@ export const OtherHomeSlider = () => {
             <p className={`${textView} text-white transition-opacity duration-200 text-lg mb-4`}>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
             <Link className={`${buttonView} transition-opacity duration-200`} href='/ofertas'><Button>VER OFERTAS</Button></Link>
           </div>
-          <img onLoad={() => setLoadImage(true)} className={`object-cover h-full w-full absolute -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/blasspod/image/upload/v1680628242/blaspod/pexels-xue-guangjian-1687845_ocry6n.jpg' />
+          <img className={`object-cover h-full w-full absolute -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/blasspod/image/upload/v1680628242/blaspod/pexels-xue-guangjian-1687845_ocry6n.jpg' />
         </div>
       </SwiperSlide>
       <SwiperSlide>
