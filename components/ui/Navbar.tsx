@@ -175,7 +175,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           setIndex('flex')
                           setTimeout(() => {
                             setMenuButtons('opacity-1')
-                          }, 150)
+                          }, 200)
                         }}>
                         <FiMenu className='text-2xl' />
                       </button>
@@ -233,14 +233,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }, 150)
           }} />
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
-            <Link className={`${menuButtons} transition-opacity duration-100 mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
+            <Link className={`${menuButtons} transition-opacity duration-150 mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setMenuButtons('opacity-0')
               setTimeout(() => {
                 setIndex('hidden')
               }, 150)
             }} href='/'>INICIO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
-            <div className={`${menuButtons} transition-opacity duration-100 border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
+            <div className={`${menuButtons} transition-opacity duration-150 border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
               <div className={`flex justify-between pb-2`}>
                 <Link onClick={() => {
                   setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
@@ -274,7 +274,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 }
               </div>
             </div>
-            <Link className={`${menuButtons} transition-opacity duration-100 mb-4 font-montserrat tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
+            <Link className={`${menuButtons} transition-opacity duration-150 mb-4 font-montserrat tracking-widest text-[#1c1b1b] font-medium flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
               setMenuButtons('opacity-0')
               setTimeout(() => {
