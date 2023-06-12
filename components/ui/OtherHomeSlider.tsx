@@ -15,11 +15,13 @@ export const OtherHomeSlider = () => {
   const [buttonView, setButtonView] = useState('opacity-0')
 
   useEffect(() => {
-    setImageView('opacity-1')
     setTimeout(() => {
-      setTextView('opacity-1')
+      setImageView('opacity-1')
       setTimeout(() => {
-        setButtonView('opacity-1')
+        setTextView('opacity-1')
+        setTimeout(() => {
+          setButtonView('opacity-1')
+        }, 300)
       }, 300)
     }, 300)
   }, [loadImage])
