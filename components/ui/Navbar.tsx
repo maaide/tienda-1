@@ -175,7 +175,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           setIndex('flex')
                           setTimeout(() => {
                             setMenuButtons('opacity-1')
-                          }, 200)
+                          }, 300)
                         }}>
                         <FiMenu className='text-2xl' />
                       </button>
