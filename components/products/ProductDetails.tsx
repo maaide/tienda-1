@@ -53,24 +53,40 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
               }
           </div>
         </div>
-        <div className='flex'>
-          <div className='flex m-auto justify-around gap-2 h-fit'>
-            <ItemCounter
-              currentValue={ tempCartProduct.quantity }
-              updatedQuantity={ onUpdateQuantity }
-              maxValue={ product.stock }
-            />
-            {
-              product.variations?.length
-                ? product.variations[0].variation !== ''
-                  ? tempCartProduct.variation
-                    ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
-                    : <ButtonNone>Añadir al carrito</ButtonNone>
-                  : <ButtonAddToCart tempCartProduct={tempCartProduct} />
-                : <ButtonAddToCart tempCartProduct={tempCartProduct} />
-            }
-          </div>
-        </div>
+        {
+          product.stock === 0
+            ? (
+              <div className='flex'>
+                <div className='m-auto flex flex-col'>
+                  <p className='mb-2 text-sm'>Deja tu correo para avisarte cuando tengamos este producto nuevamente en stock</p>
+                  <div className='flex gap-2 m-auto'>
+                    <input type='text' placeholder='Correo' className='p-2 text-sm w-64 rounded border focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                    <button className='pt-1.5 pb-1.5 h-fit mt-auto mb-auto pl-7 pr-7 rounded-md bg-button text-white'>Enviar</button>
+                  </div>
+                </div>
+              </div>
+            )
+            : (
+              <div className='flex'>
+                <div className='flex m-auto justify-around gap-2 h-fit'>
+                  <ItemCounter
+                    currentValue={ tempCartProduct.quantity }
+                    updatedQuantity={ onUpdateQuantity }
+                    maxValue={ product.stock }
+                  />
+                  {
+                    product.variations?.length
+                      ? product.variations[0].variation !== ''
+                        ? tempCartProduct.variation
+                          ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                          : <ButtonNone>Añadir al carrito</ButtonNone>
+                        : <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                      : <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                  }
+                </div>
+              </div>
+            )
+        }
       </div>
   )
 }

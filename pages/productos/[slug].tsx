@@ -183,22 +183,36 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 )
                 : ''
             }
-            <div className='flex gap-2 pb-4 border-b dark:border-neutral-800'>
-              <ItemCounter
-                currentValue={ tempCartProduct.quantity }
-                updatedQuantity={ onUpdateQuantity }
-                maxValue={ product.stock }
-              />
-              {
-                product.variations?.length
-                  ? product.variations[0].variation !== ''
-                    ? tempCartProduct.variation
-                      ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
-                      : <ButtonNone>Añadir al carrito</ButtonNone>
-                    : <ButtonAddToCart tempCartProduct={tempCartProduct} />
-                  : <ButtonAddToCart tempCartProduct={tempCartProduct} />
-              }
-            </div>
+            {
+              product.stock === 0
+                ? (
+                  <div>
+                    <p className='mb-2 text-sm'>Deja tu correo para avisarte cuando tengamos este producto nuevamente en stock</p>
+                    <div className='flex gap-2'>
+                      <input type='text' placeholder='Correo' className='p-2 text-sm w-64 rounded border focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      <button className='pt-1.5 pb-1.5 h-fit mt-auto mb-auto pl-7 pr-7 rounded-md bg-button text-white'>Enviar</button>
+                    </div>
+                  </div>
+                )
+                : (
+                  <div className='flex gap-2 pb-4 border-b dark:border-neutral-800'>
+                    <ItemCounter
+                      currentValue={ tempCartProduct.quantity }
+                      updatedQuantity={ onUpdateQuantity }
+                      maxValue={ product.stock }
+                    />
+                    {
+                      product.variations?.length
+                        ? product.variations[0].variation !== ''
+                          ? tempCartProduct.variation
+                            ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                            : <ButtonNone>Añadir al carrito</ButtonNone>
+                          : <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                        : <ButtonAddToCart tempCartProduct={tempCartProduct} />
+                    }
+                  </div>
+                )
+            }
             {
               product.productsOffer?.length
               ? product.productsOffer[0].productsSale.length
