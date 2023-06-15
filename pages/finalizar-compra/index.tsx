@@ -149,7 +149,7 @@ const CheckOut = () => {
           <div className='pb-3 border-b dark:border-neutral-700'>
             <h2 className='mb-2 font-medium tracking-widest text-[16px] md:text-[18px]'>CUPON DE DESCUENTO</h2>
             <div className='flex gap-2'>
-              <input type='text' placeholder='Cupon' className='border text-[14px] p-1 rounded w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Cupon' className='border text-[14px] p-1 rounded w-64 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <Button2>Agregar</Button2>
             </div>
           </div>
