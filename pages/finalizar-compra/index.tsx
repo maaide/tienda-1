@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Shipping } from '../../components/products'
 import { Button2 } from '../../components/ui'
-import { ICartProduct, ISell, IShipping } from '../../interfaces'
+import { ICartProduct, IQuantityOffer, ISell, IShipping } from '../../interfaces'
 import { FreeShipping, NumberFormat } from '../../utils'
 import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
@@ -67,6 +67,20 @@ const CheckOut = () => {
     }
   }
 
+  const offer = (product: ICartProduct) => {
+    let offerPrice: IQuantityOffer = {descount: 0, quantity: 0}
+    if (product.quantityOffers && product.quantity > 1) {
+      const filter = product.quantityOffers.filter(offer => offer.quantity <= product.quantity)
+      if (filter.length > 1) {
+        offerPrice = filter.reduce((prev, current) => (prev.quantity > current.quantity) ? prev : current)
+      } else {
+        offerPrice = filter[0]
+      }
+    }
+    const finalPrice = offerPrice !== undefined ? Math.floor((product.price * product.quantity) / 100) * (100 - offerPrice.descount) : product.price * product.quantity
+    return finalPrice
+  }
+
   const payChange = (e: any) => {
     setSell({...sell, state: 'No pagado', [e.target.name]: e.target.value})
   }
@@ -120,7 +134,7 @@ const CheckOut = () => {
                       </div>
                     </div>
                     <div className='flex gap-2 mt-auto mb-auto'>
-                      <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
+                      <span className='font-medium'>${NumberFormat(product.quantityOffers ? offer(product) : product.price * product.quantity)}</span>
                       {
                         product.beforePrice
                           ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
@@ -142,7 +156,7 @@ const CheckOut = () => {
           <div className='mt-2 mb-2 pb-2 border-b dark:border-neutral-700'>
             <div className='flex gap-2 justify-between mb-1'>
               <span className='text-[14px]'>Subtotal</span>
-              <span className='text-[14px]'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+              <span className='text-[14px]'>${NumberFormat(sell.cart.reduce((bef, curr) => curr.quantityOffers ? offer(curr) : bef + curr.price * curr.quantity, 0))}</span>
             </div>
             <div className='flex gap-2 justify-between'>
               <span className='text-[14px]'>Envío</span>
@@ -152,7 +166,7 @@ const CheckOut = () => {
         </div>
         <div className='flex gap-2 justify-between'>
           <span className='font-medium'>Total</span>
-          <span className='font-medium'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
+          <span className='font-medium'>${NumberFormat(sell.cart.reduce((bef, curr) => curr.quantityOffers ? offer(curr) : bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
         </div>
       </div>
       <div className='flex p-4'>
@@ -189,14 +203,14 @@ const CheckOut = () => {
                     <div className='flex flex-col gap-1'>
                       {
                         shipping.map(item => (
-                            <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700' key={item.serviceDescription}>
-                              <div className='flex gap-2'>
-                                <input type='radio' name='shipping' className={item.serviceDescription} value={item.serviceValue} onChange={shippingChange} />
-                                <p className='text-sm mt-auto mb-auto'>{item.serviceDescription}</p>
-                              </div>
-                              <p className='text-sm'>${NumberFormat(Number(item.serviceValue))}</p>
+                          <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700' key={item.serviceDescription}>
+                            <div className='flex gap-2'>
+                              <input type='radio' name='shipping' className={item.serviceDescription} value={item.serviceValue} onChange={shippingChange} />
+                              <p className='text-sm mt-auto mb-auto'>{item.serviceDescription}</p>
                             </div>
-                          ))
+                            <p className='text-sm'>${NumberFormat(Number(item.serviceValue))}</p>
+                          </div>
+                        ))
                       }
                     </div>
                   </div>
@@ -254,7 +268,7 @@ const CheckOut = () => {
                         </div>
                       </div>
                       <div className='flex gap-2 mt-auto mb-auto'>
-                        <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
+                        <span className='font-medium'>${NumberFormat(product.quantityOffers ? offer(product) : product.price * product.quantity)}</span>
                         {
                           product.beforePrice
                             ? <span className='text-sm line-through'>${NumberFormat(product.beforePrice * product.quantity)}</span>
@@ -276,7 +290,7 @@ const CheckOut = () => {
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
               <div className='flex gap-2 justify-between mb-1'>
                 <span className='text-[14px]'>Subtotal</span>
-                <span className='text-[14px]'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+                <span className='text-[14px]'>${NumberFormat(sell.cart.reduce((bef, curr) => curr.quantityOffers ? offer(curr) : bef + curr.price * curr.quantity, 0))}</span>
               </div>
               <div className='flex gap-2 justify-between'>
                 <span className='text-[14px]'>Envío</span>
@@ -285,7 +299,7 @@ const CheckOut = () => {
             </div>
             <div className='flex gap-2 justify-between'>
               <span className='font-medium'>Total</span>
-              <span className='font-medium'>${NumberFormat(sell.cart.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
+              <span className='font-medium'>${NumberFormat(sell.cart.reduce((bef, curr) => curr.quantityOffers ? offer(curr) : bef + curr.price * curr.quantity, 0) + Number(sell.shipping))}</span>
             </div>
           </div>
         </form>

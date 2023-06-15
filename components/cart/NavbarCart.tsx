@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React, { useContext } from 'react'
-import { ICartProduct } from '../../interfaces'
+import { ICartProduct, IQuantityOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import { IoCloseOutline } from 'react-icons/io5'
 import CartContext from '../../context/cart/CartContext'
@@ -15,6 +15,20 @@ interface Props {
 export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacity, setCartOpacity }) => {
 
   const {cart, setCart} = useContext(CartContext)
+
+  const offer = (product: ICartProduct) => {
+    let offerPrice: IQuantityOffer = {descount: 0, quantity: 0}
+    if (product.quantityOffers && product.quantity > 1) {
+      const filter = product.quantityOffers.filter(offer => offer.quantity <= product.quantity)
+      if (filter.length > 1) {
+        offerPrice = filter.reduce((prev, current) => (prev.quantity > current.quantity) ? prev : current)
+      } else {
+        offerPrice = filter[0]
+      }
+    }
+    const finalPrice = offerPrice !== undefined ? Math.floor((product.price * product.quantity) / 100) * (100 - offerPrice.descount) : product.price * product.quantity
+    return finalPrice
+  }
 
   return (
     <div onMouseEnter={() => setCartPc(false)} onMouseLeave={() => setCartPc(true)} className={`ml-auto ${cartOpacity} transition-opacity duration-200 p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96`}>
@@ -42,10 +56,14 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacit
                         }, 200)
                       }}><h3 className='text-[16px] text-[#1B1B1B] dark:text-neutral-100'>{product.name}</h3></Link>
                       <div className='flex gap-1 mb-1'>
-                        <span className='font-medium'>${NumberFormat(product.price)}</span>
+                        {
+                          product.quantityOffers && product.quantity > 1
+                            ? <span className='font-medium'>${NumberFormat(offer(product))}</span>
+                            : <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
+                        }
                         {
                           product.beforePrice
-                            ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
+                            ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                             : ''
                         }
                       </div>

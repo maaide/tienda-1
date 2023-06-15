@@ -29,12 +29,15 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     slug: product.slug,
     quantity: 1,
     stock: product.stock,
-    category: product.category
+    category: product.category,
+    quantityOffers: product.quantityOffers ? product.quantityOffers : []
   })
-  const [scrollPosition, setScrollPosition] = useState(0)
   const [descriptionView, setDescriptionView] = useState(true)
   const [returnView, setReturnView] = useState(false)
   const [shippingView, setShippingView] = useState(false)
+  const [detailsOpacity, setDetailsOpacity] = useState('opacity-0')
+  const [detailsPosition, setDetailsPosition] = useState('-bottom-44')
+
   const router = useRouter()
 
   const { products, isLoadingProducts } = useProducts('/products')
@@ -53,7 +56,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
       slug: product.slug,
       quantity: 1,
       stock: product.stock,
-      category: product.category
+      category: product.category,
+      quantityOffers: product.quantityOffers
     })
   }, [router])
 
@@ -63,7 +67,13 @@ const ProductPage: React.FC<Props> = ({ product }) => {
 
   const handleScroll = () => {
     const position = window.scrollY
-    setScrollPosition(position)
+    if (position > 375) {
+      setDetailsOpacity('opacity-1')
+      setDetailsPosition('-bottom-1')
+    } else {
+      setDetailsOpacity('opacity-0')
+      setDetailsPosition('-bottom-44')
+    }
   }
 
   useEffect(() => {
@@ -97,11 +107,9 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           )
         }
       </Head>
-      {
-        scrollPosition >= 350
-          ? <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
-          : ''
-      }
+      <div className={`${detailsOpacity} ${detailsPosition} flex transition-all decoration-slate-200 fixed w-full z-40 p-4`}>
+        <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
+      </div>
       <div className='flex p-4'>
         <div className='block m-auto w-full gap-4 lg:flex xl2:w-1280 xl2:gap-8'>
           <div className='w-full lg:w-7/12'>

@@ -24,25 +24,30 @@ export const ButtonAddToCart: React.FC<Props> = ({ tempCartProduct }) => {
           cart[productIndex].quantity = tempCartProduct.quantity + cart[productIndex].quantity
           localStorage.setItem('cart', JSON.stringify(cart))
           setCart(JSON.parse(localStorage.getItem('cart')!))
-          console.log(1)
         } else {
           const cartFinal = cart.concat(tempCartProduct)
           localStorage.setItem('cart', JSON.stringify(cartFinal))
           setCart(JSON.parse(localStorage.getItem('cart')!))
-          console.log(2)
         }
       } else {
         const cartFinal = cart.concat(tempCartProduct)
         localStorage.setItem('cart', JSON.stringify(cartFinal))
         setCart(JSON.parse(localStorage.getItem('cart')!))
-        console.log(3)
       }
     } else {
       localStorage.setItem('cart', `[${JSON.stringify(tempCartProduct)}]`)
       setCart(JSON.parse(localStorage.getItem('cart')!))
-      console.log(4)
     }
-    await axios.post('https://server-production-e234.up.railway.app/add-cart', { name: tempCartProduct.name, price: tempCartProduct.price * tempCartProduct.quantity, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+    let offerPrice
+    if (tempCartProduct.quantityOffers && tempCartProduct.quantity > 1) {
+      const filter = tempCartProduct.quantityOffers.filter(offer => offer.quantity <= tempCartProduct.quantity)
+      if (filter.length > 1) {
+        offerPrice = filter.reduce((prev, current) => (prev.quantity > current.quantity) ? prev : current)
+      } else {
+        offerPrice = filter[0]
+      }
+    }
+    await axios.post('https://server-production-e234.up.railway.app/add-cart', { name: tempCartProduct.name, price: offerPrice !== undefined ? Math.floor((tempCartProduct.price * tempCartProduct.quantity) / 100) * (100 - offerPrice.descount) : tempCartProduct.price * tempCartProduct.quantity, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
     setTimeout(() => {
       setText('Añadir al carrito')
     }, 3000)

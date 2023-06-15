@@ -6,7 +6,7 @@ import { IoCloseOutline } from 'react-icons/io5'
 import { ProductList, ShippingCart } from '../../components/products'
 import { Spinner } from '../../components/ui'
 import { useProducts } from '../../hooks'
-import { ICartProduct } from '../../interfaces'
+import { ICartProduct, IQuantityOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 
 const CartPage = () => {
@@ -20,6 +20,20 @@ const CartPage = () => {
   }, [])
 
   const { products, isLoadingProducts } = useProducts('/products')
+
+  const offer = (product: ICartProduct) => {
+    let offerPrice: IQuantityOffer = {descount: 0, quantity: 0}
+    if (product.quantityOffers && product.quantity > 1) {
+      const filter = product.quantityOffers.filter(offer => offer.quantity <= product.quantity)
+      if (filter.length > 1) {
+        offerPrice = filter.reduce((prev, current) => (prev.quantity > current.quantity) ? prev : current)
+      } else {
+        offerPrice = filter[0]
+      }
+    }
+    const finalPrice = offerPrice !== undefined ? Math.floor((product.price * product.quantity) / 100) * (100 - offerPrice.descount) : product.price * product.quantity
+    return finalPrice
+  }
 
   return (
     <>
@@ -44,10 +58,14 @@ const CartPage = () => {
                             <h2 className='text-main dark:text-white'>{product.name}</h2>
                           </Link>
                           <div className='flex gap-2'>
-                            <span className='font-medium text-main dark:text-white'>${NumberFormat(product.price)}</span>
+                            {
+                              product.quantityOffers && product.quantity > 1
+                                ? <span className='font-medium'>${NumberFormat(offer(product))}</span>
+                                : <span className='font-medium'>${NumberFormat(product.price * product.quantity)}</span>
+                            }
                             {
                               product.beforePrice
-                                ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice)}</span>
+                                ? <span className='text-sm line-through text-[#444444] dark:text-neutral-400'>${NumberFormat(product.beforePrice * product.quantity)}</span>
                                 : ''
                             }
                           </div>
@@ -131,7 +149,7 @@ const CartPage = () => {
                           <span className='text-[14px] text-[#444444] dark:text-neutral-400'>Subtotal</span>
                           {
                             cartProducts?.length
-                              ? <span className='text-[14px]'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0))}</span>
+                              ? <span className='text-[14px]'>${NumberFormat(cartProducts.reduce((bef, curr) => curr.quantityOffers ? offer(curr) : bef + curr.price * curr.quantity, 0))}</span>
                               : ''
                           }
                         </div>
@@ -144,7 +162,7 @@ const CartPage = () => {
                         <span className='font-medium'>Total</span>
                         {
                           cartProducts?.length
-                            ? <span className='font-medium'>${NumberFormat(cartProducts.reduce((bef, curr) => bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
+                            ? <span className='font-medium'>${NumberFormat(cartProducts.reduce((bef, curr) => curr.quantityOffers ? offer(curr) : bef + curr.price * curr.quantity, 0) + Number(shippingCost))}</span>
                             : ''
                         }
                       </div>
