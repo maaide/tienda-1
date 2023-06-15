@@ -6,6 +6,7 @@ import "swiper/css/navigation"
 import "swiper/css/thumbs"
 import styles from "./css/SafariProductSlider.module.css"
 import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper"
+import Image from 'next/image'
 
 interface Props {
   images: string[]
@@ -28,7 +29,7 @@ export const SafariProductSlider: React.FC<Props> = ({ images }) => {
           images.map(image => {
             return (
               <SwiperSlide key={ image }>
-                <img src={image} className='m-auto' />
+                <Image src={image} alt='Imagen producto' width={650} height={650} className='m-auto' />
               </SwiperSlide>
             )
           })

@@ -5,6 +5,7 @@ import { ReviewsProductCard } from '.'
 import { Button2AddToCart } from '../ui'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import Image from 'next/image'
 
 interface Props {
   product: IProduct
@@ -42,7 +43,7 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
 
   return (
     <div className='inline-block p-2 m-auto w-40 450:w-52 580:w-64'>
-      <img
+      <Image
         src={ productImage } alt={ productImage }
         onLoad={ () => setIsImageLoaded(true) }
         onMouseEnter={ () => setIsHovered(true) }
@@ -50,6 +51,8 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
         className='m-auto cursor-pointer w-40 450:w-44 580:w-52'
         style={{ borderRadius: '8px' }}
         onClick={() => router.push(`/productos/${product.slug}`)}
+        width={250}
+        height={250}
       />
       <div style={{ display: isImageLoaded ? 'block' : 'none' }}>
         {

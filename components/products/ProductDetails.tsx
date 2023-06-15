@@ -2,6 +2,7 @@ import React from 'react'
 import { ICartProduct, IProduct } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import { ButtonAddToCart, ButtonNone, ItemCounter } from '../ui'
+import Image from 'next/image'
 
 interface Props {
   product: IProduct,
@@ -26,7 +27,7 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
   return (
       <div className='m-auto p-4 block bg-white shadow-det rounded-md gap-2 w-1200 justify-around dark:bg-neutral-900 dark:border dark:border-neutral-800 sm:flex'>
         <div className='flex mb-2 justify-around gap-2 sm:mb-0'>
-          <img className='w-20 h-20 mt-auto mb-auto' src={product.images[0]} />
+          <Image className='w-20 h-20 mt-auto mb-auto' src={product.images[0]} alt={product.name} width={80} height={80} />
           <div className='mt-auto mb-auto'>
             <h3>{product.name}</h3>
             <div className='flex gap-1'>
