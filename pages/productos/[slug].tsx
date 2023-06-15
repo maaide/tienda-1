@@ -165,7 +165,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
             }
             <span className='mb-2 text-[14px] text-[#444444] block dark:text-neutral-400'><span className='font-medium text-main dark:text-white'>Stock:</span> { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
             {
-              product.quantityOffers?.length
+              product.quantityOffers?.length && product.quantityOffers[0].descount
                 ? (
                   <div className='mb-2'>
                     <p className='text-sm mb-2'>Descuentos por cantidad</p>
