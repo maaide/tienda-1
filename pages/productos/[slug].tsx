@@ -156,6 +156,25 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 : ''
             }
             <span className='mb-2 text-[14px] text-[#444444] block dark:text-neutral-400'><span className='font-medium text-main dark:text-white'>Stock:</span> { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
+            {
+              product.quantityOffers?.length
+                ? (
+                  <div className='mb-2'>
+                    <p className='text-sm mb-2'>Descuentos por cantidad</p>
+                    <div className='flex gap-2'>
+                      {
+                        product.quantityOffers.map(offer => (
+                          <div className='p-2 border rounded w-16 flex flex-col'>
+                            <p className='text-sm m-auto'>{offer.quantity}+</p>
+                            <p className='text-sm m-auto'>{offer.descount}%</p>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                )
+                : ''
+            }
             <div className='flex gap-2 pb-4 border-b dark:border-neutral-800'>
               <ItemCounter
                 currentValue={ tempCartProduct.quantity }

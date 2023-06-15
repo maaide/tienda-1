@@ -18,6 +18,7 @@ export interface IProduct {
   state: boolean
   titleSeo?: string
   descriptionSeo?: string
+  quantityOffers?: IQuantityOffer[]
 
   createdAt: string
   updatedAt: string
@@ -50,4 +51,9 @@ export interface IProductOffer {
 export interface IVariation {
   variation: string
   image: string
+}
+
+export interface IQuantityOffer {
+  quantity: number
+  descount: number
 }
