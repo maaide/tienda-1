@@ -107,7 +107,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           )
         }
       </Head>
-      <div className={`${detailsOpacity} ${detailsPosition} flex transition-all decoration-slate-200 fixed w-full z-40 p-4`}>
+      <div className={`${detailsOpacity} ${detailsPosition} flex transition-all duration-200 decoration-slate-200 fixed w-full z-40 p-4`}>
         <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
       </div>
       <div className='flex p-4'>
