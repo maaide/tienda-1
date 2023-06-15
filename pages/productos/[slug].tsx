@@ -172,7 +172,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                     <div className='flex gap-2'>
                       {
                         product.quantityOffers.map(offer => (
-                          <div className='p-2 border rounded w-16 flex flex-col'>
+                          <div key={offer._id} className='p-2 border rounded w-16 flex flex-col'>
                             <p className='text-sm m-auto'>{offer.quantity}+</p>
                             <p className='text-sm m-auto'>{offer.descount}%</p>
                           </div>
