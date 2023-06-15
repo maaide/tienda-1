@@ -8,7 +8,6 @@ import { Spinner } from '../../components/ui'
 import { useProducts } from '../../hooks'
 import { ICartProduct, IQuantityOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
-import Image from 'next/image'
 
 const CartPage = () => {
 
@@ -52,7 +51,7 @@ const CartPage = () => {
                     <div className='flex gap-4 mb-2 justify-between' key={product._id}>
                       <div className='flex gap-2'>
                         <Link href={`/productos/${product.slug}`}>
-                          <Image className='w-28 rounded-md 450:w-32' src={product.image} alt={product.name} width={128} height={128} />
+                          <img className='w-28 rounded-md 450:w-32' src={product.image} alt={product.name} width={128} height={128} />
                         </Link>
                         <div className='mt-auto mb-auto'>
                           <Link href={`/productos/${product.slug}`}>

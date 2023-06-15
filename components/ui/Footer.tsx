@@ -8,7 +8,7 @@ export const Footer = () => {
       <div className='w-1280 m-auto'>
         <div className='flex gap-4 justify-between flex-wrap pb-6 border-b'>
           <div>
-            <img className='w-56 mb-3' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' />
+            <img className='w-56 mb-3' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' alt='Logo' width={224} height={76.16} />
             <p className='text-white mb-4 text-sm'>contacto@blaspod.cl</p>
             <div className='flex gap-4'>
               <FaFacebookF className='text-white text-xl' />

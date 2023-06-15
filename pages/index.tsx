@@ -11,6 +11,10 @@ export default function Home() {
     <>
       <Head>
         <title>Inicio</title>
+        <meta name="description" content='Ten tu pagina web para tu tienda, aprovecha nuestros 14 dias para probar nuestros servicios' />  
+        <meta name="og:title" content='Inicio' />
+        <meta name="og:description" content='Ten tu pagina web para tu tienda, aprovecha nuestros 14 dias para probar nuestros servicios' />
+        <meta name="og:image" content='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' />
       </Head>
       <div className="z-0">
         <HomeSlider />
