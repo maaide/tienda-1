@@ -19,8 +19,8 @@ export const Subscribe = () => {
       await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
       setSuccessSubscribe('block')
     } catch (error) {
+      await axios.put(`https://server-production-e234.up.railway.app/clients-subscribe/${subscribeData.email}`, { tags: 'Suscripcion' })
       setSuccessSubscribe('block')
-      console.error('Error en la petición:', error)
     }
   }
 
