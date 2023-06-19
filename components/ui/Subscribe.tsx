@@ -6,7 +6,7 @@ import { Button } from './'
 
 export const Subscribe = () => {
 
-  const [subscribeData, setSubscribeData] = useState({ email: '' })
+  const [subscribeData, setSubscribeData] = useState({ email: '', tags: 'Suscripcion' })
   const [successSubscribe, setSuccessSubscribe] = useState('hidden')
 
   const inputChange = (e: any) => {
@@ -15,9 +15,12 @@ export const Subscribe = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    const subscribe = await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
-    if (subscribe) {
+    try {
+      await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
       setSuccessSubscribe('block')
+    } catch (error) {
+      setSuccessSubscribe('block')
+      console.error('Error en la petición:', error)
     }
   }
 
