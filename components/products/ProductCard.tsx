@@ -4,6 +4,7 @@ import { NumberFormat } from '../../utils'
 import Link from 'next/link'
 import { ReviewsProductCard } from '.'
 import { Button2AddToCart } from '../ui'
+import Image from 'next/image'
 
 interface Props {
   product: IProduct
@@ -41,7 +42,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   return (
     <div className='inline-block p-2 m-auto w-40 450:w-52 580:w-64'>
       <Link href={`productos/${ product.slug }`} className='flex' prefetch={ false }>
-        <img
+        <Image
           src={ productImage } alt={ productImage }
           onLoad={ () => setIsImageLoaded(true) }
           onMouseEnter={ () => setIsHovered(true) }

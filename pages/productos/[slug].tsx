@@ -13,6 +13,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
+import Image from 'next/image'
 
 interface Props {
   product: IProduct
@@ -153,7 +154,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                     <div className='flex gap-2 mt-1'>
                       {product.variations.map(variation => (
                         <div key={variation.variation}>
-                          <img src={variation.image} onClick={() => {
+                          <Image src={variation.image} alt='Imagen variación' width={80} height={80} onClick={() => {
                             setTempCartProduct({...tempCartProduct, variation: variation, image: variation.image})
                           }} className={`w-20 h-20 border rounded-lg p-1 cursor-pointer hover:border-main ${tempCartProduct.variation?.variation === variation.variation ? 'border-main' : 'dark:border-neutral-700 hover:dark:border-main'}`} />
                         </div>

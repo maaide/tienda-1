@@ -4,6 +4,7 @@ import { ICartProduct, IQuantityOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import { IoCloseOutline } from 'react-icons/io5'
 import CartContext from '../../context/cart/CartContext'
+import Image from 'next/image'
 
 interface Props {
   setCartView: any
@@ -46,7 +47,7 @@ export const NavbarCart: React.FC<Props> = ({ setCartView, setCartPc, cartOpacit
                         setCartView('hidden')
                       }, 200)
                     }}>
-                      <img src={product.image} alt={product.name} width={96} height={96} className='w-24 h-24 mt-auto mb-auto' />
+                      <Image src={product.image} alt={product.name} width={96} height={96} className='w-24 h-24 mt-auto mb-auto' />
                     </Link>
                     <div className='mt-auto mb-auto'>
                       <Link href={`/productos/${product.slug}`} onClick={() => {

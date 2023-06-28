@@ -8,6 +8,12 @@ const nextConfig = {
         hostname: 'res.cloudinary.com',
         port: '',
         pathname: '/blasspod/**'
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/df7nchfnh/**'
       }
     ]
   }

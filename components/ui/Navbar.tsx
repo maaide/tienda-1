@@ -9,6 +9,7 @@ import { AiOutlineRight, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import { useRouter } from 'next/router'
 import CartContext from '../../context/cart/CartContext'
 import { useCategories } from '../../hooks'
+import Image from 'next/image'
 
 interface Props {
   menu: any,
@@ -71,18 +72,18 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           : ''
       }
       <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
-        <div className='m-auto w-1280 flex justify-between z-40 pl-2 pr-2'>
+        <div className='m-auto w-1280 flex justify-between z-40 px-2'>
           <div className='flex gap-2'>
             {
               !mounted
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
                 : theme === 'system'
                 ? systemTheme === 'dark'
-                  ? <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' alt='Logo' width={164.7} height={56} /></Link>
-                  : <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' alt='Logo' width={164.7} height={56} /></Link>
+                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png' alt='Logo' width={155} height={53.72} /></Link>
                 : theme === 'dark'
-                  ? <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' alt='Logo' width={164.7} height={56} /></Link>
-                  : <Link href='/'><img className='h-14' onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/blasspod/image/upload/v1664841659/blaspod/ouxxwsmqodpemvffqs7b.png' alt='Logo' width={164.7} height={56} /></Link>
+                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png' alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
           {
@@ -197,7 +198,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </div>
           }
         </div>
-        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-57 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
+        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[55px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
@@ -217,14 +218,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setCartView('hidden')
             }, 200)
           }
-        }} className={`hidden w-full z-50 absolute top-57 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
+        }} className={`hidden w-full z-50 absolute top-[55px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '57px', height: 'calc(100vh - 56px)' }}>
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '55px', height: 'calc(100vh - 56px)' }}>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
             setMenuButtons('opacity-0')
@@ -266,7 +267,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           setIndex('hidden')
                         }, 150)
                       }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
-                        <img className='w-28' src={category.image} />
+                        <Image className='w-28' src={category.image!} width={112} height={112} alt={`Categoria ${category.category}`} />
                         <h2 className='mt-auto tracking-widest text-[#1c1b1b] font-medium mb-auto dark:text-white'>{category.category.toUpperCase()}</h2>
                       </Link>
                     ))
@@ -283,7 +284,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
         </div>
-        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-57 w-full dark:border-neutral-800`} onMouseEnter={() => {
+        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-[55px] w-full dark:border-neutral-800`} onMouseEnter={() => {
           setNavCategories('flex')
           setNavCategoriesOpacity('opacity-1')
         }} onMouseLeave={() => {
@@ -296,11 +297,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 <div className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
                   {categories.map(category => (
                     <div key={category._id}>
-                      <img className='w-64 mb-2 cursor-pointer' onClick={() => {
+                      <Image className='w-64 mb-2 cursor-pointer' onClick={() => {
                         setNavCategoriesOpacity('opacity-0')
                         setNavCategories('hidden')
                         router.push(`/tienda/${category.slug}`)
-                      }} src={category.image} />
+                      }} src={category.image!} width={256} height={256} alt={`Categoria ${category.category}`} />
                       <Link href={`/tienda/${category.slug}`} onClick={() => {
                         setNavCategoriesOpacity('opacity-0')
                         setNavCategories('hidden')

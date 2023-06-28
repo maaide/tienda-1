@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa'
@@ -8,7 +9,7 @@ export const Footer = () => {
       <div className='w-1280 m-auto'>
         <div className='flex gap-4 justify-between flex-wrap pb-6 border-b'>
           <div>
-            <img className='w-56 mb-3' src='https://res.cloudinary.com/blasspod/image/upload/v1664841660/blaspod/jjfme7pn7hnlhniuiab3.png' alt='Logo' width={224} height={76.16} />
+            <Image className='w-36 mb-3' src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={144} height={50.39} />
             <p className='text-white mb-4 text-sm'>contacto@blaspod.cl</p>
             <div className='flex gap-4'>
               <FaFacebookF className='text-white text-xl' />

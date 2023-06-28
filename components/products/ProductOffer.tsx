@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ICartProduct, IProductsOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import { Button2AddToCart } from '../ui'
+import Image from 'next/image'
 
 interface Props {
   offer: IProductsOffer
@@ -46,8 +47,8 @@ export const ProductOffer: React.FC<Props> = ({ offer }) => {
     <div className='flex mb-2'>
       {
         tempCartProduct.variation
-          ? <img className='w-24 h-24 mr-1 mt-auto mb-auto mobile2:w-28 mobile2:h-28 mobile:w-32 mobile:mr-2 mobile:h-32' src={tempCartProduct.variation.image} />
-          : <img className='w-24 h-24 mr-1 mt-auto mb-auto mobile2:w-28 mobile2:h-28 mobile:w-32 mobile:mr-2 mobile:h-32' src={tempCartProduct.image} />
+          ? <Image className='w-24 h-24 mr-1 mt-auto mb-auto mobile2:w-28 mobile2:h-28 mobile:w-32 mobile:mr-2 mobile:h-32' src={tempCartProduct.variation.image} alt={`Producto ${tempCartProduct.name}`} width={96} height={96} />
+          : <Image className='w-24 h-24 mr-1 mt-auto mb-auto mobile2:w-28 mobile2:h-28 mobile:w-32 mobile:mr-2 mobile:h-32' src={tempCartProduct.image} alt={`Producto ${tempCartProduct.name}`} width={96} height={96} />
       }
       <div className='mt-auto mb-auto'>
         {
