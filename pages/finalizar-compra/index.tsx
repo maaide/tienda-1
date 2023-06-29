@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Shipping } from '../../components/products'
 import { Button2 } from '../../components/ui'
-import { ICartProduct, IQuantityOffer, ISell, IShipping } from '../../interfaces'
+import { ICartProduct, IQuantityOffer, ISell, IShipping, IStoreData } from '../../interfaces'
 import { FreeShipping, NumberFormat } from '../../utils'
 import Link from 'next/link'
 import { AiOutlineLeft, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
@@ -37,6 +37,8 @@ const CheckOut = () => {
   const [submitLoading, setSubmitLoading] = useState(false)
   const [token, setToken] = useState('')
   const [url, setUrl] = useState('')
+  const [domain, setDomain] = useState('')
+  const [storeData, setStoreData] = useState<IStoreData>()
 
   const router = useRouter()
 
@@ -53,14 +55,32 @@ const CheckOut = () => {
     getCart()
   }, [])
 
+  const getDomain = async () => {
+    const response = await axios.get('https://server-production-e234.up.railway.app/domain')
+    setDomain(response.data.domain)
+  }
+
+  useEffect(() => {
+    getDomain()
+  }, [])
+
+  const getStoreData = async () => {
+    const response = await axios.get('https://server-production-e234.up.railway.app/store-data')
+    setStoreData(response.data)
+  }
+
+  useEffect(() => {
+    getStoreData()
+  }, [])
+
   const inputChange = async (e: any) => {
     setSell({ ...sell, [e.target.name]: e.target.value })
     if (e.target.name === 'pay' && e.target.value === 'WebPay Plus') {
       const pago = {
-        buyOrder: `blaspod${Math.floor(Math.random() * 10000) + 1}`,
+        buyOrder: `${storeData?.name}${Math.floor(Math.random() * 10000) + 1}`,
         sessionId: `S-${Math.floor(Math.random() * 10000) + 1}`,
         amount: sell.total,
-        returnUrl: 'https://blaspod.cl'
+        returnUrl: `https://${domain}/procesando-pago`
       }
       const response = await axios.post('https://server-production-e234.up.railway.app/pay/create', pago)
       setToken(response.data.token)
