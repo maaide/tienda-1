@@ -12,7 +12,12 @@ const PayProcess = () => {
     const tokenWs = urlParams.get('token_ws')
     if (tokenWs) {
       const response = await axios.post('https://server-production-e234.up.railway.app/pay/commit', { token: tokenWs })
-      console.log(response.data)
+      if (response.data.status === 'FAILED') {
+        router.push('/pago-fallido')
+      }
+      if (response.data.status === 'AUTHORIZED') {
+        router.push('/gracias-por-comprar')
+      }
     }
   }
 
