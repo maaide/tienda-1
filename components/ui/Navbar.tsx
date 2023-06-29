@@ -198,7 +198,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </div>
           }
         </div>
-        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[55px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
+        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[54px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
@@ -218,14 +218,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setCartView('hidden')
             }, 200)
           }
-        }} className={`hidden w-full z-50 absolute top-[55px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
+        }} className={`hidden w-full z-50 absolute top-[54px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '55px', height: 'calc(100vh - 56px)' }}>
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '54px', height: 'calc(100vh - 53px)' }}>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
             setMenuButtons('opacity-0')
