@@ -7,4 +7,5 @@ export interface IStoreData {
     departament?: string
     region: string
     city: string
+    logo: string
 }

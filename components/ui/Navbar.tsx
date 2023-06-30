@@ -10,6 +10,8 @@ import { useRouter } from 'next/router'
 import CartContext from '../../context/cart/CartContext'
 import { useCategories } from '../../hooks'
 import Image from 'next/image'
+import axios from 'axios'
+import { IStoreData } from '@/interfaces'
 
 interface Props {
   menu: any,
@@ -31,6 +33,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [navCategoriesOpacity, setNavCategoriesOpacity] = useState('opacity-0')
   const [categoriesPhone, setCategoriesPhone] = useState('hidden')
   const [menuButtons, setMenuButtons] = useState('opacity-0')
+  const [storeData, setStoreData] = useState<IStoreData>({
+    address: '',
+    city: '',
+    email: '',
+    name: '',
+    phone: '',
+    region: '',
+    logo: ''
+  })
 
   const { categories } = useCategories('/categories')
   const router = useRouter()
@@ -38,6 +49,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   useEffect(() => {
     setMounted(true)
+  }, [])
+
+  const getStoreData = async () => {
+    const response = await axios.get('https://server-production-e234.up.railway.app/store-data')
+    setStoreData(response.data)
+  }
+
+  useEffect(() => {
+    getStoreData()
   }, [])
 
   const renderThemeChanger = () => {
@@ -80,10 +100,10 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 : theme === 'system'
                 ? systemTheme === 'dark'
                   ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png' alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                 : theme === 'dark'
                   ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png' alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
           {
