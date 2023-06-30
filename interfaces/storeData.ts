@@ -8,4 +8,5 @@ export interface IStoreData {
     region: string
     city: string
     logo: string
+    logoWhite: string
 }

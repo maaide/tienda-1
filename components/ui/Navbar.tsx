@@ -40,7 +40,8 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     name: '',
     phone: '',
     region: '',
-    logo: ''
+    logo: '',
+    logoWhite: ''
   })
 
   const { categories } = useCategories('/categories')
@@ -99,10 +100,10 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
                 : theme === 'system'
                 ? systemTheme === 'dark'
-                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
                   : <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                 : theme === 'dark'
-                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
                   : <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>

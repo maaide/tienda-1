@@ -1,15 +1,38 @@
+import { IStoreData } from '@/interfaces'
+import axios from 'axios'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaFacebookF, FaInstagram, FaTiktok } from 'react-icons/fa'
 
 export const Footer = () => {
+
+  const [storeData, setStoreData] = useState<IStoreData>({
+    address: '',
+    city: '',
+    email: '',
+    name: '',
+    phone: '',
+    region: '',
+    logo: '',
+    logoWhite: ''
+  })
+
+  const getStoreData = async () => {
+    const response = await axios.get('https://server-production-e234.up.railway.app/store-data')
+    setStoreData(response.data)
+  }
+
+  useEffect(() => {
+    getStoreData()
+  }, [])
+
   return (
     <div className='flex pl-4 pr-4 pt-14 pb-24 bg-neutral-900'>
       <div className='w-1280 m-auto'>
         <div className='flex gap-4 justify-between flex-wrap pb-6 border-b'>
           <div>
-            <Image className='w-36 mb-3' src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={144} height={50.39} />
+            <Image className='w-52 mb-3' src={storeData.logoWhite} alt='Logo' width={144} height={50.39} />
             <p className='text-white mb-4 text-sm'>contacto@blaspod.cl</p>
             <div className='flex gap-4'>
               <FaFacebookF className='text-white text-xl' />
