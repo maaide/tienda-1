@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/navigation"
@@ -11,6 +11,16 @@ interface Props {
 }
 
 export const OtherProductSlider: React.FC<Props> = ({ images }) => {
+
+  const [loading, setLoading] = useState(false)
+  const [opacity, setOpacity] = useState('opacity-0')
+
+  useEffect(() => {
+    if (loading) {
+      setOpacity('opacity-1')
+    }
+  }, [loading])
+
   return (
     <>
       <Swiper
@@ -24,7 +34,7 @@ export const OtherProductSlider: React.FC<Props> = ({ images }) => {
           images.map(image => {
             return (
               <SwiperSlide key={ image }>
-                <Image src={image} alt='Imagen producto' width={650} height={650} className='m-auto w-full max-w-2xl' />
+                <Image onLoadingComplete={() => setLoading(true)} src={image} alt='Imagen producto' width={650} height={650} className={`${opacity} m-auto w-full max-w-2xl`} />
               </SwiperSlide>
             )
           })

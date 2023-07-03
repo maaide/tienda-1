@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/free-mode"
@@ -13,6 +13,16 @@ interface Props {
 }
 
 export const SafariProductSlider: React.FC<Props> = ({ images }) => {
+
+  const [loading, setLoading] = useState(false)
+  const [opacity, setOpacity] = useState('opacity-0')
+
+  useEffect(() => {
+    if (loading) {
+      setOpacity('opacity-1')
+    }
+  }, [loading])
+
   return (
     <>
       <Swiper
@@ -29,7 +39,7 @@ export const SafariProductSlider: React.FC<Props> = ({ images }) => {
           images.map(image => {
             return (
               <SwiperSlide key={ image }>
-                <Image src={image} alt='Imagen producto' width={650} height={650} className='m-auto' />
+                <Image onLoadingComplete={() => setLoading(true)} src={image} alt='Imagen producto' width={650} height={650} className={`${opacity} transition-opacity duration-200 m-auto`} />
               </SwiperSlide>
             )
           })

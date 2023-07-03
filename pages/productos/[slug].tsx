@@ -34,8 +34,11 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     quantityOffers: product.quantityOffers ? product.quantityOffers : []
   })
   const [descriptionView, setDescriptionView] = useState(true)
+  const [descriptionRotate, setDescriptionRotate] = useState('-rotate-90')
   const [returnView, setReturnView] = useState(false)
+  const [returnRotate, setReturnRotate] = useState('rotate-90')
   const [shippingView, setShippingView] = useState(false)
+  const [shippingRotate, setShippingRotate] = useState('rotate-90')
   const [detailsOpacity, setDetailsOpacity] = useState('opacity-0')
   const [detailsPosition, setDetailsPosition] = useState('-bottom-44')
 
@@ -173,7 +176,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                     <div className='flex gap-2'>
                       {
                         product.quantityOffers.map(offer => (
-                          <div key={offer._id} className='p-2 border rounded w-16 flex flex-col'>
+                          <div key={offer._id} className='p-2 border rounded w-16 flex flex-col dark:border-neutral-700'>
                             <p className='text-sm m-auto'>{offer.quantity}+</p>
                             <p className='text-sm m-auto'>{offer.descount}%</p>
                           </div>
@@ -231,16 +234,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 e.preventDefault()
                 if (descriptionView) {
                   setDescriptionView(false)
+                  setDescriptionRotate('rotate-90')
                 } else {
                   setDescriptionView(true)
+                  setDescriptionRotate('-rotate-90')
                 }
               }} className='flex gap-2 w-full justify-between'>
                 <h5 className='text-[14px] tracking-widest text-main font-semibold md:text-[16px] dark:text-white'>DESCRIPCIÓN</h5>
-                {
-                  descriptionView
-                    ? <AiOutlineUp className='mt-auto mb-auto' />
-                    : <AiOutlineDown className='mt-auto mb-auto' />
-                }
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className={`${descriptionRotate} transition-all duration-150 ml-auto text-lg w-4 text-neutral-500`} xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>
               </button>
               {
                 descriptionView
@@ -259,16 +260,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 e.preventDefault()
                 if (shippingView) {
                   setShippingView(false)
+                  setShippingRotate('rotate-90')
                 } else {
                   setShippingView(true)
+                  setShippingRotate('-rotate-90')
                 }
               }} className='flex gap-2 justify-between w-full'>
                 <h5 className='text-[14px] tracking-widest text-main font-semibold md:text-[16px] dark:text-white'>CALCULA LOS COSTOS DE ENVIO</h5>
-                {
-                  shippingView
-                    ? <AiOutlineUp className='mt-auto mb-auto' />
-                    : <AiOutlineDown className='mt-auto mb-auto' />
-                }
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className={`${shippingRotate} transition-all duration-150 ml-auto text-lg w-4 text-neutral-500`} xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>
               </button>
               {
                 shippingView
@@ -285,16 +284,14 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                 e.preventDefault()
                 if (returnView) {
                   setReturnView(false)
+                  setReturnRotate('rotate-90')
                 } else {
                   setReturnView(true)
+                  setReturnRotate('-rotate-90')
                 }
               }} className='flex gap-2 w-full justify-between'>
                 <h5 className='text-[14px] tracking-widest text-main font-semibold md:text-[16px] dark:text-white'>ENVÍOS Y RETORNOS</h5>
-                {
-                  returnView
-                    ? <AiOutlineUp className='mt-auto mb-auto' />
-                    : <AiOutlineDown className='mt-auto mb-auto' />
-                }
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className={`${returnRotate} transition-all duration-150 ml-auto text-lg w-4 text-neutral-500`} xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>
               </button>
               {
                 returnView
