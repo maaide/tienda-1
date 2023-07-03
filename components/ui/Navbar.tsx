@@ -171,7 +171,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   }
                   {renderThemeChanger()}
                 </div>
-                <div className='flex w-full justify-between gap-4 575:hidden'>
+                <div className='flex px-1 w-full justify-between gap-4 575:hidden'>
                   <div className='flex w-full'>
                     {
                       menu === 'w-0 pl-0 pr-0 pt-6 pb-6'
