@@ -66,11 +66,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     const currentTheme = theme === 'system' ? systemTheme : theme
     if ( currentTheme === 'dark' ) {
       return (
-        <button onClick={() => setTheme('light')}><BsFillMoonFill className='text-slate-600' /></button>
+        <button className='w-6 flex' onClick={() => setTheme('light')}><BsFillMoonFill className='text-slate-600 m-auto' /></button>
       )
     } else {
       return (
-        <button onClick={() => setTheme('dark')}><BsFillSunFill className='text-slate-500' /></button>
+        <button className='w-6 flex' onClick={() => setTheme('dark')}><BsFillSunFill className='text-slate-500 m-auto' /></button>
       )
     }
   }
@@ -88,23 +88,23 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
       {
         router.pathname !== '/finalizar-compra'
           ? <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
-            <p className='m-auto tracking-widest font-medium text-[12px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
+            <p className='m-auto tracking-widest font-medium text-[11px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
           </div>
           : ''
       }
       <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
-        <div className='m-auto w-1280 flex justify-between z-40 px-2'>
-          <div className='flex gap-2'>
+        <div className='m-auto w-1280 flex justify-between z-40 px-2 py-1 575:py-0'>
+          <div className='hidden gap-2 575:flex'>
             {
               !mounted
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
                 : theme === 'system'
                 ? systemTheme === 'dark'
-                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                 : theme === 'dark'
-                  ? <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
           {
@@ -135,82 +135,123 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     cartOpacity === 'opacity-0'
                       ? (
                         <div>
-                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => {
+                          <button onClick={() => {
                             setCartView('flex')
                             setTimeout(() => {
                               setCartOpacity('opacity-1')
                             }, 50)
-                          }} />
+                          }} className='flex h-full'>
+                            <svg className='m-auto cursor-pointer w-[17px]' role="presentation" viewBox="0 0 17 20">
+                              <path d="M0 20V4.995l1 .006v.015l4-.002V4c0-2.484 1.274-4 3.5-4C10.518 0 12 1.48 12 4v1.012l5-.003v.985H1V19h15V6.005h1V20H0zM11 4.49C11 2.267 10.507 1 8.5 1 6.5 1 6 2.27 6 4.49V5l5-.002V4.49z" fill="currentColor"></path>
+                            </svg>
+                          </button>
                           {
                             cart?.length
                               ? (
                                 <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
-                                <span className='m-auto text-xs text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
-                              </div>
+                                  <span className='m-auto text-xs text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
+                                </div>
                               )
                               : ''
                           }
                         </div>
                         )
-                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => {
-                        setCartOpacity('opacity-0')
-                        setTimeout(() => {
-                          setCartView('hidden')
-                        }, 200)
-                      }} />
+                      : (
+                        <button className='h-full flex' onClick={() => {
+                          setCartOpacity('opacity-0')
+                          setTimeout(() => {
+                            setCartView('hidden')
+                          }, 200)
+                        }}>
+                          <svg className="m-auto w-[17px]" role="presentation" viewBox="0 0 16 14">
+                            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                          </svg>
+                        </button>
+                      )
                   }
                   {renderThemeChanger()}
                 </div>
-                <div className='flex gap-4 575:hidden'>
-                  {
-                    cartOpacity === 'opacity-0'
-                      ? (
-                        <div>
-                          <BsBag className='m-auto text-xl cursor-pointer h-full' onClick={() => {
-                            setCartView('flex')
+                <div className='flex w-full justify-between gap-4 575:hidden'>
+                  <div className='flex w-full'>
+                    {
+                      menu === 'w-0 pl-0 pr-0 pt-6 pb-6'
+                        ? <button onClick={() => {
+                            setIndex('flex')
                             setTimeout(() => {
-                              setCartOpacity('opacity-1')
-                            }, 50)
-                          }} />
-                          {
-                            cart?.length
-                              ? (
-                                <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
-                                <span className='m-auto text-xs text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
-                              </div>
-                              )
-                              : ''
-                          }
-                        </div>
+                              setMenuButtons('opacity-1')
+                            }, 270)
+                          }}>
+                          <svg className="w-5" role="presentation" viewBox="0 0 20 14">
+                            <path d="M0 14v-1h20v1H0zm0-7.5h20v1H0v-1zM0 0h20v1H0V0z" fill="currentColor"></path>
+                          </svg>
+                        </button>
+                        : <button onClick={() => {
+                            setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+                            setMenuButtons('opacity-0')
+                            setTimeout(() => {
+                              setIndex('hidden')
+                            }, 150)
+                          }} className='flex w-5'>
+                          <svg className="m-auto w-[17px]" role="presentation" viewBox="0 0 16 14">
+                            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                          </svg>
+                        </button>
+                    }
+                  </div>
+                  <div className='flex gap-2 575:hidden'>
+                    {
+                      !mounted
+                        ? <Link href='/'><div className='h-14 w-1' /></Link>
+                        : theme === 'system'
+                        ? systemTheme === 'dark'
+                          ? <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : theme === 'dark'
+                          ? <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                    }
+                  </div>
+                  <div className='flex w-full justify-end gap-4'>
+                    {renderThemeChanger()}
+                    {
+                      cartOpacity === 'opacity-0'
+                        ? (
+                          <div>
+                            <button onClick={() => {
+                              setCartView('flex')
+                              setTimeout(() => {
+                                setCartOpacity('opacity-1')
+                              }, 50)
+                            }} className='flex h-full'>
+                              <svg className='m-auto cursor-pointer w-[17px]' role="presentation" viewBox="0 0 17 20">
+                                <path d="M0 20V4.995l1 .006v.015l4-.002V4c0-2.484 1.274-4 3.5-4C10.518 0 12 1.48 12 4v1.012l5-.003v.985H1V19h15V6.005h1V20H0zM11 4.49C11 2.267 10.507 1 8.5 1 6.5 1 6 2.27 6 4.49V5l5-.002V4.49z" fill="currentColor"></path>
+                              </svg>
+                            </button>
+                            {
+                              cart?.length
+                                ? (
+                                  <div className='bg-button w-5 h-5 absolute top-2 ml-3 flex rounded-full'>
+                                  <span className='m-auto text-xs text-white'>{cart.reduce((prev, curr) => prev + curr.quantity, 0)}</span>
+                                </div>
+                                )
+                                : ''
+                            }
+                          </div>
+                          )
+                        : (
+                          <button onClick={() => {
+                            setCartOpacity('opacity-0')
+                            setTimeout(() => {
+                              setCartView('hidden')
+                            }, 200)
+                          }} className='flex h-full'>
+                            <svg className="m-auto w-[17px]" role="presentation" viewBox="0 0 16 14">
+                              <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                            </svg>
+                          </button>
                         )
-                      : <IoCloseOutline className='m-auto text-xl cursor-pointer h-full' onClick={() => {
-                        setCartOpacity('opacity-0')
-                        setTimeout(() => {
-                          setCartView('hidden')
-                        }, 200)
-                      }} />
-                  }
-                  {renderThemeChanger()}
-                  {
-                    menu === 'w-0 pl-0 pr-0 pt-6 pb-6'
-                      ? <button onClick={() => {
-                          setIndex('flex')
-                          setTimeout(() => {
-                            setMenuButtons('opacity-1')
-                          }, 270)
-                        }}>
-                        <FiMenu className='text-2xl' />
-                      </button>
-                      : <button onClick={() => {
-                          setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
-                          setMenuButtons('opacity-0')
-                          setTimeout(() => {
-                            setIndex('hidden')
-                          }, 150)
-                        }}>
-                        <IoCloseOutline className='text-2xl' />
-                      </button>
-                  }
+                    }
+                  </div>
                 </div>
               </>
               : <div className='flex gap-4'>
@@ -219,7 +260,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </div>
           }
         </div>
-        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[54px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
+        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[49px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
@@ -239,21 +280,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setCartView('hidden')
             }, 200)
           }
-        }} className={`hidden w-full z-50 absolute top-[55px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
+        }} className={`hidden w-full z-50 absolute top-[53px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '54px', height: 'calc(100vh - 53px)' }}>
-          <div className='w-1/6' onClick={() => {
-            setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
-            setMenuButtons('opacity-0')
-            setTimeout(() => {
-              setIndex('hidden')
-            }, 150)
-          }} />
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '49px', height: 'calc(100vh - 53px)' }}>
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
             <Link className={`${menuButtons} transition-opacity duration-200 mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
@@ -304,8 +338,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               }, 140)
             }} href='/contacto'>CONTACTO<AiOutlineRight className='ml-auto text-lg text-neutral-500' /></Link>
           </div>
+          <div className='w-1/6' onClick={() => {
+            setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
+            setMenuButtons('opacity-0')
+            setTimeout(() => {
+              setIndex('hidden')
+            }, 150)
+          }} />
         </div>
-        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-[55px] w-full dark:border-neutral-800`} onMouseEnter={() => {
+        <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-[53px] w-full dark:border-neutral-800`} onMouseEnter={() => {
           setNavCategories('flex')
           setNavCategoriesOpacity('opacity-1')
         }} onMouseLeave={() => {
