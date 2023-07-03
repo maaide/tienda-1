@@ -262,7 +262,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 </div>
               </>
               : <div className='flex gap-4'>
-                <div className='gap-2 flex'>
+                <div className='gap-2 flex 575:hidden'>
                   {
                     !mounted
                       ? <Link href='/'><div className='h-14 w-1' /></Link>

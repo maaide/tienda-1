@@ -110,9 +110,15 @@ const ProductPage: React.FC<Props> = ({ product }) => {
           )
         }
       </Head>
-      <div className={`${detailsOpacity} ${detailsPosition} flex transition-all duration-200 decoration-slate-200 fixed w-full z-40 p-4`}>
-        <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
-      </div>
+      {
+        product.stock > 0
+          ? (
+            <div className={`${detailsOpacity} ${detailsPosition} flex transition-all duration-200 decoration-slate-200 fixed w-full z-40 p-4`}>
+              <ProductDetails product={product} setTempCartProduct={setTempCartProduct} tempCartProduct={tempCartProduct} />
+            </div>
+          )
+          : ''
+      }
       <div className='flex p-4'>
         <div className='block m-auto w-full gap-4 lg:flex xl2:w-1280 xl2:gap-8'>
           <div className='w-full lg:w-7/12'>
@@ -192,7 +198,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                   <div>
                     <p className='mb-2 text-sm'>Deja tu correo para avisarte cuando tengamos este producto nuevamente en stock</p>
                     <div className='flex gap-2'>
-                      <input type='text' placeholder='Correo' className='p-2 text-sm w-64 rounded border focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      <input type='text' placeholder='Correo' className='p-2 text-sm w-56 rounded border focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                       <button className='pt-1.5 pb-1.5 h-fit mt-auto mb-auto pl-7 pr-7 rounded-md bg-button text-white'>Enviar</button>
                     </div>
                   </div>

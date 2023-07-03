@@ -144,7 +144,7 @@ const CheckOut = () => {
           }
         }}>{<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className={`${rotate} transition-all duration-150 m-auto w-4 text-lg text-neutral-500`} xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg>} resumen del pedido</button>
         <div className={`mb-2 ${details}`}>
-          <div className='border-b mb-2 pb-1'>
+          <div className='border-b mb-2 pb-1 dark:border-neutral-700'>
             <h2 className='text-[16px] font-medium tracking-widest mb-2 md:text-[18px]'>CARRITO</h2>
             {
               cart?.length !== 0
@@ -203,15 +203,15 @@ const CheckOut = () => {
           <div className='w-full pr-0 1010:w-7/12 1010:pr-8'>
             <h1 className='text-[20px] text-main tracking-widest mb-6 font-semibold md:text-[25px] dark:text-white'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
-              <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px]'>INFORMACIÓN DE CONTACTO</h2>
+              <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>INFORMACIÓN DE CONTACTO</h2>
               <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' />
-                <span className='text-sm'>Suscribirse a nuestra lista de emails</span>
+                <span className='text-sm text-neutral-400'>Suscribirse a nuestra lista de emails</span>
               </div>
             </div>
             <div className='mb-6'>
-              <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px]'>DIRECCIÓN DE ENVÍO</h2>
+              <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>DIRECCIÓN DE ENVÍO</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
                 <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -228,7 +228,7 @@ const CheckOut = () => {
               shipping !== undefined
                 ? (
                   <div className='mb-6'>
-                    <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px]'>ENVÍO</h2>
+                    <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>ENVÍO</h2>
                     <div className='flex flex-col gap-1'>
                       {
                         shipping.map(item => (
@@ -250,7 +250,7 @@ const CheckOut = () => {
               sell.shippingMethod
                 ? (
                   <div className='mb-6'>
-                    <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px]'>PAGO</h2>
+                    <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>PAGO</h2>
                     <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
                       <input type='radio' name='pay' value='WebPay Plus' onChange={inputChange} />
                       <p className='text-sm'>WebPay Plus</p>
@@ -279,7 +279,7 @@ const CheckOut = () => {
           </div>
           <div className='w-5/12 h-fit border border-[#F5F5F5] p-4 hidden sticky top-28 bg-[#F5F5F5] dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>
-              <h2 className='mb-2 text-main font-medium tracking-widest text-[18px]'>CARRITO</h2>
+              <h2 className='mb-2 text-main font-medium tracking-widest text-[18px] dark:text-white'>CARRITO</h2>
               {
                 cart?.length !== 0
                   ? cart?.map(product => (
@@ -310,7 +310,7 @@ const CheckOut = () => {
               }
             </div>
             <div className='mb-2 pb-3 border-b dark:border-neutral-700'>
-              <h2 className='mb-2 text-main tracking-widest font-medium text-[18px]'>CUPON DE DESCUENTO</h2>
+              <h2 className='mb-2 text-main tracking-widest font-medium text-[18px] dark:text-white'>CUPON DE DESCUENTO</h2>
               <div className='flex gap-2'>
                 <input type='text' placeholder='Cupon' className='border p-1 rounded text-[14px] w-72 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <Button2>Agregar</Button2>
