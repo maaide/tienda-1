@@ -2,9 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Shipping } from '../../components/products'
 import { Button2 } from '../../components/ui'
 import { ICartProduct, IQuantityOffer, ISell, IShipping, IStoreData } from '../../interfaces'
-import { FreeShipping, NumberFormat } from '../../utils'
+import { NumberFormat } from '../../utils'
 import Link from 'next/link'
-import { AiOutlineLeft, AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import Head from 'next/head'
 import Cookies from 'js-cookie'
 import axios from 'axios'
@@ -261,7 +260,7 @@ const CheckOut = () => {
                 : ''
             }
             <div className='flex gap-2 justify-between mt-auto mb-auto'>
-              <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><AiOutlineLeft className='mt-auto mb-auto' />Regresar al carrito</span></Link></div>
+              <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className="mt-auto mb-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path></svg>Regresar al carrito</span></Link></div>
               {
                 sell.pay === ''
                   ? <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>

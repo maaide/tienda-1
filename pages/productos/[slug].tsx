@@ -12,7 +12,6 @@ import Head from 'next/head'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { AiOutlineDown, AiOutlineUp } from 'react-icons/ai'
 import Image from 'next/image'
 
 interface Props {

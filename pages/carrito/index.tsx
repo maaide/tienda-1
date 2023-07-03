@@ -124,7 +124,9 @@ const CartPage = () => {
                             setCartProducts(products)
                           }
                         }}>
-                          <IoCloseOutline className='mt-auto mb-auto text-xl' />
+                          <svg className="m-auto w-[17px]" role="presentation" viewBox="0 0 16 14">
+                            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                          </svg>
                         </button>
                       </div>
                     </div>

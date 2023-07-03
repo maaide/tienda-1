@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useState } from 'react'
 import { Footer, Navbar, Subscribe } from '../ui'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 
 export const MainLayout: React.FC<PropsWithChildren> = ({ children }) => {
 
