@@ -266,6 +266,19 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 </div>
               </>
               : <div className='flex gap-4'>
+                <div className='gap-2 flex'>
+                  {
+                    !mounted
+                      ? <Link href='/'><div className='h-14 w-1' /></Link>
+                      : theme === 'system'
+                      ? systemTheme === 'dark'
+                        ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                      : theme === 'dark'
+                        ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  }
+                </div>
                 {renderThemeChanger()}
                 <Link href='/tienda' className='mt-auto mb-auto text-sm text-neutral-500'>Continuar comprando</Link>
               </div>
