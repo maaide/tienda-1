@@ -8,6 +8,7 @@ import { useCategories } from '../../hooks'
 import Image from 'next/image'
 import axios from 'axios'
 import { IStoreData } from '@/interfaces'
+import DesignContext from '@/context/design/DesignContext'
 
 interface Props {
   menu: any,
@@ -19,6 +20,7 @@ interface Props {
 export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, setMenu, setIndex, index }) => {
 
   const { systemTheme, theme, setTheme } = useTheme()
+  const { design } = useContext(DesignContext)
 
   const [mounted, setMounted] = useState(false)
   const [cartView, setCartView] = useState('hidden')
@@ -94,9 +96,13 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
-          ? <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
-            <p className='m-auto tracking-widest font-medium text-[11px]'>ENVÍO GRATIS EN 24 HORAS PARA TODO SANTIAGO</p>
-          </div>
+          ? design.header.topStrip !== ''
+            ? (
+              <div className='bg-[#22262c] text-white flex pl-2 pr-2 pt-1.5 pb-1.5 text-center'>
+                <p className='m-auto tracking-widest font-medium text-[11px]'>{design.header.topStrip}</p>
+              </div>
+            )
+            : ''
           : ''
       }
       <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>

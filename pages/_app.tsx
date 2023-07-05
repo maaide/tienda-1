@@ -5,6 +5,7 @@ import { SWRConfig } from 'swr'
 import { MainLayout } from '../components/layouts'
 import CartProvider from '../context/cart/CartProvider'
 import { Chat } from '../components/chat'
+import DesignProvider from '../context/design/DesignProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -14,12 +15,14 @@ export default function App({ Component, pageProps }: AppProps) {
       }}
     >
       <ThemeProvider attribute='class'>
-        <CartProvider>
-          <MainLayout>
-            <Component {...pageProps} />
-            <Chat />
-          </MainLayout>
-        </CartProvider>
+        <DesignProvider>
+          <CartProvider>
+            <MainLayout>
+              <Component {...pageProps} />
+              <Chat />
+            </MainLayout>
+          </CartProvider>
+        </DesignProvider>
       </ThemeProvider>
     </SWRConfig>
   )

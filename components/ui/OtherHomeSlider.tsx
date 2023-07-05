@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Button } from './Button'
 import Link from 'next/link'
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -7,8 +7,11 @@ import "swiper/css/pagination"
 import styles from "./css/OtherHomeSlider.module.css"
 import { Navigation, Pagination } from "swiper"
 import Image from 'next/image'
+import DesignContext from '@/context/design/DesignContext'
 
 export const OtherHomeSlider = () => {
+
+  const { design } = useContext(DesignContext)
 
   const [loadingImage, setLoadingImage] = useState(false)
   const [imageView, setImageView] = useState('opacity-0')
@@ -37,26 +40,20 @@ export const OtherHomeSlider = () => {
       }}
       modules={[Pagination, Navigation]}
     >
-      <SwiperSlide>
-        <div className={`h-400 flex xl:h-600 2xl:h-700`}>
-          <div className='p-4 w-1280 m-auto'>
-            <h1 className={`${textView} text-[25px] transition-opacity duration-200 text-white font-bold mb-2 md:text-[32px]`}>ENCUÉNTRA OFERTAS DE HASTA UN 40% DE DESCUENTO</h1>
-            <p className={`${textView} text-white transition-opacity duration-200 text-lg mb-4`}>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
-            <Link className={`${buttonView} transition-opacity duration-200`} href='/ofertas'><Button>VER OFERTAS</Button></Link>
-          </div>
-          <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`object-cover h-full w-full absolute -z-10 ${imageView} transition-opacity duration-200`} src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687983706/Ecommerce/Banner_stb72b.jpg' alt='banner' />
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className='h-400 flex xl:h-600 2xl:h-700'>
-          <div className='p-4 w-1280 m-auto'>
-            <h1 className='text-[25px] text-white font-bold mb-2 md:text-[32px]'>ENCUÉNTRA OFERTAS DE HASTA UN 40% DE DESCUENTO</h1>
-            <p className='text-white text-lg mb-4'>Aprovecha nuestras increibles ofertas solo por tiempo limitado.</p>
-            <Button>VER OFERTAS</Button>
-          </div>
-          <Image width={1920} height={1080} className='absolute -z-10 object-cover h-full w-full' src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687983706/Ecommerce/Banner_stb72b.jpg' alt='banner' />
-        </div>
-      </SwiperSlide>
+      {
+        design.home.banner.map(banner => (
+          <SwiperSlide>
+            <div className={`h-400 flex xl:h-600 2xl:h-700`}>
+              <div className='p-4 w-1280 m-auto'>
+                <h1 className={`${textView} transition-opacity duration-200 text-[25px] text-white font-bold mb-2 md:text-[32px]`}>{banner.title}</h1>
+                <p className={`${textView} transition-opacity duration-200 text-white text-lg mb-4`}>{banner.text}</p>
+                <Link className={`${buttonView} transition-opacity duration-200`} href={banner.linkButton}><Button>{banner.textButton}</Button></Link>
+              </div>
+              <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src={banner.image} alt='banner' />
+            </div>
+          </SwiperSlide>
+        ))
+      }
     </Swiper>
   )
 }
