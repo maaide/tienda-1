@@ -19,7 +19,7 @@ export const OtherHomeSlider = () => {
   const [buttonView, setButtonView] = useState('opacity-0')
   const [textDefaultView, setTextDefaultView] = useState('opacity-0')
   const [buttonDefaultView, setButtonDefaultView] = useState('opacity-0')
-  const [bgView, setBgView] = useState('')
+  const [bgView, setBgView] = useState('opacity-0')
 
   useEffect(() => {
     if (loadingImage) {
@@ -35,7 +35,7 @@ export const OtherHomeSlider = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setBgView('bg-gradient-to-r from-sky-500 to-indigo-500')
+      setBgView('opacity-1')
       setTimeout(() => {
         setTextDefaultView('opacity-1')
         setTimeout(() => {
@@ -71,7 +71,7 @@ export const OtherHomeSlider = () => {
           ))
           : (
             <SwiperSlide>
-              <div className={`h-400 ${bgView} transition-colors duration-200 pt-20 pb-20 flex xl:h-600 2xl:h-700`}>
+              <div className={`h-400 ${bgView} transition-opacity duration-200 bg-gradient-to-r from-sky-500 to-indigo-500 pt-20 pb-20 flex xl:h-600 2xl:h-700`}>
                 <div className='p-4 w-1280 m-auto'>
                   <h1 className={`${textDefaultView} transition-opacity duration-200 text-[25px] text-white font-bold mb-2 md:text-[32px]`}>ENCUENTRA NUESTROS ULTIMOS PRODUCTOS</h1>
                   <Link className={`${buttonDefaultView} transition-opacity duration-200`} href='/tienda'><Button>COMPRAR AHORA</Button></Link>
