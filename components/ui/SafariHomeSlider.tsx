@@ -42,18 +42,29 @@ export const SafariHomeSlider = () => {
       modules={[Navigation, Pagination, Mousewheel, Keyboard]}
     >
       {
-        design.home.banner.map(banner => (
-          <SwiperSlide key={banner.title}>
-            <div className={`h-400 flex xl:h-600 2xl:h-700`}>
-              <div className='p-4 w-1280 m-auto'>
-                <h1 className={`${textView} transition-opacity duration-200 text-[25px] text-white font-bold mb-2 md:text-[32px]`}>{banner.title}</h1>
-                <p className={`${textView} transition-opacity duration-200 text-white text-lg mb-4`}>{banner.text}</p>
-                <Link className={`${buttonView} transition-opacity duration-200`} href={banner.linkButton}><Button>{banner.textButton}</Button></Link>
+        design.home.banner.length
+          ? design.home.banner.map(banner => (
+            <SwiperSlide key={banner.title}>
+              <div className={`h-400 flex xl:h-600 2xl:h-700`}>
+                <div className='p-4 w-1280 m-auto'>
+                  <h1 className={`${textView} transition-opacity duration-200 text-[25px] text-white font-bold mb-2 md:text-[32px]`}>{banner.title}</h1>
+                  <p className={`${textView} transition-opacity duration-200 text-white text-lg mb-4`}>{banner.text}</p>
+                  <Link className={`${buttonView} transition-opacity duration-200`} href={banner.linkButton}><Button>{banner.textButton}</Button></Link>
+                </div>
+                <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src={banner.image} alt='banner' />
               </div>
-              <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src={banner.image} alt='banner' />
-            </div>
-          </SwiperSlide>
-        ))
+            </SwiperSlide>
+          ))
+          : (
+            <SwiperSlide>
+              <div className={`h-400 bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex xl:h-600 2xl:h-700`}>
+                <div className='p-4 w-1280 m-auto'>
+                  <h1 className={`${textView} transition-opacity duration-200 text-[25px] text-white font-bold mb-2 md:text-[32px]`}>ENCUENTRA NUESTROS ULTIMOS PRODUCTOS</h1>
+                  <Link className={`${buttonView} transition-opacity duration-200`} href='/tienda'><Button>COMPRAR AHORA</Button></Link>
+                </div>
+              </div>
+            </SwiperSlide>
+          )
       }
     </Swiper>
   )

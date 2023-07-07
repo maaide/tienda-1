@@ -1,9 +1,12 @@
 import axios from 'axios'
 import Head from 'next/head'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { IContactData } from '../../interfaces'
+import DesignContext from '@/context/design/DesignContext'
 
 const ContactPage = () => {
+
+  const { design } = useContext(DesignContext)
 
   const [formContact, setFormContact] = useState<IContactData>({
     name: '',
@@ -57,12 +60,12 @@ const ContactPage = () => {
       <div className='flex p-4'>
         <div className='m-auto w-1280 block gap-16 1010:flex'>
           <div className='w-full m-auto mb-10 1010:w-1/2 1010:mb-auto'>
-            <h1 className='text-[25px] text-main tracking-widest font-semibold mb-2 mt-6 1010:mt-0 md:text-[32px] dark:text-white'>CONTACTO</h1>
-            <p>Para cualquier pregunta o consulta que tengas, no dudes en ponerte en contacto con nosotros a traves del siguiente formulario, desde el chat del sitio web o desde nuestras redes sociales.</p>
+            <h1 className='text-[25px] text-main tracking-widest font-semibold mb-2 mt-6 1010:mt-0 md:text-[32px] dark:text-white'>{design.contact.title !== '' ? design.contact.title : 'CONTACTO'}</h1>
+            <p>{design.contact.text !== '' ? design.contact.text : 'Para cualquier pregunta o consulta que tengas, no dudes en ponerte en contacto con nosotros a traves del siguiente formulario, desde el chat del sitio web o desde nuestras redes sociales.'}</p>
           </div>
           <div className='w-full m-auto mt-6 mb-6 650:w-560 1010:w-1/2'>
             <div className='rounded-md border border-white shadow-2xl p-4 420:p-6 650:p-10 dark:shadow-none dark:border dark:border-neutral-700 dark:bg-neutral-800'>
-              <h2 className='text-[20px] text-main font-medium tracking-widest mb-4 md:text-[25px] dark:text-white'>LLENA EL SIGUIENTE FORMULARIO</h2>
+              <h2 className='text-[20px] text-main font-medium tracking-widest mb-4 md:text-[25px] dark:text-white'>{design.contact.titleForm !== '' ? design.contact.titleForm : 'LLENA EL SIGUIENTE FORMULARIO'}</h2>
               <form>
                 <input type='text' placeholder='Nombre' name='name' onChange={inputChange} value={formContact.name} className='p-2 text-sm w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 <input type='email' placeholder='Email' name='email' onChange={inputChange} value={formContact.email} className='p-2 text-sm w-full rounded border mb-3 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />

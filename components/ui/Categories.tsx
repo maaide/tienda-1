@@ -34,13 +34,17 @@ export const Categories: React.FC<Props> = ({ categories }) => {
       {
         categories.length
           ? (
-            <div className='flex pt-4 pl-3 pr-3'>
+            <div className='flex flex-col gap-2 pt-4 pl-3 pr-3'>
+              {
+                design.home.category.titleCategory
+                  ? (
+                    <div className='m-auto w-full max-w-[1280px] text-center'>
+                      <h2 style={{ display: imgLoad ? 'block' : 'none' }} className={`${textView} transition-opacity duration-200 text-[16px] mb-1 text-[#1c1b1b] tracking-widest font-semibold mt-2 md:text-[20px] dark:text-white`}>CATEGORIAS</h2>
+                    </div>
+                  )
+                  : ''
+              }
               <div className='m-auto block flex-wrap justify-around 830:flex'>
-                {
-                  design.home.category.titleCategory
-                    ? <h2 style={{ display: imgLoad ? 'block' : 'none' }} className={`${textView} transition-opacity duration-200 text-[16px] mb-1 text-[#1c1b1b] tracking-widest font-semibold mt-2 md:text-[20px] dark:text-white`}>Categorias</h2>
-                    : ''
-                }
                 {
                   categories.map(category => (
                     <Link href={`/tienda/${category.slug}`} key={category._id} className='mb-2 p-1 bg-contain w-full flex gap-4 bg-center hover:opacity-70 830:block 830:w-96'>
