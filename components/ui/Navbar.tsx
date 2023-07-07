@@ -91,10 +91,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     }
   }
 
-  useEffect(() => {
-    console.log(logoLoad)
-  }, [logoLoad])
-
   return (
     <>
     <div className={`fixed ${logoLoad ? 'hidden' : 'flex'} z-50 w-full h-full bg-white`} />
