@@ -42,7 +42,7 @@ export const SafariHomeSlider = () => {
       modules={[Navigation, Pagination, Mousewheel, Keyboard]}
     >
       {
-        design.home.banner.length
+        design.home.banner.length && design.home.banner[0].image !== ''
           ? design.home.banner.map(banner => (
             <SwiperSlide key={banner.title}>
               <div className={`h-400 flex xl:h-600 2xl:h-700`}>
