@@ -26,7 +26,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [cartView, setCartView] = useState('hidden')
   const [cartOpacity, setCartOpacity] = useState('opacity-0')
   const [cartPc, setCartPc] = useState(true)
-  const [loading, setLoading] = useState('block')
   const [navCategories, setNavCategories] = useState('hidden')
   const [navCategoriesOpacity, setNavCategoriesOpacity] = useState('opacity-0')
   const [categoriesPhone, setCategoriesPhone] = useState('hidden')
@@ -92,7 +91,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   return (
     <>
-    <div className={`${loading} fixed h-full w-full z-50 bg-white`} />
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
@@ -113,11 +111,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
                 : theme === 'system'
                 ? systemTheme === 'dark'
-                  ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                 : theme === 'dark'
-                  ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
           {
@@ -217,11 +215,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         ? <Link href='/'><div className='h-14 w-1' /></Link>
                         : theme === 'system'
                         ? systemTheme === 'dark'
-                          ? <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                          : <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                          ? <Link href='/'><Image className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : <Link href='/'><Image className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                         : theme === 'dark'
-                          ? <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                          : <Link href='/'><Image className='w-[400px]' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                          ? <Link href='/'><Image className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : <Link href='/'><Image className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                     }
                   </div>
                   <div className='flex w-full justify-end gap-4'>
@@ -274,11 +272,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                       ? <Link href='/'><div className='h-14 w-1' /></Link>
                       : theme === 'system'
                       ? systemTheme === 'dark'
-                        ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                       : theme === 'dark'
-                        ? <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : <Link href='/'><Image className='w-32 py-1' onLoad={() => setLoading('hidden')} src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                   }
                 </div>
                 {renderThemeChanger()}
