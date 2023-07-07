@@ -24,6 +24,7 @@ export interface IDesign {
     shop: {
         title: string
         description: string
+        banner?: string
     }
     subscription: {
         title: string

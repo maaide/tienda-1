@@ -3,6 +3,7 @@ export interface ICategory {
   category: string
   slug: string
   image?: string
+  banner?: string
   description: string
   titleSeo?: string
   descriptionSeo?: string

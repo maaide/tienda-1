@@ -8,6 +8,7 @@ import { dbProducts } from '../../database'
 import { useProducts, useCategories } from '../../hooks'
 import { ICategory } from '../../interfaces'
 import { IProduct } from '../../interfaces'
+import Image from 'next/image'
 
 interface Props {
   category: ICategory
@@ -37,11 +38,16 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
       <Head>
         <title>{ category.category }</title>
       </Head>
-      <div className='bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex pl-4 pr-4'>
-        <div className='w-1280 m-auto'>
+      <div className='bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96'>
+        <div className='w-1280 m-auto pl-4 pr-4 z-10'>
           <h1 className='text-[25px] font-semibold tracking-widest text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
           <p className='text-lg text-white w-full text-center'>{category.description}</p>
         </div>
+        {
+          category.banner
+            ? <Image className='absolute z-0 h-96 object-cover' src={category.banner} alt='Banner categoria' width={1920} height={1080} />
+            : ''
+        }
       </div>
       <CategoriesShop categories={categories} />
       {
