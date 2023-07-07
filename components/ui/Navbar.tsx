@@ -43,6 +43,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     logoWhite: ''
   })
   const [rotate, setRotate] = useState('rotate-90')
+  const [opacity, setOpacity] = useState('opacity-0')
 
   const { categories } = useCategories('/categories')
   const router = useRouter()
@@ -74,6 +75,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
       )
     }
   }
+  useEffect(() => {
+    setTimeout(() => {
+      setOpacity('opacity-0')
+    }, 50)
+  }, [logoLoad])
 
   useEffect(() => {
     if (index === 'flex') {
@@ -93,7 +99,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   return (
     <>
-    <div className={`fixed ${logoLoad ? 'opacity-0' : 'opacity-1'} z-50 w-full h-full bg-white transition-opacity duration-200`} />
+    <div className={`fixed ${logoLoad ? 'flex' : 'hidden'} ${opacity} z-50 w-full h-full bg-white transition-opacity duration-200`} />
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
