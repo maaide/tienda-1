@@ -22,6 +22,9 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
 
   const { products, isLoadingProducts } = useProducts('/products')
 
+  const [bgOpacity, setBgOpacity] = useState('opacity-0')
+  const [bgOpacityImage, setBgOpacityImage] = useState('opacity-0')
+
   useEffect(() => {
     if (!isLoadingProducts) {
       const filter = products.filter(product => product.category === category.category)
@@ -30,25 +33,34 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
   }, [isLoadingProducts, router.asPath])
 
   useEffect(() => {
-    console.log(filterProducts)
-  }, [filterProducts])
+    setBgOpacity('opacity-1')
+  }, [])
 
   return (
     <>
       <Head>
         <title>{ category.category }</title>
       </Head>
-      <div className='bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96'>
-        <div className='w-1280 m-auto pl-4 pr-4 z-10'>
-          <h1 className='text-[25px] font-semibold tracking-widest text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
-          <p className='text-lg text-white w-full text-center'>{category.description}</p>
-        </div>
-        {
-          category.banner
-            ? <Image className='absolute z-0 h-96 w-full object-cover' src={category.banner} alt='Banner categoria' width={1920} height={1080} />
-            : ''
-        }
-      </div>
+      {
+        category.banner
+          ? (
+            <div className={`${bgOpacityImage} transition-opacity duration-200 bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96`}>
+              <div className='w-1280 m-auto pl-4 pr-4 z-10'>
+                <h1 className='text-[25px] font-semibold tracking-widest text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
+                <p className='text-lg text-white w-full text-center'>{category.description}</p>
+              </div>
+              <Image onLoadingComplete={() => setBgOpacityImage('opacity-1')} className='absolute z-0 h-96 w-full object-cover' src={category.banner} alt='Banner categoria' width={1920} height={1080} />
+            </div>
+          )
+          : (
+            <div className={`${bgOpacity} transition-opacity duration-200 bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96`}>
+              <div className='w-1280 m-auto pl-4 pr-4 z-10'>
+                <h1 className='text-[25px] font-semibold tracking-widest text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
+                <p className='text-lg text-white w-full text-center'>{category.description}</p>
+              </div>
+            </div>
+          )
+      }
       <CategoriesShop categories={categories} />
       {
         filterProducts
