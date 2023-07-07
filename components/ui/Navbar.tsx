@@ -221,11 +221,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         : storeData.logo
                           ? theme === 'system'
                             ? systemTheme === 'dark'
-                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                             : theme === 'dark'
-                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                           : ''
                     }
                   </div>
@@ -293,7 +293,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               </div>
           }
         </div>
-        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[48px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
+        <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[51px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
@@ -320,7 +320,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             </div>
           </div>
         </div>
-        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '48px', height: 'calc(100vh - 49px)' }}>
+        <div className={`${index} w-full absolute z-30 justify-between 530:hidden`} style={{ top: '51px', height: 'calc(100vh - 49px)' }}>
           <div className={`${menu} shadow-md transition-all duration-300 bg-white overflow-hidden dark:bg-neutral-900`}>
             <Link className={`${menuButtons} transition-opacity duration-200 mb-4 font-montserrat tracking-widest font-medium text-[#1c1b1b] flex pb-2 min-w-[250px] border-b dark:border-neutral-600 dark:text-white`} onClick={() => {
               setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
