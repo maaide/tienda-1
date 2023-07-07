@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { useCategories, useProducts } from '../../hooks'
 import { Spinner, CategoriesShop } from '../../components/ui'
@@ -13,18 +13,24 @@ const Shop = () => {
   const { products, isLoadingProducts } = useProducts('/products')
   const { categories } = useCategories('/categories')
 
+  const [bgOpacity, setBgOpacity] = useState('opacity-0')
+
+  useEffect(() => {
+    setBgOpacity('opacity-1')
+  }, [])
+
   return (
     <>
       <Head>
         <title>Tienda</title>
       </Head>
-      <div className='bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96'>
+      <div className={`${bgOpacity} transition-opacity duration-200 bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96`}>
         <div className='w-1280 m-auto pl-4 pr-4 z-10 pt-20 pb-20'>
           <h1 className='text-[25px] text-white font-semibold tracking-widest mb-4 text-center md:text-[32px]'>{design.shop.title !== '' ? design.shop.title : 'TIENDA'}</h1>
           <p className='text-lg text-white w-full text-center'>{design.shop.description !== '' ? design.shop.description : 'Encuentra los productos de la más alta calidad y siempre con increíbles precios.'}</p>
         </div>
         {
-          design.shop.banner !== ''
+          design.shop.banner !== '' && design.shop.banner
             ? <Image className='absolute z-0 h-96 w-full object-cover' src={design.shop.banner!} alt='Banner Tienda' width={1920} height={1080} />
             : ''
         }

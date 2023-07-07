@@ -221,11 +221,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         : storeData.logo
                           ? theme === 'system'
                             ? systemTheme === 'dark'
-                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[100px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[100px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                             : theme === 'dark'
-                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[100px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[100px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[105px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                           : ''
                     }
                   </div>
