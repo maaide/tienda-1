@@ -6,6 +6,7 @@ import { MainLayout } from '../components/layouts'
 import CartProvider from '../context/cart/CartProvider'
 import { Chat } from '../components/chat'
 import DesignProvider from '../context/design/DesignProvider'
+import LogoProvider from '@/context/logo/LogoProvider'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -16,12 +17,14 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <ThemeProvider attribute='class'>
         <DesignProvider>
-          <CartProvider>
-            <MainLayout>
-              <Component {...pageProps} />
-              <Chat />
-            </MainLayout>
-          </CartProvider>
+          <LogoProvider>
+            <CartProvider>
+              <MainLayout>
+                <Component {...pageProps} />
+                <Chat />
+              </MainLayout>
+            </CartProvider>
+          </LogoProvider>
         </DesignProvider>
       </ThemeProvider>
     </SWRConfig>

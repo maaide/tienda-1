@@ -8,10 +8,12 @@ import styles from "./css/SafariHomeSlider.module.css"
 import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper"
 import Image from 'next/image'
 import DesignContext from '@/context/design/DesignContext'
+import LogoContext from '@/context/logo/LogoContext'
 
 export const SafariHomeSlider = () => {
 
   const { design } = useContext(DesignContext)
+  const { logoLoad } = useContext(LogoContext)
 
   const [loadingImage, setLoadingImage] = useState(false)
   const [imageView, setImageView] = useState('opacity-0')
@@ -22,7 +24,7 @@ export const SafariHomeSlider = () => {
   const [bgView, setBgView] = useState('opacity-0')
 
   useEffect(() => {
-    if (loadingImage) {
+    if (loadingImage && logoLoad) {
       setImageView('opacity-1')
       setTimeout(() => {
         setTextView('opacity-1')
@@ -31,10 +33,10 @@ export const SafariHomeSlider = () => {
         }, 300)
       }, 300)
     }
-  }, [loadingImage])
+  }, [loadingImage, logoLoad])
 
   useEffect(() => {
-    setTimeout(() => {
+    if (logoLoad) {
       setBgView('opacity-1')
       setTimeout(() => {
         setTextDefaultView('opacity-1')
@@ -42,8 +44,8 @@ export const SafariHomeSlider = () => {
           setButtonDefaultView('opacity-1')
         }, 300)
       }, 300)
-    }, 300)
-  }, [])
+    }
+  }, [logoLoad])
 
   return (
     <Swiper

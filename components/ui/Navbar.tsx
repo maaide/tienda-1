@@ -9,6 +9,7 @@ import Image from 'next/image'
 import axios from 'axios'
 import { IStoreData } from '@/interfaces'
 import DesignContext from '@/context/design/DesignContext'
+import LogoContext from '@/context/logo/LogoContext'
 
 interface Props {
   menu: any,
@@ -21,6 +22,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   const { systemTheme, theme, setTheme } = useTheme()
   const { design } = useContext(DesignContext)
+  const { setLogoLoad, logoLoad } = useContext(LogoContext)
 
   const [mounted, setMounted] = useState(false)
   const [cartView, setCartView] = useState('hidden')
@@ -91,6 +93,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
 
   return (
     <>
+    <div className={`fixed ${logoLoad ? 'opacity-0' : 'opacity-1'} z-50 w-full h-full bg-white transition-opacity duration-200`} />
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
@@ -111,11 +114,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
                 : theme === 'system'
                 ? systemTheme === 'dark'
-                  ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                 : theme === 'dark'
-                  ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
           {
@@ -215,11 +218,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         ? <Link href='/'><div className='h-14 w-1' /></Link>
                         : theme === 'system'
                         ? systemTheme === 'dark'
-                          ? <Link href='/'><Image className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                          : <Link href='/'><Image className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                          ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                         : theme === 'dark'
-                          ? <Link href='/'><Image className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                          : <Link href='/'><Image className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                          ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                     }
                   </div>
                   <div className='flex w-full justify-end gap-4'>
@@ -272,11 +275,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                       ? <Link href='/'><div className='h-14 w-1' /></Link>
                       : theme === 'system'
                       ? systemTheme === 'dark'
-                        ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                       : theme === 'dark'
-                        ? <Link href='/'><Image className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : <Link href='/'><Image className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
                   }
                 </div>
                 {renderThemeChanger()}
