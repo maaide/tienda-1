@@ -45,7 +45,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
         </div>
         {
           category.banner
-            ? <Image className='absolute z-0 h-96 object-cover' src={category.banner} alt='Banner categoria' width={1920} height={1080} />
+            ? <Image className='absolute z-0 h-96 w-full object-cover' src={category.banner} alt='Banner categoria' width={1920} height={1080} />
             : ''
         }
       </div>

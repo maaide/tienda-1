@@ -25,7 +25,7 @@ const Shop = () => {
         </div>
         {
           design.shop.banner !== ''
-            ? <Image className='absolute z-0 h-96 object-cover' src={design.shop.banner!} alt='Banner Tienda' width={1920} height={1080} />
+            ? <Image className='absolute z-0 h-96 w-full object-cover' src={design.shop.banner!} alt='Banner Tienda' width={1920} height={1080} />
             : ''
         }
       </div>

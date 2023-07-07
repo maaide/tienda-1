@@ -47,7 +47,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
           onLoad={ () => setIsImageLoaded(true) }
           onMouseEnter={ () => setIsHovered(true) }
           onMouseLeave={ () => setIsHovered(false) }
-          className='m-auto w-40 450:w-44 580:w-52'
+          className='m-auto w-40 h-auto 450:w-44 580:w-52'
           style={{ borderRadius: '8px' }}
           width={250}
           height={250}

@@ -47,7 +47,7 @@ export const ProductCard3: React.FC<Props> = ({ product }) => {
         onLoad={ () => setIsImageLoaded(true) }
         onMouseEnter={ () => setIsHovered(true) }
         onMouseLeave={ () => setIsHovered(false) }
-        className='m-auto cursor-pointer w-40 450:w-44 580:w-52'
+        className='m-auto cursor-pointer w-40 h-auto 450:w-44 580:w-52'
         style={{ borderRadius: '8px' }}
         onClick={() => router.push(`/productos/${product.slug}`)}
         width={250}

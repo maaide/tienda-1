@@ -34,7 +34,7 @@ export const OtherProductSlider: React.FC<Props> = ({ images }) => {
           images.map(image => {
             return (
               <SwiperSlide key={ image }>
-                <Image onLoadingComplete={() => setLoading(true)} src={image} alt='Imagen producto' width={650} height={650} className={`${opacity} transition-opacity duration-200 m-auto w-full max-w-2xl`} />
+                <Image onLoadingComplete={() => setLoading(true)} src={image} alt='Imagen producto' width={650} height={650} className={`${opacity} transition-opacity duration-200 m-auto w-full h-auto max-w-2xl`} />
               </SwiperSlide>
             )
           })

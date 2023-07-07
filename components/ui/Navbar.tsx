@@ -43,7 +43,6 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     logoWhite: ''
   })
   const [rotate, setRotate] = useState('rotate-90')
-  const [opacity, setOpacity] = useState('opacity-0')
 
   const { categories } = useCategories('/categories')
   const router = useRouter()
@@ -67,19 +66,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     const currentTheme = theme === 'system' ? systemTheme : theme
     if ( currentTheme === 'dark' ) {
       return (
-        <button className='w-6 flex' onClick={() => setTheme('light')}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" className="text-slate-600 m-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path></svg></button>
+        <button className='w-6 flex' onClick={() => setTheme('light')}><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-slate-600 m-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"></path></svg></button>
       )
     } else {
       return (
-        <button className='w-6 flex' onClick={() => setTheme('dark')}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" className="text-slate-500 m-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></svg></button>
+        <button className='w-6 flex' onClick={() => setTheme('dark')}><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 16 16" className="text-slate-500 m-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></svg></button>
       )
     }
   }
-  useEffect(() => {
-    setTimeout(() => {
-      setOpacity('opacity-0')
-    }, 50)
-  }, [logoLoad])
 
   useEffect(() => {
     if (index === 'flex') {
@@ -97,9 +91,13 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     }
   }
 
+  useEffect(() => {
+    console.log(logoLoad)
+  }, [logoLoad])
+
   return (
     <>
-    <div className={`fixed ${logoLoad ? 'flex' : 'hidden'} ${opacity} z-50 w-full h-full bg-white transition-opacity duration-200`} />
+    <div className={`fixed ${logoLoad ? 'hidden' : 'flex'} z-50 w-full h-full bg-white`} />
     <div className='w-full'>
       {
         router.pathname !== '/finalizar-compra'
@@ -118,13 +116,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             {
               !mounted
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
-                : theme === 'system'
-                ? systemTheme === 'dark'
-                  ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
-                : theme === 'dark'
-                  ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                : storeData.logo
+                  ? theme === 'system'
+                    ? systemTheme === 'dark'
+                      ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                      : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                    : theme === 'dark'
+                      ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                      : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                  : ''
             }
           </div>
           {
@@ -222,13 +222,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     {
                       !mounted
                         ? <Link href='/'><div className='h-14 w-1' /></Link>
-                        : theme === 'system'
-                        ? systemTheme === 'dark'
-                          ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                          : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : theme === 'dark'
-                          ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                          : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-[400px]' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : storeData.logo
+                          ? theme === 'system'
+                            ? systemTheme === 'dark'
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                            : theme === 'dark'
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : ''
                     }
                   </div>
                   <div className='flex w-full justify-end gap-4'>
@@ -279,13 +281,15 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   {
                     !mounted
                       ? <Link href='/'><div className='h-14 w-1' /></Link>
-                      : theme === 'system'
-                      ? systemTheme === 'dark'
-                        ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
-                      : theme === 'dark'
-                        ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                      : storeData.logo
+                        ? theme === 'system'
+                          ? systemTheme === 'dark'
+                            ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                            : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                          : theme === 'dark'
+                            ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
+                            : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                        : ''
                   }
                 </div>
                 {renderThemeChanger()}
@@ -328,7 +332,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setTimeout(() => {
                 setIndex('hidden')
               }, 150)
-            }} href='/'>INICIO<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className="ml-auto w-4 text-lg text-neutral-500" xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></Link>
+            }} href='/'>INICIO<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" className="ml-auto w-4 text-lg text-neutral-500" xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></Link>
             <div className={`${menuButtons} transition-opacity duration-200 border-b mb-4 min-w-[250px] dark:border-neutral-600`}>
               <div className={`flex justify-between pb-2`}>
                 <Link onClick={() => {
@@ -338,7 +342,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     setIndex('hidden')
                   }, 150)
                 }} className='tracking-widest font-montserrat font-medium text-[#1c1b1b] dark:text-white' href='/tienda'>TIENDA</Link>
-                <button onClick={showCategories}><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className={`${rotate} transition-all duration-150 ml-auto text-lg w-4 text-neutral-500`} xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></button>
+                <button onClick={showCategories}><svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" className={`${rotate} transition-all duration-150 ml-auto text-lg w-4 text-neutral-500`} xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></button>
               </div>
               <div className={`${categoriesPhone} flex flex-col gap-2 mb-4`}>
                 {
@@ -351,7 +355,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           setIndex('hidden')
                         }, 150)
                       }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
-                        <Image className='w-28' src={category.image!} width={112} height={112} alt={`Categoria ${category.category}`} />
+                        <Image className='w-28 h-auto' src={category.image!} width={112} height={112} alt={`Categoria ${category.category}`} />
                         <h2 className='mt-auto tracking-widest text-[#1c1b1b] font-medium mb-auto dark:text-white'>{category.category.toUpperCase()}</h2>
                       </Link>
                     ))
@@ -365,7 +369,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setTimeout(() => {
                 setIndex('hidden')
               }, 140)
-            }} href='/contacto'>CONTACTO<svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className="ml-auto w-4 text-lg text-neutral-500" xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></Link>
+            }} href='/contacto'>CONTACTO<svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 1024 1024" className="ml-auto w-4 text-lg text-neutral-500" xmlns="http://www.w3.org/2000/svg"><path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"></path></svg></Link>
           </div>
           <div className='w-1/6' onClick={() => {
             setMenu('w-0 pl-0 pr-0 pt-6 pb-6')
@@ -388,7 +392,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 <div className='w-full bg-white p-4 flex gap-4 border-b justify-center dark:bg-neutral-900 dark:border-neutral-800'>
                   {categories.map(category => (
                     <div key={category._id}>
-                      <Image className='w-64 mb-2 cursor-pointer' onClick={() => {
+                      <Image className='w-64 h-auto mb-2 cursor-pointer' onClick={() => {
                         setNavCategoriesOpacity('opacity-0')
                         setNavCategories('hidden')
                         router.push(`/tienda/${category.slug}`)
