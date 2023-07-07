@@ -19,6 +19,7 @@ export const SafariHomeSlider = () => {
   const [buttonView, setButtonView] = useState('opacity-0')
   const [textDefaultView, setTextDefaultView] = useState('opacity-0')
   const [buttonDefaultView, setButtonDefaultView] = useState('opacity-0')
+  const [bgView, setBgView] = useState('')
 
   useEffect(() => {
     if (loadingImage) {
@@ -34,9 +35,12 @@ export const SafariHomeSlider = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      setTextDefaultView('opacity-1')
+      setBgView('bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500')
       setTimeout(() => {
-        setButtonDefaultView('opacity-1')
+        setTextDefaultView('opacity-1')
+        setTimeout(() => {
+          setButtonDefaultView('opacity-1')
+        }, 300)
       }, 300)
     }, 300)
   }, [])
@@ -68,7 +72,7 @@ export const SafariHomeSlider = () => {
           ))
           : (
             <SwiperSlide>
-              <div className={`h-400 bg-gradient-to-r from-sky-500 pt-20 pb-20 to-indigo-500 flex xl:h-600 2xl:h-700`}>
+              <div className={`h-400 ${bgView} transition-colors duration-200 pt-20 pb-20 flex xl:h-600 2xl:h-700`}>
                 <div className='p-4 w-1280 m-auto'>
                   <h1 className={`${textDefaultView} transition-opacity duration-200 text-[25px] text-white font-bold mb-2 md:text-[32px]`}>ENCUENTRA NUESTROS ULTIMOS PRODUCTOS</h1>
                   <Link className={`${buttonDefaultView} transition-opacity duration-200`} href='/tienda'><Button>COMPRAR AHORA</Button></Link>
