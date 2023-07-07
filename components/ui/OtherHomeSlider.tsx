@@ -36,11 +36,11 @@ export const OtherHomeSlider = () => {
   useEffect(() => {
     setTimeout(() => {
       setBgView('bg-gradient-to-r from-sky-500 to-indigo-500')
-    }, 300)
-    setTimeout(() => {
-      setTextDefaultView('opacity-1')
       setTimeout(() => {
-        setButtonDefaultView('opacity-1')
+        setTextDefaultView('opacity-1')
+        setTimeout(() => {
+          setButtonDefaultView('opacity-1')
+        }, 300)
       }, 300)
     }, 300)
   }, [])
