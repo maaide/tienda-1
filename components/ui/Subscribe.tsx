@@ -18,7 +18,7 @@ export const Subscribe = () => {
     try {
       const response = await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
       if (response.data.email) {
-        await axios.post('https://server-production-e234.up.railway.app/subscription', subscribeData)
+        await axios.post('https://server-production-e234.up.railway.app/subscription', { email: response.data.email })
       }
       setSuccessSubscribe('block')
     } catch (error) {
