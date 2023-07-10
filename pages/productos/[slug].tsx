@@ -73,11 +73,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
 
   const filterProducts = () => {
     if (products.length) {
-      console.log(design.product)
-      if (design.product.sectionProducts === 'Productos de una categoria') {
-        const filterProducts = products.filter(product => product.category === design.home.products.category)
-        setProductsFiltered(filterProducts)
-      } else if (design.product.sectionProducts === 'Productos en oferta') {
+      if (design.product.sectionProducts === 'Productos en oferta') {
         const filterProducts = products.filter(product => product.beforePrice)
         setProductsFiltered(filterProducts)
       } else {

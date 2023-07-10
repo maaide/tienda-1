@@ -32,10 +32,7 @@ export const Categories: React.FC<Props> = ({ categories }) => {
 
   const filterProducts = () => {
     if (products.length) {
-      if (design.home.products.sectionProducts === 'Productos de una categoria') {
-        const filterProducts = products.filter(product => product.category === design.home.products.category)
-        setProductsFiltered(filterProducts)
-      } else if (design.home.products.sectionProducts === 'Productos en oferta') {
+      if (design.home.products.sectionProducts === 'Productos en oferta') {
         const filterProducts = products.filter(product => product.beforePrice)
         setProductsFiltered(filterProducts)
       } else {
