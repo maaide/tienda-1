@@ -6,7 +6,7 @@ export const Subscribe = () => {
 
   const { design } = useContext(DesignContext)
 
-  const [subscribeData, setSubscribeData] = useState({ email: '', tags: 'Suscriptores' })
+  const [subscribeData, setSubscribeData] = useState({ email: '', tags: ['Suscriptores'] })
   const [successSubscribe, setSuccessSubscribe] = useState('hidden')
 
   const inputChange = (e: any) => {
@@ -16,11 +16,13 @@ export const Subscribe = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     try {
-      await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
+      const response = await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
+      if (response.data.email) {
+        await axios.post('https://server-production-e234.up.railway.app/subscription', subscribeData)
+      }
       setSuccessSubscribe('block')
     } catch (error) {
-      await axios.put(`https://server-production-e234.up.railway.app/clients-subscribe/${subscribeData.email}`)
-      setSuccessSubscribe('block')
+      console.log(error)
     }
   }
 
