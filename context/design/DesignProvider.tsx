@@ -41,6 +41,10 @@ const DesignProvider: React.FC<PropsWithChildren> = ({ children }) => {
     },
     subscription: {
       title: ''
+    },
+    cart: {
+      title: '',
+      sectionProducts: ''
     }
   })
 
