@@ -6,7 +6,7 @@ export const Subscribe = () => {
 
   const { design } = useContext(DesignContext)
 
-  const [subscribeData, setSubscribeData] = useState({ email: '', tags: 'Suscripcion' })
+  const [subscribeData, setSubscribeData] = useState({ email: '', tags: 'Suscriptores' })
   const [successSubscribe, setSuccessSubscribe] = useState('hidden')
 
   const inputChange = (e: any) => {
