@@ -125,6 +125,7 @@ const CheckOut = () => {
     e.preventDefault()
     setSubmitLoading(true)
     await axios.post('https://server-production-e234.up.railway.app/sells', sell)
+    localStorage.setItem('sell', JSON.stringify(sell))
     router.push('/gracias-por-comprar')
   }
 
