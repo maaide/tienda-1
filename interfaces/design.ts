@@ -11,10 +11,13 @@ export interface IDesign {
         products: {
             title: string
             sectionProducts: string
+            category?: string
         }
     }
     product: {
+        title: string
         sectionProducts: string
+        category?: string
     }
     contact: {
         title: string

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
 import { useProducts } from '../../hooks'
-import { ICategory } from '../../interfaces'
+import { ICategory, IProduct } from '../../interfaces'
 import { ProductList } from '../products'
 import { Spinner } from './Spinner'
 import Image from 'next/image'
@@ -14,11 +14,12 @@ interface Props {
 export const Categories: React.FC<Props> = ({ categories }) => {
 
   const { design } = useContext(DesignContext)
-
   const {products} = useProducts('/products')
+
   const [imgLoad, setImgLoad] = useState(false)
   const [imgView, setImgView] = useState('opacity-0')
   const [textView, setTextView] = useState('opacity-0')
+  const [productsFiltered, setProductsFilteres] = useState<IProduct[]>([])
 
   useEffect(() => {
     if (imgLoad) {
@@ -28,6 +29,24 @@ export const Categories: React.FC<Props> = ({ categories }) => {
       }, 300)
     }
   }, [imgLoad])
+
+  const filterProducts = () => {
+    if (products.length) {
+      if (design.home.products.sectionProducts === 'Productos de una categoria') {
+        const filterProducts = products.filter(product => product.category === design.home.products.category)
+        setProductsFilteres(filterProducts)
+      } else if (design.home.products.sectionProducts === 'Productos en oferta') {
+        const filterProducts = products.filter(product => product.beforePrice)
+        setProductsFilteres(filterProducts)
+      } else {
+        setProductsFilteres(products)
+      }
+    }
+  }
+
+  useEffect(() => {
+    filterProducts()
+  }, [products])
 
   return (
     <>
@@ -68,7 +87,7 @@ export const Categories: React.FC<Props> = ({ categories }) => {
       }
       {
         imgLoad
-          ? <ProductList products={products} title={design.home.products.title !== '' ? design.home.products.title : 'Productos recomendados'} />
+          ? <ProductList products={productsFiltered} title={design.home.products.title !== '' ? design.home.products.title : 'Productos recomendados'} />
           : (
             <div className="flex w-full">
               <div className="m-auto mt-16 mb-16">

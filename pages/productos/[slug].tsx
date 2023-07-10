@@ -1,5 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { ICartProduct, IProduct } from '../../interfaces'
 import { dbProducts } from '../../database'
 import { ButtonAddToCart, ButtonNone, ItemCounter, ProductSlider, Spinner } from '../../components/ui'
@@ -13,6 +13,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import DesignContext from '@/context/design/DesignContext'
 
 interface Props {
   product: IProduct
@@ -40,10 +41,12 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const [shippingRotate, setShippingRotate] = useState('rotate-90')
   const [detailsOpacity, setDetailsOpacity] = useState('opacity-0')
   const [detailsPosition, setDetailsPosition] = useState('-bottom-44')
+  const [productsFiltered, setProductsFilteres] = useState<IProduct[]>([])
 
   const router = useRouter()
 
   const { products, isLoadingProducts } = useProducts('/products')
+  const { design } = useContext(DesignContext)
 
   const submitViewContent = async () => {
     await axios.post('https://server-production-e234.up.railway.app/view-content', { name: tempCartProduct.name, price: tempCartProduct.price, category: tempCartProduct.category, url: tempCartProduct.slug, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
@@ -67,6 +70,24 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   useEffect(() => {
     submitViewContent()
   }, [])
+
+  const filterProducts = () => {
+    if (products.length) {
+      if (design.home.products.sectionProducts === 'Productos de una categoria') {
+        const filterProducts = products.filter(product => product.category === design.home.products.category)
+        setProductsFilteres(filterProducts)
+      } else if (design.home.products.sectionProducts === 'Productos en oferta') {
+        const filterProducts = products.filter(product => product.beforePrice)
+        setProductsFilteres(filterProducts)
+      } else {
+        setProductsFilteres(products)
+      }
+    }
+  }
+
+  useEffect(() => {
+    filterProducts()
+  }, [products])
 
   const handleScroll = () => {
     const position = window.scrollY
@@ -334,7 +355,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               </div>
             </div>
           )
-          : <RecomendedProducts products={ products } title='PRODUCTOS RECOMENDADOS' productSelect={product} />
+          : <RecomendedProducts products={ productsFiltered } title='PRODUCTOS RECOMENDADOS' productSelect={product} />
       }
     </>
   )
