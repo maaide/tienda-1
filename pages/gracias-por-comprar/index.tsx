@@ -1,6 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const PageBuySuccess = () => {
+
+  useEffect(() => {
+    localStorage.clear()
+  }, [])
+
   return (
     <div className='flex px-2'>
       <div className='w-full max-w-[1280px] m-auto py-20 flex flex-col gap-4'>
