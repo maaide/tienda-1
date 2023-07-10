@@ -19,7 +19,7 @@ export const Categories: React.FC<Props> = ({ categories }) => {
   const [imgLoad, setImgLoad] = useState(false)
   const [imgView, setImgView] = useState('opacity-0')
   const [textView, setTextView] = useState('opacity-0')
-  const [productsFiltered, setProductsFilteres] = useState<IProduct[]>([])
+  const [productsFiltered, setProductsFiltered] = useState<IProduct[]>([])
 
   useEffect(() => {
     if (imgLoad) {
@@ -34,12 +34,12 @@ export const Categories: React.FC<Props> = ({ categories }) => {
     if (products.length) {
       if (design.home.products.sectionProducts === 'Productos de una categoria') {
         const filterProducts = products.filter(product => product.category === design.home.products.category)
-        setProductsFilteres(filterProducts)
+        setProductsFiltered(filterProducts)
       } else if (design.home.products.sectionProducts === 'Productos en oferta') {
         const filterProducts = products.filter(product => product.beforePrice)
-        setProductsFilteres(filterProducts)
+        setProductsFiltered(filterProducts)
       } else {
-        setProductsFilteres(products)
+        setProductsFiltered(products)
       }
     }
   }
@@ -87,7 +87,9 @@ export const Categories: React.FC<Props> = ({ categories }) => {
       }
       {
         imgLoad
-          ? <ProductList products={productsFiltered} title={design.home.products.title !== '' ? design.home.products.title : 'Productos recomendados'} />
+          ? productsFiltered.length
+            ? <ProductList products={productsFiltered} title={design.home.products.title !== '' ? design.home.products.title : 'Productos recomendados'} />
+            : ''
           : (
             <div className="flex w-full">
               <div className="m-auto mt-16 mb-16">

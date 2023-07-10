@@ -41,7 +41,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const [shippingRotate, setShippingRotate] = useState('rotate-90')
   const [detailsOpacity, setDetailsOpacity] = useState('opacity-0')
   const [detailsPosition, setDetailsPosition] = useState('-bottom-44')
-  const [productsFiltered, setProductsFilteres] = useState<IProduct[]>([])
+  const [productsFiltered, setProductsFiltered] = useState<IProduct[]>([])
 
   const router = useRouter()
 
@@ -73,14 +73,15 @@ const ProductPage: React.FC<Props> = ({ product }) => {
 
   const filterProducts = () => {
     if (products.length) {
-      if (design.home.products.sectionProducts === 'Productos de una categoria') {
+      console.log(design.product)
+      if (design.product.sectionProducts === 'Productos de una categoria') {
         const filterProducts = products.filter(product => product.category === design.home.products.category)
-        setProductsFilteres(filterProducts)
-      } else if (design.home.products.sectionProducts === 'Productos en oferta') {
+        setProductsFiltered(filterProducts)
+      } else if (design.product.sectionProducts === 'Productos en oferta') {
         const filterProducts = products.filter(product => product.beforePrice)
-        setProductsFilteres(filterProducts)
+        setProductsFiltered(filterProducts)
       } else {
-        setProductsFilteres(products)
+        setProductsFiltered(products)
       }
     }
   }
@@ -355,7 +356,9 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               </div>
             </div>
           )
-          : <RecomendedProducts products={ productsFiltered } title='PRODUCTOS RECOMENDADOS' productSelect={product} />
+          : productsFiltered.length
+            ? <RecomendedProducts products={ productsFiltered } title={design.product.title !== '' ? design.product.title : 'PRODUCTOS RECOMENDADOS'} productSelect={product} />
+            : ''
       }
     </>
   )
