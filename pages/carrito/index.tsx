@@ -5,15 +5,19 @@ import React, { useState, useEffect, useContext } from 'react'
 import { ProductList, ShippingCart } from '../../components/products'
 import { Spinner } from '../../components/ui'
 import { useProducts } from '../../hooks'
-import { ICartProduct, IQuantityOffer } from '../../interfaces'
+import { ICartProduct, IProduct, IQuantityOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import Image from 'next/image'
+import DesignContext from '@/context/design/DesignContext'
 
 const CartPage = () => {
 
+  const {setCart} = useContext(CartContext)
+  const { design } = useContext(DesignContext)
+
   const [cartProducts, setCartProducts] = useState<ICartProduct[]>()
   const [shippingCost, setShippingCost] = useState(0)
-  const {setCart} = useContext(CartContext)
+  const [productsFiltered, setProductsFiltered] = useState<IProduct[]>([])
 
   useEffect(() => {
     setCartProducts(JSON.parse(localStorage.getItem('cart')!))
@@ -34,6 +38,24 @@ const CartPage = () => {
     const finalPrice = offerPrice !== undefined ? Math.floor((product.price * product.quantity) / 100) * (100 - offerPrice.descount) : product.price * product.quantity
     return finalPrice
   }
+
+  const filterProducts = () => {
+    if (products.length) {
+      if (design.home.products.sectionProducts === 'Productos de una categoria') {
+        const filterProducts = products.filter(product => product.category === design.home.products.category)
+        setProductsFiltered(filterProducts)
+      } else if (design.home.products.sectionProducts === 'Productos en oferta') {
+        const filterProducts = products.filter(product => product.beforePrice)
+        setProductsFiltered(filterProducts)
+      } else {
+        setProductsFiltered(products)
+      }
+    }
+  }
+
+  useEffect(() => {
+    filterProducts()
+  }, [products])
 
   return (
     <>
@@ -188,7 +210,9 @@ const CartPage = () => {
               </div>
             </div>
           )
-          : <ProductList products={ products } title='MÁS VENDIDOS' />
+          : productsFiltered.length
+            ? <ProductList products={ productsFiltered } title={design.cart?.title && design.cart?.title !== '' ? design.cart.title : 'PRODUCTOS RECOMENDADOS'} />
+            : ''
       }
     </>
   )

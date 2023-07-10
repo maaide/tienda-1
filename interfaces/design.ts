@@ -32,6 +32,11 @@ export interface IDesign {
     subscription: {
         title: string
     }
+    cart: {
+        title: string
+        sectionProducts: string
+        category?: string
+    }
 }
 
 export interface IBanner {
