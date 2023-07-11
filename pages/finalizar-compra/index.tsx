@@ -118,6 +118,20 @@ const CheckOut = () => {
     setSubmitLoading(true)
     await axios.post('https://server-production-e234.up.railway.app/sells', sell)
     localStorage.setItem('sell', JSON.stringify(sell))
+    if (saveData) {
+      Cookies.set('firstName', sell.firstName)
+      Cookies.set('lastName', sell.lastName)
+      Cookies.set('email', sell.email)
+      if (sell.phone) {
+        Cookies.set('phone', sell.phone.toString())
+      }
+      Cookies.set('address', sell.address)
+      if (sell.details) {
+        Cookies.set('details', sell.details)
+      }
+      Cookies.set('city', sell.city)
+      Cookies.set('region', sell.region)
+    }
     const form = document.getElementById('formTransbank') as HTMLFormElement
     if (form) {
       form.submit()
