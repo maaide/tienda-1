@@ -14,21 +14,22 @@ import Image from 'next/image'
 const CheckOut = () => {
 
   const [sell, setSell] = useState<ISell>({
-    firstName: '',
-    lastName: '',
-    email: '',
-    address: '',
-    region: '',
-    city: '',
+    firstName: Cookies.get('firstName') || '',
+    lastName: Cookies.get('lastName') || '',
+    email: Cookies.get('email') || '',
+    address: Cookies.get('address') || '',
+    region: Cookies.get('region') || '',
+    city: Cookies.get('city') || '',
     cart: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')!) : [],
     shipping: 0,
-    pay: '',
+    pay: Cookies.get('pay') || '',
     state: 'Pago iniciado',
     total: 0,
     fbp: Cookies.get('_fbp'),
     fbc: Cookies.get('_fbc'),
-    shippingMethod: '',
-    shippingState: ''
+    shippingMethod: Cookies.get('shippingMethod') || '',
+    shippingState: '',
+    subscription: false
   })
   const [cart, setCart] = useState<ICartProduct[]>()
   const [shipping, setShipping] = useState<IShipping[]>()
@@ -39,6 +40,7 @@ const CheckOut = () => {
   const [domain, setDomain] = useState('')
   const [storeData, setStoreData] = useState<IStoreData>()
   const [rotate, setRotate] = useState('rotate-90')
+  const [saveData, setSaveData] = useState(false)
 
   const router = useRouter()
 
@@ -127,7 +129,24 @@ const CheckOut = () => {
     setSubmitLoading(true)
     await axios.post('https://server-production-e234.up.railway.app/sells', sell)
     localStorage.setItem('sell', JSON.stringify(sell))
+    if (saveData) {
+      Cookies.set('firstName', sell.firstName)
+      Cookies.set('lastName', sell.lastName)
+      Cookies.set('email', sell.email)
+      if (sell.phone) {
+        Cookies.set('phone', sell.phone.toString())
+      }
+      Cookies.set('address', sell.address)
+      if (sell.details) {
+        Cookies.set('details', sell.details)
+      }
+      Cookies.set('city', sell.city)
+      Cookies.set('region', sell.region)
+      Cookies.set('shippingMethod', sell.shippingMethod)
+      Cookies.set('pay', sell.pay)
+    }
     router.push('/gracias-por-comprar')
+    setSubmitLoading(false)
   }
 
   return (
@@ -208,7 +227,7 @@ const CheckOut = () => {
               <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>INFORMACIÓN DE CONTACTO</h2>
               <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
-                <input type='checkbox' />
+                <input type='checkbox' checked={sell.subscription} onChange={(e: any) => e.target.checked ? setSell({...sell, subscription: true}) : setSell({...sell, subscription: false})} />
                 <span className='text-sm text-neutral-400'>Suscribirse a nuestra lista de emails</span>
               </div>
             </div>
@@ -261,6 +280,10 @@ const CheckOut = () => {
                 )
                 : ''
             }
+            <div className='flex gap-2 mb-4'>
+              <input type='checkbox' checked={saveData} onChange={(e: any) => e.target.checked ? setSaveData(true) : setSaveData(false)} />
+              <span className='text-sm text-neutral-400'>Guardar datos para poder comprar más rapido la proxima vez</span>
+            </div>
             <div className='flex gap-2 justify-between mt-auto mb-auto'>
               <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className="mt-auto mb-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path></svg>Regresar al carrito</span></Link></div>
               {

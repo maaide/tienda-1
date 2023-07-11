@@ -20,6 +20,7 @@ export interface ISell {
   fbp?: string
   fbc?: string
   shippingState: string
+  subscription: boolean
 
   createdAt?: Date
   updatedAt?: Date
