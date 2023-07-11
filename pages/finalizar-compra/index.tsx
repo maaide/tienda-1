@@ -29,7 +29,8 @@ const CheckOut = () => {
     fbc: Cookies.get('_fbc'),
     shippingMethod: '',
     shippingState: '',
-    subscription: false
+    subscription: false,
+    phone: Number(Cookies.get('phone')) || undefined
   })
   const [cart, setCart] = useState<ICartProduct[]>()
   const [shipping, setShipping] = useState<IShipping[]>()
