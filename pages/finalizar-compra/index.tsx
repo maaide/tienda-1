@@ -22,12 +22,12 @@ const CheckOut = () => {
     city: Cookies.get('city') || '',
     cart: typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('cart')!) : [],
     shipping: 0,
-    pay: Cookies.get('pay') || '',
+    pay: '',
     state: 'Pago iniciado',
     total: 0,
     fbp: Cookies.get('_fbp'),
     fbc: Cookies.get('_fbc'),
-    shippingMethod: Cookies.get('shippingMethod') || '',
+    shippingMethod: '',
     shippingState: '',
     subscription: false
   })
@@ -142,8 +142,6 @@ const CheckOut = () => {
       }
       Cookies.set('city', sell.city)
       Cookies.set('region', sell.region)
-      Cookies.set('shippingMethod', sell.shippingMethod)
-      Cookies.set('pay', sell.pay)
     }
     router.push('/gracias-por-comprar')
     setSubmitLoading(false)
