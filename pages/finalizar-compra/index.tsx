@@ -237,7 +237,7 @@ const CheckOut = () => {
             <h1 className='text-[20px] text-main tracking-widest mb-6 font-semibold md:text-[25px] dark:text-white'>FINALIZAR COMPRA</h1>
             <div className='mb-6'>
               <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>INFORMACIÓN DE CONTACTO</h2>
-              <input type='email' placeholder='Email' name='email' onChange={inputChange} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='email' placeholder='Email' name='email' onChange={inputChange} value={sell.email} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <input type='checkbox' checked={sell.subscription} onChange={(e: any) => e.target.checked ? setSell({...sell, subscription: true}) : setSell({...sell, subscription: false})} />
                 <span className='text-sm text-neutral-400'>Suscribirse a nuestra lista de emails</span>
@@ -247,14 +247,14 @@ const CheckOut = () => {
               <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>DIRECCIÓN DE ENVÍO</h2>
               <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
               <div className='flex gap-2 mb-2'>
-                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} value={sell.firstName} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} value={sell.lastName} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
-              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} value={sell.address} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} value={sell.details} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               <div className='flex gap-2'>
                 <span className='mt-auto mb-auto text-sm'>+56</span>
-                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} value={sell.phone} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
               </div>
             </div>
             {
