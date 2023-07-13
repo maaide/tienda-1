@@ -50,7 +50,7 @@ const CheckOut = () => {
       const cartLocal = JSON.parse(localStorage.getItem('cart')!)
       setCart(cartLocal)
       setSell({ ...sell, total: cartLocal.reduce((bef: any, curr: any) => bef + curr.price * curr.quantity, 0) })
-      await axios.post('https://server-production-e234.up.railway.app/information', { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/information`, { cart: cartLocal, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
     }
   }
 
@@ -59,7 +59,7 @@ const CheckOut = () => {
   }, [])
 
   const getDomain = async () => {
-    const response = await axios.get('https://server-production-e234.up.railway.app/domain')
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/domain`)
     setDomain(response.data.domain)
   }
 
@@ -68,7 +68,7 @@ const CheckOut = () => {
   }, [])
 
   const getStoreData = async () => {
-    const response = await axios.get('https://server-production-e234.up.railway.app/store-data')
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/store-data`)
     setStoreData(response.data)
   }
 
@@ -85,7 +85,7 @@ const CheckOut = () => {
         amount: sell.total,
         returnUrl: `https://${domain}/procesando-pago`
       }
-      const response = await axios.post('https://server-production-e234.up.railway.app/pay/create', pago)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pay/create`, pago)
       setToken(response.data.token)
       setUrl(response.data.url)
     }
@@ -117,7 +117,7 @@ const CheckOut = () => {
   const transbankSubmit = async (e: any) => {
     e.preventDefault()
     setSubmitLoading(true)
-    await axios.post('https://server-production-e234.up.railway.app/sells', sell)
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
     localStorage.setItem('sell', JSON.stringify(sell))
     if (saveData) {
       Cookies.set('firstName', sell.firstName)
@@ -142,7 +142,7 @@ const CheckOut = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     setSubmitLoading(true)
-    await axios.post('https://server-production-e234.up.railway.app/sells', sell)
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
     localStorage.setItem('sell', JSON.stringify(sell))
     if (saveData) {
       Cookies.set('firstName', sell.firstName)

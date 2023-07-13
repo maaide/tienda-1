@@ -18,7 +18,7 @@ export const Footer = () => {
   })
 
   const getStoreData = async () => {
-    const response = await axios.get('https://server-production-e234.up.railway.app/store-data')
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/store-data`)
     setStoreData(response.data)
   }
 

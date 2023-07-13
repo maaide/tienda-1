@@ -19,9 +19,9 @@ export const Subscribe = () => {
     e.preventDefault()
     setLoading(true)
     try {
-      const response = await axios.post('https://server-production-e234.up.railway.app/clients', subscribeData)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/clients`, subscribeData)
       if (response.data.email) {
-        await axios.post('https://server-production-e234.up.railway.app/subscription', { email: response.data.email })
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/subscription`, { email: response.data.email })
       }
       setSuccessSubscribe('block')
       setLoading(false)

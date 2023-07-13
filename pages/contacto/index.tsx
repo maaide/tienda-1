@@ -23,7 +23,7 @@ const ContactPage = () => {
   const imageChange = (e: any) => {
     let images: any = formContact.images
     e.target.files.map(async (file: any) => {
-      const response = await axios.post('https://server-production-e234.up.railway.app/product-image-upload', {image: file}, {
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/product-image-upload`, {image: file}, {
         headers: {
           accept: 'application/json',
           'Accept-Language': 'en-US,en;q=0.8',
@@ -38,7 +38,7 @@ const ContactPage = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     setSending('')
-    await axios.post('https://server-production-e234.up.railway.app/contact', formContact, {
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact`, formContact, {
       headers: {
         accept: 'application/json',
         'Accept-Language': 'en-US,en;q=0.8',

@@ -49,7 +49,7 @@ const DesignProvider: React.FC<PropsWithChildren> = ({ children }) => {
   })
 
   const getDesign = async () => {
-    const response = await axios.get('https://server-production-e234.up.railway.app/design')
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/design`)
     if (response.data) {
       setDesign(response.data)
     }

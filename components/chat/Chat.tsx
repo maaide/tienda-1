@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import io from 'socket.io-client'
 
-const socket = io('https://server-production-e234.up.railway.app/')
+const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
 
 export const Chat = () => {
 
@@ -25,7 +25,7 @@ export const Chat = () => {
   const getMessages = async () => {
     if (localStorage.getItem('chatId')) {
       const senderId = localStorage.getItem('chatId')
-      const response = await axios.get(`https://server-production-e234.up.railway.app/chat/${senderId}`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/chat/${senderId}`)
       setChat(response.data)
     }
   }
@@ -86,9 +86,9 @@ export const Chat = () => {
     }
     socket.emit('message', {message: message, senderId: senderId, createdAt: new Date()})
     if (chat.length === 1) {
-      await axios.post('https://server-production-e234.up.railway.app/chat/create', { senderId: senderId, response: chat[0].response, agent: false, adminView: false, userView: true })
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/chat/create`, { senderId: senderId, response: chat[0].response, agent: false, adminView: false, userView: true })
     }
-    const response = await axios.post('https://server-production-e234.up.railway.app/chat', { senderId: senderId, message: newMessage, adminView: false, userView: true })
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/chat`, { senderId: senderId, message: newMessage, adminView: false, userView: true })
     if (response.data.response) {
       setChat(chat.filter(mes => mes.message === message))
     }
@@ -149,7 +149,7 @@ export const Chat = () => {
         }
         const senderId = localStorage.getItem('chatId')
         if (senderId) {
-          await axios.put(`https://server-production-e234.up.railway.app/chat-user/${senderId}`)
+          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/chat-user/${senderId}`)
           getMessages()
         } else {
           chat[0].userView = true

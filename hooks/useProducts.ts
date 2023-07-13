@@ -3,7 +3,7 @@ import { IProduct } from '../interfaces'
 
 export const useProducts = ( url: string, config: SWRConfiguration = {} ) => {
 
-  const { data, error } = useSWR<IProduct[]>(`https://server-production-e234.up.railway.app${ url }`, config )
+  const { data, error } = useSWR<IProduct[]>(`${process.env.NEXT_PUBLIC_API_URL}${ url }`, config )
 
   return {
     products: data || [],

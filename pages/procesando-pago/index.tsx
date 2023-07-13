@@ -11,7 +11,7 @@ const PayProcess = () => {
     const urlParams = new URLSearchParams(window.location.search)
     const tokenWs = urlParams.get('token_ws')
     if (tokenWs) {
-      const response = await axios.post('https://server-production-e234.up.railway.app/pay/commit', { token: tokenWs, sell: JSON.parse(localStorage.getItem('sell')!) })
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pay/commit`, { token: tokenWs, sell: JSON.parse(localStorage.getItem('sell')!) })
       if (response.data.status === 'FAILED') {
         router.push('/pago-fallido')
       }
