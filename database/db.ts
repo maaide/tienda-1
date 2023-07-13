@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const MONGODB_URI = process.env.MONGO_URL
+const MONGODB_URI = process.env.NEXT_PUBLIC_MONGO_URL
 
 declare global {
   var mongoose: any
