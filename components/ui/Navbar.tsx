@@ -106,7 +106,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             : ''
           : ''
       }
-      <div style={{ top: '-1px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
+      <div style={{ top: '-0.5px' }} className='sticky border-b flex bg-white w-full z-30 dark:bg-neutral-900 dark:border-neutral-800'>
         <div className='m-auto w-1280 flex justify-between z-40 px-2 py-1 575:py-0'>
           <div className='hidden gap-2 575:flex'>
             {
@@ -313,7 +313,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
               setCartView('hidden')
             }, 200)
           }
-        }} className={`hidden w-full z-50 absolute top-[54px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
+        }} className={`hidden w-full z-50 absolute top-[53px] 575:${cartView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
               <NavbarCart setCartView={setCartView} setCartPc={setCartPc} cartOpacity={cartOpacity} setCartOpacity={setCartOpacity} />
