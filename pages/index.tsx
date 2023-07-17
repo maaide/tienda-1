@@ -27,9 +27,13 @@ export default function Home() {
                 </div>
               </div>
             )
-            : <>
-              <Categories categories={categories} />
-            </>
+            : categories.length
+              ? (
+                <>
+                  <Categories categories={categories} />
+                </>
+              )
+              : ''
         }
       </div>
     </>

@@ -19,7 +19,9 @@ export const Footer = () => {
 
   const getStoreData = async () => {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/store-data`)
-    setStoreData(response.data)
+    if (response.data) {
+      setStoreData(response.data)
+    }
   }
 
   useEffect(() => {
@@ -31,7 +33,11 @@ export const Footer = () => {
       <div className='w-1280 m-auto'>
         <div className='flex gap-4 justify-between flex-wrap pb-6 border-b'>
           <div>
-            <Image className='w-52 h-auto mb-3' src={storeData.logoWhite} alt='Logo' width={144} height={50.39} />
+            {
+              storeData?.logoWhite
+                ? <Image className='w-36 h-auto mb-3' src={storeData.logoWhite} alt='Logo' width={144} height={50.39} />
+                : <Image className='w-36 h-auto mb-3' src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={144} height={50.39} />
+            }
             <p className='text-white mb-4 text-sm'>contacto@blaspod.cl</p>
             <div className='flex gap-4'>
               <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 320 512" className="text-white text-xl" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path></svg>

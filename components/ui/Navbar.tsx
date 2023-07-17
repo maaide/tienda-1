@@ -112,7 +112,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
             {
               !mounted
                 ? <Link href='/'><div className='h-14 w-1' /></Link>
-                : storeData.logo
+                : storeData?.logo
                   ? theme === 'system'
                     ? systemTheme === 'dark'
                       ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
@@ -120,7 +120,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     : theme === 'dark'
                       ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
                       : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
-                  : ''
+                  : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src="https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png" alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
           {
@@ -218,7 +218,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     {
                       !mounted
                         ? <Link href='/'><div className='h-14 w-1' /></Link>
-                        : storeData.logo
+                        : storeData?.logo
                           ? theme === 'system'
                             ? systemTheme === 'dark'
                               ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
