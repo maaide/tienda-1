@@ -7,6 +7,17 @@ import CartProvider from '../context/cart/CartProvider'
 import { Chat } from '../components/chat'
 import DesignProvider from '../context/design/DesignProvider'
 import LogoProvider from '@/context/logo/LogoProvider'
+import { Montserrat, Poppins } from 'next/font/google'
+
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600'],
+  preload: false
+})
+
+const montserrat = Montserrat({
+  weight: ['300', '400', '500', '600', '700'],
+  preload: false
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -20,6 +31,14 @@ export default function App({ Component, pageProps }: AppProps) {
           <LogoProvider>
             <CartProvider>
               <MainLayout>
+                <style jsx global>{`
+                  h1, h2, h3, h4, h5 {
+                    font-family: ${montserrat.style.fontFamily};
+                  }
+                  p, span, button, a, input, textarea, select {
+                    font-family: ${poppins.style.fontFamily};
+                  }
+                `}</style>
                 <Component {...pageProps} />
                 <Chat />
               </MainLayout>
