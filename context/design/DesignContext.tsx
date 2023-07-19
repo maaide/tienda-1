@@ -3,7 +3,8 @@ import { createContext } from 'react'
 
 interface ContextProps {
     design: IDesign,
-    setDesign: any
+    setDesign: any,
+    load: boolean
 }
 
 const DesignContext = createContext({} as ContextProps)

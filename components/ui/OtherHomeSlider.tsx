@@ -12,7 +12,7 @@ import LogoContext from '@/context/logo/LogoContext'
 
 export const OtherHomeSlider = () => {
 
-  const { design } = useContext(DesignContext)
+  const { design, load } = useContext(DesignContext)
   const { logoLoad } = useContext(LogoContext)
 
   const [loadingImage, setLoadingImage] = useState(false)
@@ -36,7 +36,7 @@ export const OtherHomeSlider = () => {
   }, [loadingImage, logoLoad])
 
   useEffect(() => {
-    if (logoLoad && design.home.banner[0].image.url === '') {
+    if (logoLoad && load) {
       setBgView('opacity-1')
       setTimeout(() => {
         setTextDefaultView('opacity-1')

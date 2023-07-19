@@ -47,11 +47,13 @@ const DesignProvider: React.FC<PropsWithChildren> = ({ children }) => {
       sectionProducts: ''
     }
   })
+  const [load, setLoad] = useState(false)
 
   const getDesign = async () => {
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/design`)
     if (response.data) {
       setDesign(response.data)
+      setLoad(true)
     }
   }
 
@@ -62,7 +64,8 @@ const DesignProvider: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <DesignContext.Provider value={{
       design,
-      setDesign
+      setDesign,
+      load
     }}>
       { children }
     </DesignContext.Provider>
