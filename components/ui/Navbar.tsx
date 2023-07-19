@@ -351,7 +351,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           setIndex('hidden')
                         }, 150)
                       }} href={`/tienda/${category.slug}`} className='flex gap-2' key={category._id}>
-                        <Image className='w-28 h-auto' src={category.image!} width={112} height={112} alt={`Categoria ${category.category}`} />
+                        <Image className='w-28 h-auto' src={category.image?.url!} width={112} height={112} alt={`Categoria ${category.category}`} />
                         <h2 className='mt-auto tracking-widest text-[#1c1b1b] font-medium mb-auto dark:text-white'>{category.category.toUpperCase()}</h2>
                       </Link>
                     ))
@@ -392,7 +392,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         setNavCategoriesOpacity('opacity-0')
                         setNavCategories('hidden')
                         router.push(`/tienda/${category.slug}`)
-                      }} src={category.image!} width={256} height={256} alt={`Categoria ${category.category}`} />
+                      }} src={category.image?.url!} width={256} height={256} alt={`Categoria ${category.category}`} />
                       <Link href={`/tienda/${category.slug}`} onClick={() => {
                         setNavCategoriesOpacity('opacity-0')
                         setNavCategories('hidden')

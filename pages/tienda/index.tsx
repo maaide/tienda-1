@@ -26,7 +26,7 @@ const Shop = () => {
         <title>Tienda</title>
       </Head>
       {
-        design.shop.banner !== '' && design.shop.banner
+        design.shop.banner?.url !== '' && design.shop.banner
           ? (
             <div className={`${bgOpacityImage} transition-opacity duration-200 bg-gradient-to-r from-sky-500 to-indigo-500 flex h-96`}>
               <div className='w-1280 m-auto pl-4 pr-4 z-10 pt-20 pb-20'>
@@ -34,8 +34,8 @@ const Shop = () => {
                 <p className='text-lg text-white w-full text-center'>{design.shop.description !== '' ? design.shop.description : 'Encuentra los productos de la más alta calidad y siempre con increíbles precios.'}</p>
               </div>
               {
-                design.shop.banner !== '' && design.shop.banner
-                  ? <Image onLoadingComplete={() => setBgOpacityImage('opacity-1')} className='absolute z-0 h-96 w-full object-cover' src={design.shop.banner!} alt='Banner Tienda' width={1920} height={1080} />
+                design.shop.banner.url !== '' && design.shop.banner
+                  ? <Image onLoadingComplete={() => setBgOpacityImage('opacity-1')} className='absolute z-0 h-96 w-full object-cover' src={design.shop.banner.url!} alt='Banner Tienda' width={1920} height={1080} />
                   : ''
               }
             </div>

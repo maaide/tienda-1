@@ -49,7 +49,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
                 <h1 className='text-[25px] font-semibold tracking-widest text-white mb-4 text-center md:text-[32px]'>{category.category.toUpperCase()}</h1>
                 <p className='text-lg text-white w-full text-center'>{category.description}</p>
               </div>
-              <Image onLoadingComplete={() => setBgOpacityImage('opacity-1')} className='absolute z-0 h-96 w-full object-cover' src={category.banner} alt='Banner categoria' width={1920} height={1080} />
+              <Image onLoadingComplete={() => setBgOpacityImage('opacity-1')} className='absolute z-0 h-96 w-full object-cover' src={category.banner.url} alt='Banner categoria' width={1920} height={1080} />
             </div>
           )
           : (

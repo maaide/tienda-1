@@ -2,7 +2,7 @@ export interface IProduct {
   _id: string
   name: string
   description: string
-  images: string[]
+  images: { public_id: string, url: string }[]
   stock: number
   price: number
   beforePrice?: number

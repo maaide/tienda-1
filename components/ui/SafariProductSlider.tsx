@@ -9,7 +9,7 @@ import { Keyboard, Mousewheel, Navigation, Pagination } from "swiper"
 import Image from 'next/image'
 
 interface Props {
-  images: string[]
+  images: { public_id: string, url: string }[]
 }
 
 export const SafariProductSlider: React.FC<Props> = ({ images }) => {
@@ -38,8 +38,8 @@ export const SafariProductSlider: React.FC<Props> = ({ images }) => {
         {
           images.map(image => {
             return (
-              <SwiperSlide key={ image }>
-                <Image onLoadingComplete={() => setLoading(true)} src={image} alt='Imagen producto' width={650} height={650} className={`${opacity} transition-opacity duration-200 m-auto`} />
+              <SwiperSlide key={ image.public_id }>
+                <Image onLoadingComplete={() => setLoading(true)} src={image.url} alt='Imagen producto' width={650} height={650} className={`${opacity} transition-opacity duration-200 m-auto`} />
               </SwiperSlide>
             )
           })

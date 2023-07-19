@@ -11,7 +11,7 @@ const DesignProvider: React.FC<PropsWithChildren> = ({ children }) => {
     },
     home: {
       banner: [{
-        image: '',
+        image: { public_id: '', url: '' },
         title: '',
         text: '',
         textButton: '',

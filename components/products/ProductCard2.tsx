@@ -16,7 +16,7 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
     name: product.name,
-    image: product.images[0],
+    image: product.images[0].url,
     price: product.price,
     beforePrice: product.beforePrice,
     slug: product.slug,
@@ -44,7 +44,7 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
   return (
     <div className='inline-block p-2 m-auto w-40 450:w-52 580:w-64'>
       <Image
-        src={ productImage } alt={ productImage }
+        src={ productImage.url } alt={ productImage.url }
         onLoad={ () => setIsImageLoaded(true) }
         onMouseEnter={ () => setIsHovered(true) }
         onMouseLeave={ () => setIsHovered(false) }

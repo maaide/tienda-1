@@ -27,7 +27,7 @@ export interface IDesign {
     shop: {
         title: string
         description: string
-        banner?: string
+        banner?: { public_id: string, url: string }
     }
     subscription: {
         title: string
@@ -40,7 +40,7 @@ export interface IDesign {
 }
 
 export interface IBanner {
-    image: string
+    image: { public_id: string, url: string }
     title: string
     text: string
     textButton: string

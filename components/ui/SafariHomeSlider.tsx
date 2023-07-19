@@ -59,7 +59,7 @@ export const SafariHomeSlider = () => {
       modules={[Navigation, Pagination, Mousewheel, Keyboard]}
     >
       {
-        design.home.banner.length && design.home.banner[0].image !== ''
+        design.home.banner.length && design.home.banner[0].image.url !== ''
           ? design.home.banner.map(banner => (
             <SwiperSlide key={banner.title}>
               <div className={`h-400 flex xl:h-600 2xl:h-700`}>
@@ -68,7 +68,7 @@ export const SafariHomeSlider = () => {
                   <p className={`${textView} transition-opacity duration-200 text-white text-lg mb-4`}>{banner.text}</p>
                   <Link className={`${buttonView} transition-opacity duration-200`} href={banner.linkButton}><Button>{banner.textButton}</Button></Link>
                 </div>
-                <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src={banner.image} alt='banner' />
+                <Image onLoadingComplete={() => setLoadingImage(true)} width={1920} height={1080} className={`absolute object-cover h-full w-full -z-10 ${imageView} transition-opacity duration-200`} src={banner.image.url} alt='banner' />
               </div>
             </SwiperSlide>
           ))

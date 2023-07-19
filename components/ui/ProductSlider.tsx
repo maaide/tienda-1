@@ -3,7 +3,7 @@ import browser from 'browser-detect'
 import { OtherProductSlider, SafariProductSlider } from './'
 
 interface Props {
-  images: string[]
+  images: { public_id: string, url: string }[]
 }
 
 export const ProductSlider: React.FC<Props> = ({ images }) => {

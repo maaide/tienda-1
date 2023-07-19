@@ -24,7 +24,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const [tempCartProduct, setTempCartProduct] = useState<ICartProduct>({
     _id: product._id,
     name: product.name,
-    image: product.images[0],
+    image: product.images[0].url,
     price: product.price,
     beforePrice: product.beforePrice,
     slug: product.slug,
@@ -56,7 +56,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
     setTempCartProduct({
       _id: product._id,
       name: product.name,
-      image: product.images[0],
+      image: product.images[0].url,
       price: product.price,
       beforePrice: product.beforePrice,
       slug: product.slug,
@@ -124,7 +124,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
         <meta name="og:description" content={ product.descriptionSeo } />
         {
           product.images[0] && (
-            <meta name="og:image" content={ product.images[0] } />
+            <meta name="og:image" content={ product.images[0].url } />
           )
         }
       </Head>
