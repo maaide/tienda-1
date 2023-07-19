@@ -36,7 +36,7 @@ export const OtherHomeSlider = () => {
   }, [loadingImage, logoLoad])
 
   useEffect(() => {
-    if (logoLoad) {
+    if (logoLoad && design.home.banner[0].image.url !== '') {
       setBgView('opacity-1')
       setTimeout(() => {
         setTextDefaultView('opacity-1')
