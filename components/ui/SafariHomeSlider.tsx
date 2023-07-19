@@ -36,7 +36,7 @@ export const SafariHomeSlider = () => {
   }, [loadingImage, logoLoad])
 
   useEffect(() => {
-    if (logoLoad && design.home.banner[0].image.url !== '') {
+    if (logoLoad && design.home.banner[0].image.url === '') {
       setBgView('opacity-1')
       setTimeout(() => {
         setTextDefaultView('opacity-1')
