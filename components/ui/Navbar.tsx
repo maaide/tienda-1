@@ -10,6 +10,7 @@ import axios from 'axios'
 import { IStoreData } from '@/interfaces'
 import DesignContext from '@/context/design/DesignContext'
 import LogoContext from '@/context/logo/LogoContext'
+import AccountLogin from './Account'
 
 interface Props {
   menu: any,
@@ -28,6 +29,10 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
   const [cartView, setCartView] = useState('hidden')
   const [cartOpacity, setCartOpacity] = useState('opacity-0')
   const [cartPc, setCartPc] = useState(true)
+  const [accountView, setAccountView] = useState('hidden')
+  const [accountOpacity, setAccountOpacity] = useState('opacity-0')
+  const [accountPc, setAccountPc] = useState(true)
+  const [account, setAccount] = useState('Ingresar')
   const [navCategories, setNavCategories] = useState('hidden')
   const [navCategoriesOpacity, setNavCategoriesOpacity] = useState('opacity-0')
   const [categoriesPhone, setCategoriesPhone] = useState('hidden')
@@ -148,6 +153,36 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>CONTACTO</div>
                   </Link>
                   {
+                    accountOpacity === 'opacity-0'
+                      ? (
+                        <button onClick={(e: any) => {
+                          e.preventDefault()
+                          setAccountView('flex')
+                          setTimeout(() => {
+                            setAccountOpacity('opacity-1')
+                          }, 50)
+                        }}>
+                          <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10.9531" cy="6" r="5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></circle>
+                            <path d="M20.4906 18C19.2164 13.9429 15.4261 11 10.9484 11C6.47081 11 2.68051 13.9429 1.40625 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </button>
+                      )
+                      : (
+                        <button onClick={(e: any) => {
+                          e.preventDefault()
+                          setAccountOpacity('opacity-0')
+                          setTimeout(() => {
+                            setAccountView('hidden')
+                          }, 200)
+                        }}>
+                          <svg className="m-auto w-[21px] px-[2px]" role="presentation" viewBox="0 0 16 14">
+                            <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                          </svg>
+                        </button>
+                      )
+                  }
+                  {
                     cartOpacity === 'opacity-0'
                       ? (
                         <div>
@@ -188,7 +223,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   {renderThemeChanger()}
                 </div>
                 <div className='flex px-1 w-full justify-between gap-4 575:hidden'>
-                  <div className='flex w-full'>
+                  <div className='flex w-full gap-4'>
                     {
                       menu === 'w-0 pl-0 pr-0 pt-6 pb-6'
                         ? <button onClick={() => {
@@ -212,6 +247,36 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                             <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
                           </svg>
                         </button>
+                    }
+                    {
+                      accountOpacity === 'opacity-0'
+                        ? (
+                          <button onClick={(e: any) => {
+                            e.preventDefault()
+                            setAccountView('flex')
+                            setTimeout(() => {
+                              setAccountOpacity('opacity-1')
+                            }, 50)
+                          }}>
+                            <svg width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="10.9531" cy="6" r="5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></circle>
+                              <path d="M20.4906 18C19.2164 13.9429 15.4261 11 10.9484 11C6.47081 11 2.68051 13.9429 1.40625 18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                          </button>
+                        )
+                        : (
+                          <button onClick={(e: any) => {
+                            e.preventDefault()
+                            setAccountOpacity('opacity-0')
+                            setTimeout(() => {
+                              setAccountView('hidden')
+                            }, 200)
+                          }}>
+                            <svg className="m-auto w-[21px] px-[2px]" role="presentation" viewBox="0 0 16 14">
+                              <path d="M15 0L1 14m14 0L1 0" stroke="currentColor" fill="none" fill-rule="evenodd"></path>
+                            </svg>
+                          </button>
+                        )
                     }
                   </div>
                   <div className='flex gap-2 575:hidden'>
@@ -292,6 +357,33 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 <Link href='/tienda' className='mt-auto mb-auto text-sm text-neutral-500'>Continuar comprando</Link>
               </div>
           }
+        </div>
+        <div className={`${accountView} transition-opacity duration-200 w-full z-50 absolute top-[51px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
+          <div className='w-1440 ml-auto mr-auto'>
+            <div className='ml-auto h-fit flex w-full 400:w-96'>
+              <AccountLogin account={account} accountOpacity={accountOpacity} setAccount={setAccount} setAccountPc={setAccountPc} />
+            </div>
+            <div onClick={() => {
+              setAccountOpacity('opacity-0')
+              setTimeout(() => {
+                setAccountView('hidden')
+              }, 200)
+            }} className='h-full w-full' />
+          </div>
+        </div>
+        <div onClick={() => {
+          if (accountPc) {
+            setAccountOpacity('opacity-0')
+            setTimeout(() => {
+              setAccountView('hidden')
+            }, 200)
+          }
+        }} className={`hidden w-full z-50 absolute top-[53px] 575:${accountView}`} style={{ height: 'calc(100vh - 91px)' }}>
+          <div className='w-1440 ml-auto mr-auto'>
+            <div className='ml-auto h-fit flex w-full 400:w-96'>
+              <AccountLogin account={account} accountOpacity={accountOpacity} setAccount={setAccount} setAccountPc={setAccountPc} />
+            </div>
+          </div>
         </div>
         <div className={`${cartView} transition-opacity duration-200 w-full z-50 absolute top-[51px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
