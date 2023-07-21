@@ -38,8 +38,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
       redirect: false
     })
     if (res?.error) return setError(res.error)
-    if (res?.ok) return router.push('/cuenta')
     setLoginLoading(false)
+    if (res?.ok) return router.push('/cuenta')
   }
 
   const registerHandleSubmit = async () => {
@@ -52,8 +52,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
       redirect: false
     })
     if (res?.error) return setError(res.error)
-    if (res?.ok) return router.push('/cuenta')
     setRegisterLoading(false)
+    if (res?.ok) return router.push('/cuenta')
   }
 
   return (

@@ -33,8 +33,8 @@ const LoginPage = () => {
       redirect: false
     })
     if (res?.error) return setError(res.error)
-    if (res?.ok) return router.push('/cuenta')
     setLoginLoading(false)
+    if (res?.ok) return router.push('/cuenta')
   }
 
   const registerHandleSubmit = async () => {
@@ -47,8 +47,8 @@ const LoginPage = () => {
       redirect: false
     })
     if (res?.error) return setError(res.error)
-    if (res?.ok) return router.push('/cuenta')
     setRegisterLoading(false)
+    if (res?.ok) return router.push('/cuenta')
   }
 
   return (
