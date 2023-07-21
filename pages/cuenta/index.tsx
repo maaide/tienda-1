@@ -40,7 +40,7 @@ const AccountPage = () => {
   return (
     <div className='w-full px-2'>
       <div className='w-[1280px] m-auto flex flex-col gap-4 py-14'>
-        <h1 className='text-3xl font-medium'>HOLA{user.firstName ? ` ${user.firstName.toUpperCase()}!` : '!'}</h1>
+        <h1 className='text-3xl font-medium'>HOLA{user?.firstName ? ` ${user.firstName.toUpperCase()}!` : '!'}</h1>
         <div className='w-full flex gap-8'>
           <div className='w-1/4 flex flex-col gap-2'>
             <h2 className='text-xl font-medium'>CUENTA</h2>
