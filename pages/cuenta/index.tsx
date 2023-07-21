@@ -13,9 +13,6 @@ const AccountPage = () => {
 
   const { data: session, status } = useSession()
 
-  console.log(session)
-  console.log(status)
-
   const user = session?.user as { firstName: string, lastName: string, email: string, _id: string }
 
   const getBuys = async () => {
