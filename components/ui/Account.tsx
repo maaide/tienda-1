@@ -37,8 +37,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
       password: login.password,
       redirect: false
     })
-    if (res?.error) return setError(res.error)
     setLoginLoading(false)
+    if (res?.error) return setError(res.error)
     if (res?.ok) return router.push('/cuenta')
   }
 
@@ -51,13 +51,22 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
       password: register.password,
       redirect: false
     })
-    if (res?.error) return setError(res.error)
     setRegisterLoading(false)
+    if (res?.error) return setError(res.error)
     if (res?.ok) return router.push('/cuenta')
   }
 
   return (
     <div onMouseEnter={() => setAccountPc(false)} onMouseLeave={() => setAccountPc(true)} className={`ml-auto ${accountOpacity} transition-opacity duration-200 flex flex-col gap-3 p-4 rounded-md shadow-md bg-white z-40 w-full dark:bg-neutral-900 dark:border dark:border-neutral-800 400:w-96`}>
+      {
+        error !== ''
+          ? (
+            <div className='bg-red-600 w-full py-2 flex text-white'>
+              <p className='m-auto'>{error}</p>
+            </div>
+          )
+          : ''
+      }
       <h4 className='text-center tracking-widest text-[#1c1b1b] font-semibold pb-2 border-b w-full dark:border-neutral-800 text-[16px] dark:text-white'>CUENTA</h4>
       <div className='flex gap-2'>
         <button onClick={(e: any) => {

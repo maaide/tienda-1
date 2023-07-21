@@ -32,8 +32,8 @@ const LoginPage = () => {
       password: login.password,
       redirect: false
     })
-    if (res?.error) return setError(res.error)
     setLoginLoading(false)
+    if (res?.error) return setError(res.error)
     if (res?.ok) return router.push('/cuenta')
   }
 
@@ -46,8 +46,8 @@ const LoginPage = () => {
       password: register.password,
       redirect: false
     })
-    if (res?.error) return setError(res.error)
     setRegisterLoading(false)
+    if (res?.error) return setError(res.error)
     if (res?.ok) return router.push('/cuenta')
   }
 
