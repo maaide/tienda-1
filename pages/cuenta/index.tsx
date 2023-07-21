@@ -5,7 +5,8 @@ const AccountPage = () => {
 
   const { data: session, status } = useSession()
 
-  console.log(session, status)
+  console.log(session)
+  console.log(status)
 
   return (
     <div>
