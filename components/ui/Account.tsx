@@ -9,9 +9,11 @@ interface Props {
     setAccount: any
     setAccountPc: any
     accountOpacity: string
+    setAccountOpacity: any
+    setAccountView: any
 }
 
-const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, accountOpacity }) => {
+const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, accountOpacity, setAccountOpacity, setAccountView }) => {
 
   const [login, setLogin] = useState({
     email: '',
@@ -39,7 +41,14 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
     })
     setLoginLoading(false)
     if (res?.error) return setError(res.error)
-    if (res?.ok) return router.push('/cuenta')
+    if (res?.ok) {
+      setLogin({ email: '', password: '' })
+      setAccountOpacity('opacity-0')
+      setTimeout(() => {
+        setAccountView('hidden')
+      }, 200)
+      return router.push('/cuenta')
+    }
   }
 
   const registerHandleSubmit = async () => {
@@ -53,7 +62,14 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
     })
     setRegisterLoading(false)
     if (res?.error) return setError(res.error)
-    if (res?.ok) return router.push('/cuenta')
+    if (res?.ok) {
+      setRegister({ firstName: '', lastName: '', email: '', password: '', confirmPassrword: '' })
+      setAccountOpacity('opacity-0')
+      setTimeout(() => {
+        setAccountView('hidden')
+      }, 200)
+      return router.push('/cuenta')
+    } 
   }
 
   return (

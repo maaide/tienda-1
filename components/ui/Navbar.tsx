@@ -361,7 +361,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         <div className={`${accountView} transition-opacity duration-200 w-full z-50 absolute top-[51px] 575:hidden`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <AccountLogin account={account} accountOpacity={accountOpacity} setAccount={setAccount} setAccountPc={setAccountPc} />
+              <AccountLogin account={account} accountOpacity={accountOpacity} setAccount={setAccount} setAccountPc={setAccountPc} setAccountOpacity={setAccountOpacity} setAccountView={setAccountView} />
             </div>
             <div onClick={() => {
               setAccountOpacity('opacity-0')
@@ -381,7 +381,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
         }} className={`hidden w-full z-50 absolute top-[53px] 575:${accountView}`} style={{ height: 'calc(100vh - 91px)' }}>
           <div className='w-1440 ml-auto mr-auto'>
             <div className='ml-auto h-fit flex w-full 400:w-96'>
-              <AccountLogin account={account} accountOpacity={accountOpacity} setAccount={setAccount} setAccountPc={setAccountPc} />
+              <AccountLogin account={account} accountOpacity={accountOpacity} setAccount={setAccount} setAccountPc={setAccountPc} setAccountOpacity={setAccountOpacity} setAccountView={setAccountView} />
             </div>
           </div>
         </div>
