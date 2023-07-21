@@ -125,7 +125,7 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
                       </div>
                       <div className='flex flex-col gap-2'>
                         <p className='text-sm'>Contraseña</p>
-                        <input type='text' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({...login, password: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                        <input type='password' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({...login, password: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                       </div>
                       <button onClick={loginHandleSubmit} className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
                       <Link href='/' className='text-sm'>Olvide mi contraseña</Link>
@@ -147,11 +147,11 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
                       </div>
                       <div className='flex flex-col gap-2'>
                         <p className='text-sm'>Contraseña</p>
-                        <input type='text' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, password: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                        <input type='password' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, password: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                       </div>
                       <div className='flex flex-col gap-2'>
                         <p className='text-sm'>Confirmar contraseña</p>
-                        <input type='text' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, confirmPassrword: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                        <input type='password' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, confirmPassrword: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                       </div>
                       <button onClick={registerHandleSubmit} className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
                     </div>
