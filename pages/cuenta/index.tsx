@@ -1,4 +1,4 @@
-import { Spinner2 } from '@/components/ui'
+import { Spinner2, Spinner } from '@/components/ui'
 import { ISell } from '@/interfaces'
 import axios from 'axios'
 import { signOut, useSession } from 'next-auth/react'
@@ -52,9 +52,9 @@ const AccountPage = () => {
             {
               loadingSells
                 ? (
-                  <div>
-                    <div>
-                      <Spinner2 />
+                  <div className='w-full flex mt-4'>
+                    <div className='m-auto'>
+                      <Spinner />
                     </div>
                   </div>
                 )

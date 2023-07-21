@@ -25,7 +25,8 @@ const LoginPage = () => {
 
   const router = useRouter()
 
-  const loginHandleSubmit = async () => {
+  const loginHandleSubmit = async (e: any) => {
+    e.preventDefault()
     setLoginLoading(true)
     setError('')
     const res = await signIn('credentials', {
@@ -38,7 +39,8 @@ const LoginPage = () => {
     if (res?.ok) return router.push('/cuenta')
   }
 
-  const registerHandleSubmit = async () => {
+  const registerHandleSubmit = async (e: any) => {
+    e.preventDefault()
     setRegisterLoading(true)
     setError('')
     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, register)
@@ -73,7 +75,7 @@ const LoginPage = () => {
         {
           page === 'Ingresar'
             ? (
-              <>
+              <form onSubmit={loginHandleSubmit} className='flex flex-col gap-4 w-full m-auto py-32'>
                 <div className='flex flex-col gap-2'>
                   <p>Email</p>
                   <input type='text' placeholder='Email' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({ ...login, email: e.target.value })} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -82,12 +84,12 @@ const LoginPage = () => {
                   <p>Contraseña</p>
                   <input type='password' placeholder='******' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({ ...login, password: e.target.value })} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 </div>
-                <button onClick={loginHandleSubmit} className='w-full h-10 tracking-widest font-medium bg-main text-white'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
+                <button type='submit' className='w-full h-10 tracking-widest font-medium bg-main text-white'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
                 <Link href='/'>Olvide mi contraseña</Link>
-              </>
+              </form>
             )
             : (
-              <>
+              <form onSubmit={registerHandleSubmit} className='flex flex-col gap-4 w-full m-auto py-32'>
                 <div className='flex flex-col gap-2'>
                   <p>Nombre</p>
                   <input type='text' placeholder='Nombre' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({ ...register, firstName: e.target.value })} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -108,8 +110,8 @@ const LoginPage = () => {
                   <p>Confirmar contraseña</p>
                   <input type='text' placeholder='******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({ ...register, confirmPassrword: e.target.value })} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 </div>
-                <button onClick={registerHandleSubmit} className='w-full h-10 tracking-widest font-medium bg-main text-white'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
-              </>
+                <button type='submit' className='w-full h-10 tracking-widest font-medium bg-main text-white'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
+              </form>
             )
         }
       </div>

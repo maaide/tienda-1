@@ -35,7 +35,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
   const { data: session, status } = useSession()
   const router = useRouter()
 
-  const loginHandleSubmit = async () => {
+  const loginHandleSubmit = async (e: any) => {
+    e.preventDefault()
     setLoginLoading(true)
     setError('')
     const res = await signIn('credentials', {
@@ -55,7 +56,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
     }
   }
 
-  const registerHandleSubmit = async () => {
+  const registerHandleSubmit = async (e: any) => {
+    e.preventDefault()
     setRegisterLoading(true)
     setError('')
     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, register)
@@ -118,7 +120,7 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
               {
                 account === 'Ingresar'
                   ? (
-                    <div className='flex flex-col gap-3'>
+                    <form onSubmit={loginHandleSubmit} className='flex flex-col gap-3'>
                       <div className='flex flex-col gap-2'>
                         <p className='text-sm'>Email</p>
                         <input type='text' placeholder='Email' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({...login, email: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -127,12 +129,12 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
                         <p className='text-sm'>Contraseña</p>
                         <input type='password' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({...login, password: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                       </div>
-                      <button onClick={loginHandleSubmit} className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
+                      <button type='submit' className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
                       <Link href='/' className='text-sm'>Olvide mi contraseña</Link>
-                    </div>
+                    </form>
                   )
                   : (
-                    <div className='flex flex-col gap-3'>
+                    <form onSubmit={registerHandleSubmit} className='flex flex-col gap-3'>
                       <div className='flex flex-col gap-2'>
                         <p className='text-sm'>Nombre</p>
                         <input type='text' placeholder='Nombre' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, firstName: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
@@ -153,8 +155,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
                         <p className='text-sm'>Confirmar contraseña</p>
                         <input type='password' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, confirmPassrword: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                       </div>
-                      <button onClick={registerHandleSubmit} className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
-                    </div>
+                      <button type='submit' className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
+                    </form>
                   )
               }
             </>
