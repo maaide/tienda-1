@@ -95,13 +95,6 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
           )
           : (
             <div className='flex flex-col gap-3'>
-              {
-                error !== ''
-                  ? <div className='w-full h-12 bg-red-500 text-white'>
-                    <p>{error}</p>
-                  </div>
-                  : ''
-              }
               <div className='flex flex-col gap-2'>
                 <p className='text-sm'>Nombre</p>
                 <input type='text' placeholder='Nombre' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, firstName: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
