@@ -1,46 +1,20 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
 
 const MONGODB_URI = process.env.NEXT_PUBLIC_MONGO_URL
 
-declare global {
-  var mongoose: any
-}
-
 if (!MONGODB_URI) {
-  throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
-  )
+  throw new Error("MONGODB_URI must be defined")
 }
 
-let cached = global.mongoose
-
-if (!cached) {
-  cached = global.mongoose = { conn: null, promise: null }
-}
-
-export async function dbConnect() {
-  mongoose.set('strictQuery', false)
-
-  if (cached.conn) {
-    return cached.conn
-  }
-
-  if (!cached.promise) {
-    const opts = {
-      bufferCommands: false,
-    }
-
-    cached.promise = mongoose.connect(MONGODB_URI!, opts).then((mongoose) => {
-      return mongoose
-    })
-  }
-
+export const connectDB = async () => {
   try {
-    cached.conn = await cached.promise
-  } catch (e) {
-    cached.promise = null
-    throw e
+    const { connection } = await mongoose.connect(MONGODB_URI)
+    if (connection.readyState === 1) {
+      console.log("MongoDB Connected")
+      return Promise.resolve(true)
+    }
+  } catch (error) {
+    console.error(error);
+    return Promise.reject(error)
   }
-
-  return cached.conn
 }
