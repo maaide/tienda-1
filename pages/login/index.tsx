@@ -27,6 +27,7 @@ const LoginPage = () => {
 
   const loginHandleSubmit = async () => {
     setLoginLoading(true)
+    setError('')
     const res = await signIn('credentials', {
       email: login.email,
       password: login.password,
@@ -39,6 +40,7 @@ const LoginPage = () => {
 
   const registerHandleSubmit = async () => {
     setRegisterLoading(true)
+    setError('')
     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, register)
     if (response.data.message) setError(response.data.message)
     const res = await signIn('credentials', {
@@ -53,7 +55,7 @@ const LoginPage = () => {
 
   return (
     <div className='w-full flex px-2'>
-      <div className='flex flex-col gap-4 w-[500px] m-auto py-40'>
+      <div className='flex flex-col gap-4 w-[500px] m-auto py-32'>
         {
           error !== ''
             ? (
@@ -65,8 +67,8 @@ const LoginPage = () => {
         }
         <h1 className='text-3xl font-medium'>CUENTA</h1>
         <div className='flex gap-2'>
-          <button onClick={() => setPage('Ingresar')} className={`${page === 'Ingresar' ? 'border-neutral-700' : 'border-white'} w-1/2 border-b-2 h-10`}>Ingresar</button>
-          <button onClick={() => setPage('Registrarse')} className={`${page === 'Registrarse' ? 'border-neutral-700' : 'border-white'} w-1/2 border-b-2 h-10`}>Resgistrarse</button>
+          <button onClick={() => setPage('Ingresar')} className={`${page === 'Ingresar' ? 'border-neutral-700' : 'border-white dark:border-transparent'} w-1/2 border-b-2 h-10`}>Ingresar</button>
+          <button onClick={() => setPage('Registrarse')} className={`${page === 'Registrarse' ? 'border-neutral-700' : 'border-white dark:border-transparent'} w-1/2 border-b-2 h-10`}>Resgistrarse</button>
         </div>
         {
           page === 'Ingresar'
@@ -80,7 +82,7 @@ const LoginPage = () => {
                   <p>Contraseña</p>
                   <input type='text' placeholder='******' onChange={(e: ChangeEvent<HTMLInputElement>) => setLogin({ ...login, password: e.target.value })} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 </div>
-                <button onClick={loginHandleSubmit} className='w-full h-10 bg-main text-white'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
+                <button onClick={loginHandleSubmit} className='w-full h-10 tracking-widest font-medium bg-main text-white'>{loginLoading ? <Spinner2 /> : 'INGRESAR'}</button>
                 <Link href='/'>Olvide mi contraseña</Link>
               </>
             )
@@ -106,8 +108,7 @@ const LoginPage = () => {
                   <p>Confirmar contraseña</p>
                   <input type='text' placeholder='******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({ ...register, confirmPassrword: e.target.value })} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 </div>
-                <button onClick={registerHandleSubmit} className='w-full h-10 bg-main text-white'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
-                <Link href='/'>Olvide mi contraseña</Link>
+                <button onClick={registerHandleSubmit} className='w-full h-10 tracking-widest font-medium bg-main text-white'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
               </>
             )
         }
