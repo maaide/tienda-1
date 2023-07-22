@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import io from 'socket.io-client'
 
-const socket = io(`${process.env.NEXT_PUBLIC_API_URL}`)
+const socket = io(`${process.env.NEXT_PUBLIC_API_URL}/`)
 
 export const Chat = () => {
 
@@ -25,7 +25,7 @@ export const Chat = () => {
   const getMessages = async () => {
     if (localStorage.getItem('chatId')) {
       const senderId = localStorage.getItem('chatId')
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/chat/${senderId}`)
+      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}//chat/${senderId}`)
       setChat(response.data)
     }
   }
