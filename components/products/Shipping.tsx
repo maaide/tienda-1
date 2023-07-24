@@ -67,23 +67,29 @@ export const Shipping: React.FC<Props> = ({ setShipping, sell, setSell }) => {
       }
 
   return (
-    <div className=''>
-      <select className='border text-sm p-2 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={regionChange}>
-        <option>Seleccionar Región</option>
-        {
-        regions !== undefined
-          ? regions.map(region => <option key={region.regionId}>{region.regionName}</option>)
-          : ''
-        }
-      </select>
-      {
-        citys !== undefined
-        ? <select className='block border text-sm p-2 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={cityChange}>
-          <option>Seleccionar Ciudad</option>
-          {citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)}
+    <div className='flex gap-2'>
+      <div className='flex flex-col gap-2 w-1/2'>
+        <p className='text-sm'>Región</p>
+        <select className='border text-sm p-2 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={regionChange}>
+          <option>Seleccionar Región</option>
+          {
+          regions !== undefined
+            ? regions.map(region => <option key={region.regionId}>{region.regionName}</option>)
+            : ''
+          }
         </select>
-        : ''
-      }
+      </div>
+      <div className='flex flex-col gap-2 w-1/2'>
+        <p className='text-sm'>Ciudad</p>
+        <select className='block border text-sm p-2 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-full mb-2' onChange={cityChange}>
+          <option>Seleccionar Ciudad</option>
+          {
+            citys !== undefined
+              ? citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)
+              : ''
+          }
+        </select>
+      </div>
     </div>
   )
 }

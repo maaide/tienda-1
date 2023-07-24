@@ -351,7 +351,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                           : theme === 'dark'
                             ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
                             : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
-                        : ''
+                        : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-0.5' src="https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png" alt='Logo' width={155} height={53.72} /></Link>
                   }
                 </div>
                 {renderThemeChanger()}
