@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Shipping } from '../../components/products'
 import { Button2 } from '../../components/ui'
-import { ICartProduct, IClient, IQuantityOffer, ISell, IShipping, IStoreData } from '../../interfaces'
+import { City, ICartProduct, IClient, IQuantityOffer, ISell, IShipping, IStoreData, Region } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -31,7 +31,8 @@ const CheckOut = () => {
     shippingMethod: '',
     shippingState: '',
     subscription: false,
-    phone: Number(Cookies.get('phone')) || undefined
+    phone: Number(Cookies.get('phone')) || undefined,
+    buyOrder: ''
   })
   const [cart, setCart] = useState<ICartProduct[]>()
   const [shipping, setShipping] = useState<IShipping[]>()
@@ -49,6 +50,7 @@ const CheckOut = () => {
   const [shippingView, setShippingView] = useState('hidden')
   const [shippingOpacity, setShippingOpacity] = useState('opacity-0')
   const [shippingMouse, setShippingMouse] = useState(false)
+  const [clientId, setClientId] = useState('')
 
   const { data: session, status } = useSession()
 
@@ -57,11 +59,51 @@ const CheckOut = () => {
   const router = useRouter()
 
   const getClientData = async () => {
-    if (user) {
+    if (status === 'authenticated') {
       const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/client-email/${user.email}`)
       const data: IClient = response.data
       if (data) {
         setSell({...sell, address: data.address ? data.address : '', city: data.city ? data.city : '', details: data.departament ? data.departament : '', email: data.email, firstName: data.firstName ? data.firstName : '', lastName: data.lastName ? data.lastName : '', phone: data.phone ? Number(data.phone) : undefined, region: data.region ? data.region : ''})
+        setClientId(data._id!)
+      }
+      if (data.city && data.region) {
+        const res = await axios.get('https://testservices.wschilexpress.com/georeference/api/v1.0/regions', {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Ocp-Apim-Subscription-Key': '4ebbe4e737b54bfe94307bca9e36ac4d'
+          }
+        })
+        const regions = res.data.regions
+        const region = regions?.find((region: any) => region.regionName === data.region)
+        const response = await axios.get(`https://testservices.wschilexpress.com/georeference/api/v1.0/coverage-areas?RegionCode=${region?.regionId}&type=0`, {
+          headers: {
+            'Cache-Control': 'no-cache',
+            'Ocp-Apim-Subscription-Key': '4ebbe4e737b54bfe94307bca9e36ac4d'
+          }
+        })
+        const citys = response.data.coverageAreas
+        const city = citys?.find((city: any) => city.countyName === data.city)
+        const request = await axios.post('https://testservices.wschilexpress.com/rating/api/v1.0/rates/courier', {
+          "originCountyCode": "QNOR",
+          "destinationCountyCode": city?.countyCode,
+          "package": {
+              "weight": "5",
+              "height": "30",
+              "width": "30",
+              "length": "30"
+          },
+          "productType": 3,
+          "contentType": 1,
+          "declaredWorth": "10000",
+          "deliveryTime": 0
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+            'Ocp-Apim-Subscription-Key': '512b6b0ff709426d82968a33be83b4a1'
+          }
+        })
+        setShipping(request.data.data.courierServiceOptions)
       }
     }
   }
@@ -102,10 +144,10 @@ const CheckOut = () => {
   }, [])
 
   const inputChange = async (e: any) => {
-    setSell({ ...sell, [e.target.name]: e.target.value })
+    setSell({ ...sell, [e.target.name]: e.target.value, buyOrder: `${storeData?.name ? storeData.name : 'ORDEN'}${Math.floor(Math.random() * 10000) + 1}` })
     if (e.target.name === 'pay' && e.target.value === 'WebPay Plus') {
       const pago = {
-        buyOrder: `${storeData?.name}${Math.floor(Math.random() * 10000) + 1}`,
+        buyOrder: `${storeData?.name ? storeData.name : 'ORDEN'}${Math.floor(Math.random() * 10000) + 1}`,
         sessionId: `S-${Math.floor(Math.random() * 10000) + 1}`,
         amount: sell.total,
         returnUrl: `https://${domain}/procesando-pago`
@@ -143,6 +185,9 @@ const CheckOut = () => {
     e.preventDefault()
     setSubmitLoading(true)
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
+    if (clientId !== '') {
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`, sell)
+    }
     localStorage.setItem('sell', JSON.stringify(sell))
     if (saveData) {
       Cookies.set('firstName', sell.firstName)
@@ -168,6 +213,9 @@ const CheckOut = () => {
     e.preventDefault()
     setSubmitLoading(true)
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
+    if (clientId !== '') {
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`, sell)
+    }
     localStorage.setItem('sell', JSON.stringify(sell))
     if (saveData) {
       Cookies.set('firstName', sell.firstName)
