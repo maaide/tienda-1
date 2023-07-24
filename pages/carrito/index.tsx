@@ -9,6 +9,8 @@ import { ICartProduct, IProduct, IQuantityOffer } from '../../interfaces'
 import { NumberFormat } from '../../utils'
 import Image from 'next/image'
 import DesignContext from '@/context/design/DesignContext'
+import { useSession } from 'next-auth/react'
+import axios from 'axios'
 
 const CartPage = () => {
 
@@ -18,9 +20,20 @@ const CartPage = () => {
   const [cartProducts, setCartProducts] = useState<ICartProduct[]>()
   const [shippingCost, setShippingCost] = useState(0)
   const [productsFiltered, setProductsFiltered] = useState<IProduct[]>([])
+  const { data: session, status } = useSession()
+
+  const user = session?.user as { firstName: string, lastName: string, email: string, _id: string, cart: [] }
+
+  const getCart = () => {
+    if (status === 'authenticated') {
+      setCartProducts(user.cart)
+    } else {
+      setCartProducts(JSON.parse(localStorage.getItem('cart')!))
+    }
+  }
 
   useEffect(() => {
-    setCartProducts(JSON.parse(localStorage.getItem('cart')!))
+    getCart()
   }, [])
 
   const { products, isLoadingProducts } = useProducts('/products')
@@ -66,7 +79,7 @@ const CartPage = () => {
             <div className='w-full 1010:w-7/12'>
               {
                 cartProducts?.length
-                  ? cartProducts?.map(product => (
+                  ? cartProducts?.map((product) => (
                     <div className='flex gap-4 mb-2 justify-between' key={product._id}>
                       <div className='flex gap-2'>
                         <Link href={`/productos/${product.slug}`}>
@@ -99,7 +112,7 @@ const CartPage = () => {
                         <div className='flex border border-main w-fit h-fit mt-auto mb-auto rounded-md dark:border-neutral-500'>
                           {
                             product.quantity > 1
-                            ? <button className='pt-1 pb-1 pl-3 pr-2 text-main text-sm dark:border-neutral-500' onClick={() => {
+                            ? <button className='pt-1 pb-1 pl-3 pr-2 text-main text-sm dark:border-neutral-500' onClick={async () => {
                               const index = cartProducts.findIndex((item: ICartProduct) => item === product)
                               const productEdit: ICartProduct = cartProducts[index]
                               const updateProduct: ICartProduct = { ...productEdit, quantity: productEdit.quantity - 1 }
@@ -108,13 +121,16 @@ const CartPage = () => {
                               localStorage.setItem('cart', updateCart)
                               setCart(JSON.parse(localStorage.getItem('cart')!))
                               setCartProducts(JSON.parse(localStorage.getItem('cart')!))
+                              if (status === 'authenticated') {
+                                await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/account/${user._id}`, { cart: JSON.parse(localStorage.getItem('cart')!) })
+                              }
                             }}>-</button>
                             : <button className='pt-1 pb-1 pl-3 pr-2 text-main/50 cursor-not-allowed text-sm dark:text-neutral-500'>-</button>
                           }
                           <span className='text-main m-auto w-4 text-center text-sm dark:text-neutral-500'>{product.quantity}</span>
                           {
                             product.quantity < product.stock!
-                            ? <button className='pt-1 pb-1 pl-2 pr-3 text-main text-sm dark:text-neutral-500' onClick={() => {
+                            ? <button className='pt-1 pb-1 pl-2 pr-3 text-main text-sm dark:text-neutral-500' onClick={async () => {
                               const index = cartProducts.findIndex((item: ICartProduct) => item === product)
                               const productEdit: ICartProduct = cartProducts[index]
                               const updateProduct: ICartProduct = { ...productEdit, quantity: productEdit.quantity + 1 }
@@ -123,11 +139,14 @@ const CartPage = () => {
                               localStorage.setItem('cart', updateCart)
                               setCart(JSON.parse(localStorage.getItem('cart')!))
                               setCartProducts(JSON.parse(localStorage.getItem('cart')!))
+                              if (status === 'authenticated') {
+                                await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/account/${user._id}`, { cart: JSON.parse(localStorage.getItem('cart')!) })
+                              }
                             }}>+</button>
                             : <button className='pt-1 pb-1 pl-2 pr-3 text-main/50 cursor-not-allowed dark:text-neutral-500'>+</button>
                           }
                         </div>
-                        <button onClick={() => {
+                        <button onClick={async () => {
                           const cartProduct = JSON.parse(localStorage.getItem('cart')!)
                           const productSelect = cartProduct.filter((item: ICartProduct) => item.name === product.name)
                           if (productSelect.length >= 2) {
@@ -135,11 +154,17 @@ const CartPage = () => {
                             localStorage.setItem('cart', JSON.stringify(products))
                             setCart(products)
                             setCartProducts(products)
+                            if (status === 'authenticated') {
+                              await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/account/${user._id}`, { cart: JSON.parse(localStorage.getItem('cart')!) })
+                            }
                           } else {
                             const products = cartProduct.filter((item: ICartProduct) => item.name !== product.name)
                             localStorage.setItem('cart', JSON.stringify(products))
                             setCart(products)
                             setCartProducts(products)
+                            if (status === 'authenticated') {
+                              await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/account/${user._id}`, { cart: JSON.parse(localStorage.getItem('cart')!) })
+                            }
                           }
                         }}>
                           <svg className="m-auto w-[17px]" role="presentation" viewBox="0 0 16 14">

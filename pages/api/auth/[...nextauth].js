@@ -21,7 +21,7 @@ export const authOptions = {
         const passwordMatch = await bcrypt.compare(credentials.password, userFound.password)
         if (!passwordMatch) throw new Error('Credenciales invalidas')
 
-        return { email: userFound.email, _id: userFound._id, firstName: userFound.firstName, lastName: userFound.lastName }
+        return { email: userFound.email, _id: userFound._id, firstName: userFound.firstName, lastName: userFound.lastName, cart: userFound.cart }
       }
     })
   ],

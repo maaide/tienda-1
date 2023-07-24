@@ -21,7 +21,7 @@ const EditAccountPage = () => {
   
   const { data: session } = useSession()
 
-  const user = session?.user as { firstName: string, lastName: string, email: string, _id: string }
+  const user = session?.user as { firstName: string, lastName: string, email: string, _id: string, cart: [] }
 
   const getAccountData = async () => {
     setLoadingData(true)

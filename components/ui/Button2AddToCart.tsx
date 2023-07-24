@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import React, { useContext, useState } from 'react'
 import CartContext from '../../context/cart/CartContext'
 import { ICartProduct } from '../../interfaces'
+import { useSession } from 'next-auth/react'
 
 interface Props {
   tempCartProduct: ICartProduct
@@ -12,6 +13,9 @@ export const Button2AddToCart: React.FC<Props> = ({ tempCartProduct }) => {
 
   const {setCart} = useContext(CartContext)
   const [text, setText] = useState('Añadir al carrito')
+  const { data: session, status } = useSession()
+
+  const user = session?.user as { firstName: string, lastName: string, email: string, _id: string }
 
   const addToCart = async () => {
     setText('Producto añadido')
@@ -24,25 +28,34 @@ export const Button2AddToCart: React.FC<Props> = ({ tempCartProduct }) => {
           cart[productIndex].quantity = tempCartProduct.quantity + cart[productIndex].quantity
           localStorage.setItem('cart', JSON.stringify(cart))
           setCart(JSON.parse(localStorage.getItem('cart')!))
-          console.log(1)
         } else {
           const cartFinal = cart.concat(tempCartProduct)
           localStorage.setItem('cart', JSON.stringify(cartFinal))
           setCart(JSON.parse(localStorage.getItem('cart')!))
-          console.log(2)
         }
       } else {
         const cartFinal = cart.concat(tempCartProduct)
         localStorage.setItem('cart', JSON.stringify(cartFinal))
         setCart(JSON.parse(localStorage.getItem('cart')!))
-        console.log(3)
       }
     } else {
       localStorage.setItem('cart', `[${JSON.stringify(tempCartProduct)}]`)
       setCart(JSON.parse(localStorage.getItem('cart')!))
-      console.log(4)
     }
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add-cart`, { name: tempCartProduct.name, price: tempCartProduct.price, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+    let offerPrice
+    if (tempCartProduct.quantityOffers && tempCartProduct.quantity > 1) {
+      const filter = tempCartProduct.quantityOffers.filter(offer => offer.quantity <= tempCartProduct.quantity)
+      if (filter.length > 1) {
+        offerPrice = filter.reduce((prev, current) => (prev.quantity > current.quantity) ? prev : current)
+      } else {
+        offerPrice = filter[0]
+      }
+    }
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/add-cart`, { name: tempCartProduct.name, price: offerPrice !== undefined ? Math.floor((tempCartProduct.price * tempCartProduct.quantity) / 100) * (100 - offerPrice.descount) : tempCartProduct.price * tempCartProduct.quantity, quantity: tempCartProduct.quantity, category: tempCartProduct.category, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
+    if (status === 'authenticated') {
+      const cartLocal = JSON.parse(localStorage.getItem('cart')!)
+      await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/account/${user._id}`, { cart: cartLocal })
+    }
     setTimeout(() => {
       setText('Añadir al carrito')
     }, 3000)
