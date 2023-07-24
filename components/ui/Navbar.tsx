@@ -11,6 +11,7 @@ import { IStoreData } from '@/interfaces'
 import DesignContext from '@/context/design/DesignContext'
 import LogoContext from '@/context/logo/LogoContext'
 import AccountLogin from './Account'
+import { useSession } from 'next-auth/react'
 
 interface Props {
   menu: any,
@@ -342,7 +343,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                   {
                     !mounted
                       ? <Link href='/'><div className='h-14 w-1' /></Link>
-                      : storeData.logo
+                      : storeData?.logo
                         ? theme === 'system'
                           ? systemTheme === 'dark'
                             ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>

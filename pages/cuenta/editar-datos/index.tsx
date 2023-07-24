@@ -1,5 +1,5 @@
 import { Spinner, Spinner2 } from '@/components/ui'
-import { City, IAccount, Region } from '@/interfaces'
+import { City, IAccount, IClient, Region } from '@/interfaces'
 import axios from 'axios'
 import { useSession } from 'next-auth/react'
 import React, { useEffect, useState } from 'react'
@@ -11,6 +11,9 @@ const EditAccountPage = () => {
     lastName: '',
     email: ''
   })
+  const [clientData, setClientData] = useState<IClient>({
+    email: ''
+  })
   const [regions, setRegions] = useState<Region[]>()
   const [citys, setCitys] = useState<City[]>()
   const [loading, setLoading] = useState(false)
@@ -20,7 +23,7 @@ const EditAccountPage = () => {
 
   const user = session?.user as { firstName: string, lastName: string, email: string, _id: string }
 
-  const getData = async () => {
+  const getAccountData = async () => {
     setLoadingData(true)
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/account/${user._id}`)
     if (response.data) {
@@ -30,7 +33,18 @@ const EditAccountPage = () => {
   }
 
   useEffect(() => {
-    getData()
+    getAccountData()
+  }, [])
+
+  const getClientData = async () => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/client-email/${user.email}`)
+    if (response.data) {
+      setClientData(response.data)
+    }
+  }
+
+  useEffect(() => {
+    getClientData()
   }, [])
 
   const requestRegions = async () => {
@@ -52,7 +66,7 @@ const EditAccountPage = () => {
   }
 
   const addressChange = (e: any) => {
-    setAccountData({ ...accountData, address: { ...accountData.address!, [e.target.name]: e.target.value } })
+    setClientData({ ...clientData, [e.target.name]: e.target.value })
   }
 
   const regionChange = async (e: any) => {
@@ -64,12 +78,19 @@ const EditAccountPage = () => {
       }
     })
     setCitys(request.data.coverageAreas)
-    setAccountData({ ...accountData, address: accountData.address ? { ...accountData.address, region: region!.regionName } : { address: '', city: '', region: region!.regionName } })
+    setClientData({ ...clientData, region: region?.regionName })
   }
 
   const cityChange = async (e: any) => {
     const city = citys?.find(city => city.countyName === e.target.value)
-    setAccountData({ ...accountData, address: { ...accountData.address!, region: city!.countyName } })
+    setClientData({ ...clientData, city: city?.countyName })
+  }
+
+  const handleSubmit = async () => {
+    setLoading(true)
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/account/${accountData._id}`, accountData)
+    await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientData._id}`, clientData)
+    setLoading(false)
   }
 
   return (
@@ -86,7 +107,7 @@ const EditAccountPage = () => {
               </div>
             )
             : (
-              <form className='flex flex-col gap-4'>
+              <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
                 <h2 className='text-xl font-medium'>DATOS DE CONTACTO</h2>
                 <div className='flex gap-4'>
                   <div className='flex flex-col w-1/2 gap-2'>
@@ -109,14 +130,14 @@ const EditAccountPage = () => {
                 <h2 className='text-xl font-medium'>DIRECCIÓN DE ENVÍO</h2>
                 <div className='flex flex-col w-full gap-2'>
                   <p>Dirección</p>
-                  <input type='text' placeholder='Dirección' name='address' onChange={addressChange} value={accountData.address?.address} className='border p-1 rounded text-[14px] w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                  <input type='text' placeholder='Dirección' name='address' onChange={addressChange} value={clientData.address} className='border p-1 rounded text-[14px] w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 </div>
                 <div className='flex flex-col w-full gap-2'>
                   <p>Detalle (Opcional)</p>
-                  <input type='text' placeholder='Detalle' name='details' onChange={addressChange} value={accountData.address?.details} className='border p-1 rounded text-[14px] w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                  <input type='text' placeholder='Detalle' name='details' onChange={addressChange} value={clientData.departament} className='border p-1 rounded text-[14px] w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
                 </div>
                 <div className='flex gap-4'>
-                  <select value={accountData.address?.region} className='border text-sm p-1 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-1/2' onChange={regionChange}>
+                  <select value={clientData.region} className='border text-sm p-1 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-1/2' onChange={regionChange}>
                     <option>Seleccionar Región</option>
                     {
                       regions !== undefined
@@ -126,7 +147,7 @@ const EditAccountPage = () => {
                   </select>
                   {
                     citys !== undefined
-                      ? <select value={accountData.address?.city} className='block border text-sm p-1 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-1/2' onChange={cityChange}>
+                      ? <select value={clientData.city} className='block border text-sm p-1 rounded focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600 w-1/2' onChange={cityChange}>
                         <option>Seleccionar Ciudad</option>
                         {citys.map(city => <option key={city.countyCode}>{city.countyName}</option>)}
                       </select>

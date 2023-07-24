@@ -10,6 +10,7 @@ import axios from 'axios'
 import { Spinner2 } from '../../components/ui'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { useSession } from 'next-auth/react'
 
 const CheckOut = () => {
 
@@ -42,6 +43,10 @@ const CheckOut = () => {
   const [storeData, setStoreData] = useState<IStoreData>()
   const [rotate, setRotate] = useState('rotate-90')
   const [saveData, setSaveData] = useState(false)
+
+  const { data: session, status } = useSession()
+
+  const user = session?.user as { firstName: string, lastName: string, email: string, _id: string }
 
   const router = useRouter()
 
@@ -236,84 +241,106 @@ const CheckOut = () => {
         <form className='w-1280 m-auto block 1010:flex' id='formBuy'>
           <div className='w-full pr-0 1010:w-7/12 1010:pr-8'>
             <h1 className='text-[20px] text-main tracking-widest mb-6 font-semibold md:text-[25px] dark:text-white'>FINALIZAR COMPRA</h1>
-            <div className='mb-6'>
-              <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>INFORMACIÓN DE CONTACTO</h2>
-              <input type='email' placeholder='Email' name='email' onChange={inputChange} value={sell.email} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              <div className='flex gap-2'>
-                <input type='checkbox' checked={sell.subscription} onChange={(e: any) => e.target.checked ? setSell({...sell, subscription: true}) : setSell({...sell, subscription: false})} />
-                <span className='text-sm text-neutral-400'>Suscribirse a nuestra lista de emails</span>
-              </div>
-            </div>
-            <div className='mb-6'>
-              <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>DIRECCIÓN DE ENVÍO</h2>
-              <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
-              <div className='flex gap-2 mb-2'>
-                <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} value={sell.firstName} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-                <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} value={sell.lastName} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              </div>
-              <input type='text' placeholder='Dirección' name='address' onChange={inputChange} value={sell.address} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} value={sell.details} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              <div className='flex gap-2'>
-                <span className='mt-auto mb-auto text-sm'>+56</span>
-                <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} value={sell.phone} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
-              </div>
-            </div>
             {
-              shipping !== undefined
+              status === 'authenticated'
                 ? (
-                  <div className='mb-6'>
-                    <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>ENVÍO</h2>
-                    <div className='flex flex-col gap-1'>
-                      {
-                        shipping.map(item => (
-                          <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700' key={item.serviceDescription}>
-                            <div className='flex gap-2'>
-                              <input type='radio' name='shipping' className={item.serviceDescription} value={item.serviceValue} onChange={shippingChange} />
-                              <p className='text-sm mt-auto mb-auto'>{item.serviceDescription}</p>
+                  <>
+                    <div className='mb-6'>
+                      <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>INFORMACIÓN DE CONTACTO</h2>
+                      <div className='bg-neutral-100 p-4 flex gap-2 justify-between'>
+                        <div className='flex flex-col gap-2'>
+                          <p>Nombre: {user.firstName ? user.firstName : 'Se necesita ingresar un nombre'}</p>
+                          <p>Apellido: {user.lastName ? user.lastName : 'Se necesita ingresar un apellido'}</p>
+                          <p>Email: {user.email}</p>
+                        </div>
+                        <button>Editar datos</button>
+                      </div>
+                    </div>
+                  </>
+                )
+                : (
+                  <>
+                    <div className='mb-6'>
+                      <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>INFORMACIÓN DE CONTACTO</h2>
+                      <input type='email' placeholder='Email' name='email' onChange={inputChange} value={sell.email} className='border mb-2 p-2 rounded w-full text-sm focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      <div className='flex gap-2'>
+                        <input type='checkbox' checked={sell.subscription} onChange={(e: any) => e.target.checked ? setSell({...sell, subscription: true}) : setSell({...sell, subscription: false})} />
+                        <span className='text-sm text-neutral-400'>Suscribirse a nuestra lista de emails</span>
+                      </div>
+                    </div>
+                    <div className='mb-6'>
+                      <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>DIRECCIÓN DE ENVÍO</h2>
+                      <Shipping setShipping={setShipping} sell={sell} setSell={setSell} />
+                      <div className='flex gap-2 mb-2'>
+                        <input type='text' placeholder='Nombre' name='firstName' onChange={inputChange} value={sell.firstName} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                        <input type='text' placeholder='Apellido' name='lastName' onChange={inputChange} value={sell.lastName} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      </div>
+                      <input type='text' placeholder='Dirección' name='address' onChange={inputChange} value={sell.address} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      <input type='text' placeholder='Departamento (Opcional)' name='details' onChange={inputChange} value={sell.details} className='border text-sm p-2 rounded w-full mb-2 focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      <div className='flex gap-2'>
+                        <span className='mt-auto mb-auto text-sm'>+56</span>
+                        <input type='text' placeholder='Teléfono' name='phone' onChange={inputChange} value={sell.phone} className='border text-sm p-2 rounded w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      </div>
+                    </div>
+                    {
+                      shipping !== undefined
+                        ? (
+                          <div className='mb-6'>
+                            <h2 className='mb-2 text-main tracking-widest font-medium text-[16px] md:text-[18px] dark:text-white'>ENVÍO</h2>
+                            <div className='flex flex-col gap-1'>
+                              {
+                                shipping.map(item => (
+                                  <div className='flex gap-2 justify-between p-2 border rounded-md dark:border-neutral-700' key={item.serviceDescription}>
+                                    <div className='flex gap-2'>
+                                      <input type='radio' name='shipping' className={item.serviceDescription} value={item.serviceValue} onChange={shippingChange} />
+                                      <p className='text-sm mt-auto mb-auto'>{item.serviceDescription}</p>
+                                    </div>
+                                    <p className='text-sm'>${NumberFormat(Number(item.serviceValue))}</p>
+                                  </div>
+                                ))
+                              }
                             </div>
-                            <p className='text-sm'>${NumberFormat(Number(item.serviceValue))}</p>
                           </div>
-                        ))
+                        )
+                        : ''
+                    }
+                    {
+                      sell.shippingMethod
+                        ? (
+                          <div className='mb-6'>
+                            <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>PAGO</h2>
+                            <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
+                              <input type='radio' name='pay' value='WebPay Plus' onChange={inputChange} />
+                              <p className='text-sm'>WebPay Plus</p>
+                            </div>
+                          </div>
+                        )
+                        : ''
+                    }
+                    <div className='flex gap-2 mb-4'>
+                      <input type='checkbox' checked={saveData} onChange={(e: any) => e.target.checked ? setSaveData(true) : setSaveData(false)} />
+                      <span className='text-sm text-neutral-400'>Guardar datos para poder comprar más rapido la proxima vez</span>
+                    </div>
+                    <div className='flex gap-2 justify-between mt-auto mb-auto'>
+                      <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className="mt-auto mb-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path></svg>Regresar al carrito</span></Link></div>
+                      {
+                        sell.pay === ''
+                          ? <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                          : sell.pay === 'WebPay Plus'
+                            ? (
+                              <form action={url} method="POST" id='formTransbank'>
+                                <input type="hidden" name="token_ws" value={token} />
+                                <button onClick={transbankSubmit} className='w-24 h-9 rounded-md bg-button text-white cursor-pointer'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                              </form>
+                            )
+                            : sell.pay === 'Pago en la entrega'
+                              ? <button onClick={handleSubmit} className='w-24 h-9 rounded-md bg-button text-white'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
+                              : <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
                       }
                     </div>
-                  </div>
+                  </>
                 )
-                : ''
             }
-            {
-              sell.shippingMethod
-                ? (
-                  <div className='mb-6'>
-                    <h2 className='text-[16px] text-main tracking-widest font-medium mb-2 md:text-[18px] dark:text-white'>PAGO</h2>
-                    <div className='flex gap-2 p-3 border rounded-md mb-1 dark:border-neutral-700'>
-                      <input type='radio' name='pay' value='WebPay Plus' onChange={inputChange} />
-                      <p className='text-sm'>WebPay Plus</p>
-                    </div>
-                  </div>
-                )
-                : ''
-            }
-            <div className='flex gap-2 mb-4'>
-              <input type='checkbox' checked={saveData} onChange={(e: any) => e.target.checked ? setSaveData(true) : setSaveData(false)} />
-              <span className='text-sm text-neutral-400'>Guardar datos para poder comprar más rapido la proxima vez</span>
-            </div>
-            <div className='flex gap-2 justify-between mt-auto mb-auto'>
-              <div className='mt-auto mb-auto'><Link href='/carrito'><span className='flex gap-2 text-sm'><svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" className="mt-auto mb-auto" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 0 0 0 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path></svg>Regresar al carrito</span></Link></div>
-              {
-                sell.pay === ''
-                  ? <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
-                  : sell.pay === 'WebPay Plus'
-                    ? (
-                      <form action={url} method="POST" id='formTransbank'>
-                        <input type="hidden" name="token_ws" value={token} />
-                        <button onClick={transbankSubmit} className='w-24 h-9 rounded-md bg-button text-white cursor-pointer'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
-                      </form>
-                    )
-                    : sell.pay === 'Pago en la entrega'
-                      ? <button onClick={handleSubmit} className='w-24 h-9 rounded-md bg-button text-white'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
-                      : <button onClick={(e: any) => e.preventDefault()} className='w-24 h-9 rounded-md bg-button/50 text-white cursor-not-allowed'>{submitLoading ? <Spinner2 /> : 'Pagar'}</button>
-              }
-            </div>
           </div>
           <div className='w-5/12 h-fit border border-[#F5F5F5] p-4 hidden sticky top-28 bg-[#F5F5F5] dark:border-neutral-700 dark:bg-neutral-800 1010:block'>
             <div className='mb-2 pb-2 border-b dark:border-neutral-700'>

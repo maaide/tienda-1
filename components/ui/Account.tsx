@@ -25,7 +25,8 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
     lastName: '',
     email: '',
     password: '',
-    confirmPassrword: ''
+    confirmPassrword: '',
+    marketing: false
   })
   const [error, setError] = useState('')
   const [loginLoading, setLoginLoading] = useState(false)
@@ -61,6 +62,7 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
     setRegisterLoading(true)
     setError('')
     const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/register`, register)
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/clients`, { email: register.email, firstName: register.firstName, lastName: register.lastName, tags: register.marketing ? ['Suscriptores'] : undefined })
     if (response.data.message) setError(response.data.message)
     const res = await signIn('credentials', {
       email: response.data.email,
@@ -70,7 +72,7 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
     setRegisterLoading(false)
     if (res?.error) return setError(res.error)
     if (res?.ok) {
-      setRegister({ firstName: '', lastName: '', email: '', password: '', confirmPassrword: '' })
+      setRegister({ firstName: '', lastName: '', email: '', password: '', confirmPassrword: '', marketing: false })
       setAccountOpacity('opacity-0')
       setTimeout(() => {
         setAccountView('hidden')
@@ -101,7 +103,12 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
         status === 'authenticated'
           ? (
             <>
-              <Link href='/cuenta' className='p-1.5 hover:bg-neutral-100 rounded-md transition-colors duration-100 dark:hover:bg-neutral-800'>Ver mi cuenta</Link>
+              <Link href='/cuenta' onClick={(e: any) => {
+                setAccountOpacity('opacity-0')
+                setTimeout(() => {
+                  setAccountView('hidden')
+                }, 200)
+              }} className='p-1.5 hover:bg-neutral-100 rounded-md transition-colors duration-100 dark:hover:bg-neutral-800'>Ver mi cuenta</Link>
               <button onClick={handleLogout} className='bg-main font-medium tracking-widest text-white h-10 dark:bg-neutral-800'>{closeLoading ? <Spinner2/> : 'CERRAR SESIÓN'}</button>
             </>
           )
@@ -154,6 +161,10 @@ const AccountLogin: React.FC<Props> = ({ account, setAccount, setAccountPc, acco
                       <div className='flex flex-col gap-2'>
                         <p className='text-sm'>Confirmar contraseña</p>
                         <input type='password' placeholder='*******' onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({...register, confirmPassrword: e.target.value})} className='font-light p-1.5 rounded border text-sm w-full focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600' />
+                      </div>
+                      <div className='flex gap-2'>
+                        <input type='checkbox' checked={register.marketing} onChange={(e: ChangeEvent<HTMLInputElement>) => setRegister({ ...register, marketing: e.target.checked ? true : false })} />
+                        <p className='text-sm'>Suscribirse a nuestra lista</p>
                       </div>
                       <button type='submit' className='bg-main font-medium tracking-widest text-white h-10 text-sm dark:bg-neutral-800'>{registerLoading ? <Spinner2 /> : 'REGISTRARSE'}</button>
                     </form>
