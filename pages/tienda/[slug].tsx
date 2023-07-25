@@ -28,13 +28,26 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
   useEffect(() => {
     if (!isLoadingProducts) {
       const filter = products.filter(product => product.category === category.category)
-      setFilterProducts(filter)
+      setFilterProducts(filter.reverse())
     }
   }, [isLoadingProducts, router.asPath])
 
   useEffect(() => {
     setBgOpacity('opacity-1')
   }, [])
+
+  const applyFilter = (e: any) => {
+    if (products.length) {
+      const filter = products.filter(product => product.category === category.category)
+      if (e.target.value === 'Más recientes') {
+        setFilterProducts(filter.reverse())
+      } else if (e.target.value === 'Mayor precio') {
+        setFilterProducts([...filter].sort((prev, curr) => curr.price - prev.price))
+      } else if (e.target.value === 'Menor precio') {
+        setFilterProducts([...filter].sort((prev, curr) => prev.price - curr.price))
+      }
+    }
+  }
 
   return (
     <>
@@ -62,6 +75,15 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
           )
       }
       <CategoriesShop categories={categories} />
+      <div className='flex px-4'>
+        <div className='w-1280 m-auto flex gap-4 pt-4 pb-4 flex-wrap'>
+          <select onChange={applyFilter} className='text-sm p-1.5 border rounded-md w-48'>
+            <option>Más recientes</option>
+            <option>Mayor precio</option>
+            <option>Menor precio</option>
+          </select>
+        </div>
+      </div>
       {
         filterProducts
           ? filterProducts.length === 0

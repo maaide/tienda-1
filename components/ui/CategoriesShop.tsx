@@ -13,7 +13,7 @@ export const CategoriesShop: React.FC<Props> = ({ categories }) => {
 
   return (
     <div className='flex pt-4 pl-4 pr-4'>
-      <div className='w-1280 m-auto flex gap-2 overflow-x-scroll pb-2 scroll whitespace-nowrap scroll-smooth' style={{ overflow: 'overlay' }}>
+      <div className='w-1280 m-auto flex gap-2 overflow-x-scroll scroll whitespace-nowrap scroll-smooth' style={{ overflow: 'overlay' }}>
         {
           `/tienda` === router.asPath
             ? (

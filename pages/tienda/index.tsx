@@ -5,6 +5,7 @@ import { Spinner, CategoriesShop } from '../../components/ui'
 import { ProductCard } from '../../components/products'
 import DesignContext from '@/context/design/DesignContext'
 import Image from 'next/image'
+import { IProduct } from '@/interfaces'
 
 const Shop = () => {
 
@@ -15,10 +16,27 @@ const Shop = () => {
 
   const [bgOpacity, setBgOpacity] = useState('opacity-0')
   const [bgOpacityImage, setBgOpacityImage] = useState('opacity-0')
+  const [productsUpdate, setProductsUpdate] = useState<IProduct[]>()
 
   useEffect(() => {
     setBgOpacity('opacity-1')
   }, [])
+
+  const applyFilter = (e: any) => {
+    if (products.length) {
+      if (e.target.value === 'Más recientes') {
+        setProductsUpdate(products.reverse())
+      } else if (e.target.value === 'Mayor precio') {
+        setProductsUpdate([...products].sort((prev, curr) => curr.price - prev.price))
+      } else if (e.target.value === 'Menor precio') {
+        setProductsUpdate([...products].sort((prev, curr) => prev.price - curr.price))
+      }
+    }
+  }
+
+  useEffect(() => {
+    setProductsUpdate(products.reverse())
+  }, [products])
 
   return (
     <>
@@ -50,6 +68,15 @@ const Shop = () => {
           )
       }
       <CategoriesShop categories={categories} />
+      <div className='flex px-4'>
+        <div className='w-1280 m-auto flex gap-4 pt-4 pb-4 flex-wrap'>
+          <select onChange={applyFilter} className='text-sm p-1.5 border rounded-md w-48'>
+            <option>Más recientes</option>
+            <option>Mayor precio</option>
+            <option>Menor precio</option>
+          </select>
+        </div>
+      </div>
       {
         isLoadingProducts
           ? (
@@ -59,15 +86,17 @@ const Shop = () => {
               </div>
             </div>
           )
-          : <div className='flex'>
-            <div className='w-1280 m-auto flex gap-2 pt-4 pb-4 flex-wrap'>
-              {
-                products.map(product => (
-                  <ProductCard key={product._id} product={product} />
-                ))
-              }
+          : (
+            <div className='flex'>
+              <div className='w-1280 m-auto flex gap-2 pt-4 pb-4 flex-wrap'>
+                {
+                  productsUpdate?.map(product => (
+                    <ProductCard key={product._id} product={product} />
+                  ))
+                }
+              </div>
             </div>
-          </div>
+          )
       }
     </>
   )
