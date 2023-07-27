@@ -180,8 +180,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                     <div className='flex gap-2 mt-1'>
                       {product.variations.map(variation => (
                         <div key={variation.variation}>
-                          <Image src={variation.image} alt='Imagen variación' width={80} height={80} onClick={() => {
-                            setTempCartProduct({...tempCartProduct, variation: variation, image: variation.image})
+                          <Image src={variation.image.url} alt='Imagen variación' width={80} height={80} onClick={() => {
+                            setTempCartProduct({...tempCartProduct, variation: variation, image: variation.image.url})
                           }} className={`w-20 h-20 border rounded-lg p-1 cursor-pointer hover:border-main ${tempCartProduct.variation?.variation === variation.variation ? 'border-main' : 'dark:border-neutral-700 hover:dark:border-main'}`} />
                         </div>
                       ))}

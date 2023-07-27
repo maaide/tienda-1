@@ -13,8 +13,8 @@ export const Footer = () => {
     name: '',
     phone: '',
     region: '',
-    logo: '',
-    logoWhite: ''
+    logo: { public_id: '', url: '' },
+    logoWhite: { public_id: '', url: '' }
   })
 
   const getStoreData = async () => {
@@ -35,7 +35,7 @@ export const Footer = () => {
           <div>
             {
               storeData?.logoWhite
-                ? <Image className='w-36 h-auto mb-3' src={storeData.logoWhite} alt='Logo' width={144} height={50.39} />
+                ? <Image className='w-36 h-auto mb-3' src={storeData.logoWhite.url} alt='Logo' width={144} height={50.39} />
                 : <Image className='w-36 h-auto mb-3' src='https://res.cloudinary.com/df7nchfnh/image/upload/v1687968894/Ecommerce/Logo_web_blanco_r82fka.png' alt='Logo' width={144} height={50.39} />
             }
             <p className='text-white mb-4 text-sm'>contacto@blaspod.cl</p>

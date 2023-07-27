@@ -11,7 +11,6 @@ import { IStoreData } from '@/interfaces'
 import DesignContext from '@/context/design/DesignContext'
 import LogoContext from '@/context/logo/LogoContext'
 import AccountLogin from './Account'
-import { useSession } from 'next-auth/react'
 
 interface Props {
   menu: any,
@@ -45,8 +44,8 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     name: '',
     phone: '',
     region: '',
-    logo: '',
-    logoWhite: ''
+    logo: { public_id: '', url: '' },
+    logoWhite: { public_id: '', url: '' }
   })
   const [rotate, setRotate] = useState('rotate-90')
 
@@ -121,11 +120,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                 : storeData?.logo
                   ? theme === 'system'
                     ? systemTheme === 'dark'
-                      ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                      : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                      ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite.url}`} alt='Logo' width={155} height={53.72} /></Link>
+                      : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo.url}`} alt='Logo' width={155} height={53.72} /></Link>
                     : theme === 'dark'
-                      ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                      : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                      ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite.url}`} alt='Logo' width={155} height={53.72} /></Link>
+                      : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo.url}`} alt='Logo' width={155} height={53.72} /></Link>
                   : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src="https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png" alt='Logo' width={155} height={53.72} /></Link>
             }
           </div>
@@ -287,11 +286,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                         : storeData?.logo
                           ? theme === 'system'
                             ? systemTheme === 'dark'
-                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite.url}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logo.url}`} alt='Logo' width={155} height={53.72} /></Link>
                             : theme === 'dark'
-                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                              ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logoWhite.url}`} alt='Logo' width={155} height={53.72} /></Link>
+                              : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src={`${storeData.logo.url}`} alt='Logo' width={155} height={53.72} /></Link>
                           : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='min-w-[110px] h-auto py-0.5' src="https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png" alt='Logo' width={155} height={53.72} /></Link>
                     }
                   </div>
@@ -346,11 +345,11 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                       : storeData?.logo
                         ? theme === 'system'
                           ? systemTheme === 'dark'
-                            ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                            : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                            ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite.url}`} alt='Logo' width={155} height={53.72} /></Link>
+                            : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo.url}`} alt='Logo' width={155} height={53.72} /></Link>
                           : theme === 'dark'
-                            ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite}`} alt='Logo' width={155} height={53.72} /></Link>
-                            : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo}`} alt='Logo' width={155} height={53.72} /></Link>
+                            ? <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logoWhite.url}`} alt='Logo' width={155} height={53.72} /></Link>
+                            : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-1' src={`${storeData.logo.url}`} alt='Logo' width={155} height={53.72} /></Link>
                         : <Link href='/'><Image onLoad={() => setLogoLoad(true)} className='w-32 h-auto py-0.5' src="https://res.cloudinary.com/df7nchfnh/image/upload/v1687968324/Ecommerce/Logo_web_rppkaa.png" alt='Logo' width={155} height={53.72} /></Link>
                   }
                 </div>

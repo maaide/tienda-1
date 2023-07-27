@@ -7,6 +7,6 @@ export interface IStoreData {
     departament?: string
     region: string
     city: string
-    logo: string
-    logoWhite: string
+    logo: { public_id: string, url: string }
+    logoWhite: { public_id: string, url: string }
 }

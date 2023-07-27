@@ -50,7 +50,9 @@ export interface IProductOffer {
 
 export interface IVariation {
   variation: string
-  image: string
+  image: { public_id: string, url: string }
+  stock: string
+  sku: string
 }
 
 export interface IQuantityOffer {
