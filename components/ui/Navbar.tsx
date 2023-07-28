@@ -48,6 +48,7 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
     logoWhite: { public_id: '', url: '' }
   })
   const [rotate, setRotate] = useState('rotate-90')
+  const [mouseEnter, setMouseEnter] = useState(true)
 
   const { categories } = useCategories('/categories')
   const router = useRouter()
@@ -142,10 +143,16 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     }, 50)
                   }} onMouseLeave={() => {
                     setNavCategoriesOpacity('opacity-0')
-                    setNavCategories('hidden')
+                    setTimeout(() => {
+                      if (!mouseEnter) {
+                        setNavCategories('hidden')
+                      }
+                    }, 200)
                   }} onClick={() => {
                     setNavCategoriesOpacity('opacity-0')
-                    setNavCategories('hidden')
+                    setTimeout(() => {
+                      setNavCategories('hidden')
+                    }, 200)
                   }}>
                     <div className='mt-auto text-[15px] font-medium text-[#1c1b1b] tracking-widest mb-auto dark:text-white'>TIENDA</div>
                   </Link>
@@ -468,11 +475,14 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
           }} />
         </div>
         <div className={`${navCategories} ${navCategoriesOpacity} -mt-[1px] border-t transition-opacity duration-200 absolute top-[53px] w-full dark:border-neutral-800`} onMouseEnter={() => {
+          setMouseEnter(true)
           setNavCategories('flex')
           setNavCategoriesOpacity('opacity-1')
         }} onMouseLeave={() => {
           setNavCategoriesOpacity('opacity-0')
-          setNavCategories('hidden')
+          setTimeout(() => {
+            setNavCategories('hidden')
+          }, 200)
         }}>
           {
             categories?.length
