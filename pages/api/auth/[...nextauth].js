@@ -15,7 +15,7 @@ export const authOptions = {
       async authorize(credentials, req) {
         connectDB()
 
-        const userFound = await Account.findOne({ email: credentials?.email }).select('+password')
+        const userFound = await Account.findOne({ email: credentials?.email.toLowerCase() }).select('+password')
         if (!userFound) throw new Error('Credenciales invalidas')
       
         const passwordMatch = await bcrypt.compare(credentials.password, userFound.password)
