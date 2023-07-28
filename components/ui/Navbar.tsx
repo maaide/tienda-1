@@ -492,12 +492,16 @@ export const Navbar: React.FC<PropsWithChildren<Props>> = ({ children , menu, se
                     <div key={category._id}>
                       <Image className='w-64 h-auto mb-2 cursor-pointer' onClick={() => {
                         setNavCategoriesOpacity('opacity-0')
-                        setNavCategories('hidden')
+                        setTimeout(() => {
+                          setNavCategories('hidden')
+                        }, 200)
                         router.push(`/tienda/${category.slug}`)
                       }} src={category.image?.url!} width={256} height={256} alt={`Categoria ${category.category}`} />
                       <Link href={`/tienda/${category.slug}`} onClick={() => {
                         setNavCategoriesOpacity('opacity-0')
-                        setNavCategories('hidden')
+                        setTimeout(() => {
+                          setNavCategories('hidden')
+                        }, 200)
                       }} className='m-auto tracking-widest font-medium text-[#1c1b1b] dark:text-white'>{category.category.toUpperCase()}</Link>
                     </div>
                   ))}
