@@ -42,6 +42,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const [detailsOpacity, setDetailsOpacity] = useState('opacity-0')
   const [detailsPosition, setDetailsPosition] = useState('-bottom-44')
   const [productsFiltered, setProductsFiltered] = useState<IProduct[]>([])
+  const [category, setCategory] = useState('')
 
   const router = useRouter()
 
@@ -51,6 +52,15 @@ const ProductPage: React.FC<Props> = ({ product }) => {
   const submitViewContent = async () => {
     await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/view-content`, { name: tempCartProduct.name, price: tempCartProduct.price, category: tempCartProduct.category, url: tempCartProduct.slug, fbp: Cookies.get('_fbp'), fbc: Cookies.get('_fbc') })
   }
+
+  const getCategory = async () => {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/category/${product.category}`)
+    setCategory(response.data.slug)
+  }
+
+  useEffect(() => {
+    getCategory()
+  }, [router])
 
   useEffect(() => {
     setTempCartProduct({
@@ -141,7 +151,7 @@ const ProductPage: React.FC<Props> = ({ product }) => {
         <div className='block m-auto w-full gap-4 lg:flex xl2:w-1280 xl2:gap-8'>
           <div className='w-full lg:w-7/12'>
             <div className='mb-2'>
-              <span className='text-15'><Link href='/tienda'>Tienda</Link> / <Link href={`/tienda/${ product.category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/productos/${ product.slug }`}>{ product.name }</Link></span>
+              <span className='text-15'><Link href='/tienda'>Tienda</Link> / <Link href={`/tienda/${ category }`}>{ product.category[0].toUpperCase() }{ product.category.substring(1) }</Link> / <Link href={`/productos/${ product.slug }`}>{ product.name }</Link></span>
             </div>
             <div className='relative top-0 mb-0 1010:mb-5 1010:sticky 1010:top-32'>
               <ProductSlider images={ product.images } />
