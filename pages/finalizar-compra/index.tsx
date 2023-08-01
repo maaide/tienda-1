@@ -182,11 +182,11 @@ const CheckOut = () => {
   const transbankSubmit = async (e: any) => {
     e.preventDefault()
     setSubmitLoading(true)
-    const sellUpload = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
     if (clientId !== '') {
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`, sell)
     }
-    localStorage.setItem('sell', JSON.stringify(sellUpload))
+    localStorage.setItem('sell', JSON.stringify(data))
     sell.cart.map(async (product) => {
       if (product.variation) {
         await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
@@ -217,11 +217,11 @@ const CheckOut = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault()
     setSubmitLoading(true)
-    const sellUpload = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/sells`, sell)
     if (clientId !== '') {
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`, sell)
     }
-    localStorage.setItem('sell', JSON.stringify(sellUpload))
+    localStorage.setItem('sell', JSON.stringify(data))
     sell.cart.map(async (product) => {
       if (product.variation) {
         await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
