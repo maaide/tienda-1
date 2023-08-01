@@ -189,11 +189,7 @@ const CheckOut = () => {
     localStorage.setItem('sell', JSON.stringify(sell))
     sell.cart.map(async (product) => {
       if (product.variation) {
-        if (product.subVariation) {
-          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation, subVariation: product.subVariation })
-        } else {
-          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
-        }
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
       } else {
         await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity })
       }
@@ -228,11 +224,7 @@ const CheckOut = () => {
     localStorage.setItem('sell', JSON.stringify(sell))
     sell.cart.map(async (product) => {
       if (product.variation) {
-        if (product.subVariation) {
-          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation, subVariation: product.subVariation })
-        } else {
-          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
-        }
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
       } else {
         await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity })
       }
