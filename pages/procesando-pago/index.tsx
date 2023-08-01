@@ -11,11 +11,14 @@ const PayProcess = () => {
     const urlParams = new URLSearchParams(window.location.search)
     const tokenWs = urlParams.get('token_ws')
     if (tokenWs) {
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pay/commit`, { token: tokenWs, sell: JSON.parse(localStorage.getItem('sell')!) })
+      const sell = JSON.parse(localStorage.getItem('sell')!)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pay/commit`, { token: tokenWs, sell: sell })
       if (response.data.status === 'FAILED') {
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/sell/${sell._id}`, { state: 'Pago no realizado' })
         router.push('/pago-fallido')
       }
       if (response.data.status === 'AUTHORIZED') {
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/sell/${sell._id}`, { state: 'Pago realizado' })
         router.push('/gracias-por-comprar')
       }
     }
