@@ -79,8 +79,8 @@ export const ProductCard2: React.FC<Props> = ({ product }) => {
           }
         </div>
         {
-          product.variations?.length
-            ? product.variations[0].variation !== ''
+          product.variations?.variations.length
+            ? product.variations.variations[0].variation !== ''
               ? <Link href={`/productos/${product.slug}`} className='pt-1.5 pb-1.5 text-sm rounded-md bg-button text-white pl-6 pr-6 450:pl-8 450:pr-8'>Ver variantes</Link>
               : <Button2AddToCart tempCartProduct={tempCartProduct} />
             : <Button2AddToCart tempCartProduct={tempCartProduct} />

@@ -20,7 +20,7 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
   }
 
   const selectVariation = (e: any) => {
-    const variation = product.variations?.find(variation => variation.variation === e.target.value)
+    const variation = product.variations?.variations.find(variation => variation.variation === e.target.value)
     setTempCartProduct({...tempCartProduct, variation: variation})
   }
 
@@ -39,12 +39,12 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
               }
             </div>
             {
-              product.variations?.length
-                ? product.variations[0].variation !== ''
+              product.variations?.variations.length
+                ? product.variations.variations[0].variation !== ''
                   ? <select onChange={selectVariation} value={tempCartProduct.variation?.variation ? tempCartProduct.variation.variation : 'Seleccionar variación'} className='border p-1 rounded-md focus:outline-none focus:border-main focus:ring-1 focus:ring-main dark:border-neutral-600'>
                     <option>Seleccionar vartiación</option>
                     {
-                      product.variations.map(variation => (
+                      product.variations.variations.map(variation => (
                         <option key={variation.variation}>{variation.variation}</option>
                       ))
                     }
@@ -76,8 +76,8 @@ export const ProductDetails: React.FC<Props> = ({ product, tempCartProduct, setT
                     maxValue={ product.stock }
                   />
                   {
-                    product.variations?.length
-                      ? product.variations[0].variation !== ''
+                    product.variations?.variations.length
+                      ? product.variations.variations[0].variation !== ''
                         ? tempCartProduct.variation
                           ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
                           : <ButtonNone>Añadir al carrito</ButtonNone>
