@@ -182,22 +182,48 @@ const ProductPage: React.FC<Props> = ({ product }) => {
               }
             </div>
             {
-              product.variations?.length
-                ? product.variations[0].variation !== ''
-                  ? <div className='mb-2'>
-                    <span className='text-sm font-medium'>{product.nameVariations}: </span>
-                    <span className='text-sm text-[#444444] dark:text-neutral-400'>{tempCartProduct.variation?.variation}</span>
-                    <div className='flex gap-2 mt-1'>
-                      {product.variations.map(variation => (
-                        <div key={variation.variation}>
-                          <Image src={variation.image.url} alt='Imagen variación' width={80} height={80} onClick={() => {
-                            setTempCartProduct({...tempCartProduct, variation: variation, image: variation.image.url})
-                          }} className={`w-20 h-20 border rounded-lg p-1 cursor-pointer hover:border-main ${tempCartProduct.variation?.variation === variation.variation ? 'border-main' : 'dark:border-neutral-700 hover:dark:border-main'}`} />
-                        </div>
-                      ))}
+              product.variations?.variations.length && product.variations?.variations[0].variation !== '' && product.variations?.nameVariation !== ''
+                ? (
+                    <div className='mb-2'>
+                      <div className='flex mb-2 gap-2'>
+                        <span className='text-sm font-medium'>{product.variations.nameVariation}:</span>
+                        <span className='text-sm text-[#444444] dark:text-neutral-400'>{tempCartProduct.variation?.variation}</span>
+                      </div>
+                      {
+                        product.variations.nameSubVariation
+                          ? (
+                            <div className='flex gap-2 mb-2'>
+                              <span className='text-sm font-medium'>{product.variations.nameSubVariation}:</span>
+                              <span className='text-sm text-[#444444] dark:text-neutral-400'>{tempCartProduct.variation?.subVariation}</span>
+                            </div>
+                          )
+                          : ''
+                      }
+                      <div className='flex gap-2 mt-1'>
+                        {product.variations.variations.map(variation => {
+                          if (variation.stock > 0) {
+                            return (
+                              <div key={variation.variation}>
+                                <Image src={variation.image!.url} alt='Imagen variación' width={80} height={80} onClick={() => {
+                                  if (variation.subVariation) {
+                                    setTempCartProduct({...tempCartProduct, variation: variation, subVariation: variation.subVariation, image: variation.image!.url})
+                                  } else {
+                                    setTempCartProduct({...tempCartProduct, variation: variation, image: variation.image!.url})
+                                  }
+                                }} className={`w-20 h-20 border rounded-lg p-1 cursor-pointer hover:border-main ${!tempCartProduct.variation?.subVariation ? tempCartProduct.variation?.variation === variation.variation ? 'border-main' : 'dark:border-neutral-700 hover:dark:border-main' : tempCartProduct.variation?.variation === variation.variation && tempCartProduct.variation?.subVariation === variation.subVariation ? 'border-main' : 'dark:border-neutral-700 hover:dark:border-main'}`} />
+                              </div>
+                              )
+                          } else {
+                            return (
+                              <div key={variation.variation}>
+                                <Image src={variation.image!.url} alt='Imagen variación' width={80} height={80} className={`w-20 h-20 border rounded-lg p-1 cursor-not-allowed bg-white`} />
+                              </div>
+                              )
+                          }
+                        })}
+                      </div>
                     </div>
-                  </div>
-                  : ''
+                  )
                 : ''
             }
             <span className='mb-2 text-[14px] text-[#444444] block dark:text-neutral-400'><span className='font-medium text-main dark:text-white'>Stock:</span> { product.stock } { product.stock === 1 ? 'unidad' : 'unidades' }</span>
@@ -239,8 +265,8 @@ const ProductPage: React.FC<Props> = ({ product }) => {
                       maxValue={ product.stock }
                     />
                     {
-                      product.variations?.length
-                        ? product.variations[0].variation !== ''
+                      product.variations?.variations.length
+                        ? product.variations.variations[0].variation !== ''
                           ? tempCartProduct.variation
                             ? <ButtonAddToCart tempCartProduct={tempCartProduct} />
                             : <ButtonNone>Añadir al carrito</ButtonNone>

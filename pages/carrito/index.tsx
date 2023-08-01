@@ -87,7 +87,7 @@ const CartPage = () => {
                         </Link>
                         <div className='mt-auto mb-auto'>
                           <Link href={`/productos/${product.slug}`}>
-                            <h2 className='text-main dark:text-white'>{product.name}</h2>
+                            <p className='text-main dark:text-white'>{product.name}</p>
                           </Link>
                           <div className='flex gap-2'>
                             {
@@ -103,7 +103,7 @@ const CartPage = () => {
                           </div>
                           {
                             product.variation
-                              ? <span className='text-[#444444] dark:text-neutral-400'>{product.variation.variation}</span>
+                              ? <span className='text-[#444444] dark:text-neutral-400'>{product.variation.variation}{product.variation.subVariation ? ` / ${product.variation.subVariation}` : ''}</span>
                               : ''
                           }
                         </div>

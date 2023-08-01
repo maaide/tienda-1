@@ -189,6 +189,17 @@ const CheckOut = () => {
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`, sell)
     }
     localStorage.setItem('sell', JSON.stringify(sell))
+    sell.cart.map(async (product) => {
+      if (product.variation) {
+        if (product.subVariation) {
+          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation, subVariation: product.subVariation })
+        } else {
+          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
+        }
+      } else {
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity })
+      }
+    })
     if (saveData) {
       Cookies.set('firstName', sell.firstName)
       Cookies.set('lastName', sell.lastName)
@@ -217,6 +228,17 @@ const CheckOut = () => {
       await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/clients/${clientId}`, sell)
     }
     localStorage.setItem('sell', JSON.stringify(sell))
+    sell.cart.map(async (product) => {
+      if (product.variation) {
+        if (product.subVariation) {
+          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation, subVariation: product.subVariation })
+        } else {
+          await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity, variation: product.variation })
+        }
+      } else {
+        await axios.put(`${process.env.NEXT_PUBLIC_API_URL}/product/${product._id}`, { stock: product.quantity })
+      }
+    })
     if (saveData) {
       Cookies.set('firstName', sell.firstName)
       Cookies.set('lastName', sell.lastName)
@@ -325,12 +347,12 @@ const CheckOut = () => {
                       <Image className='w-20 h-20 m-auto border rounded-md p-1 dark:border-neutral-700' src={product.image} alt={product.name} width={80} height={80} />
                       <div className='mt-auto mb-auto'>
                         <span className='font-medium'>{product.name}</span>
+                        <span className='block'>Cantidad: {product.quantity}</span>
                         {
                           product.variation
-                            ? <span className='block'>{product.variation.variation}</span>
+                            ? <span className='block'>{product.variation.variation}{product.variation.subVariation ? ` / ${product.variation.subVariation}` : ''}</span>
                             : ''
                         }
-                        <span className='block'>Cantidad: {product.quantity}</span>
                       </div>
                     </div>
                     <div className='flex gap-2 mt-auto mb-auto'>
@@ -538,7 +560,7 @@ const CheckOut = () => {
                           <span className='block'>Cantidad: {product.quantity}</span>
                           {
                             product.variation
-                              ? <span className='block'>Variación: {product.variation.variation}</span>
+                              ? <span className='block'>{product.variation.variation}{product.variation.subVariation ? ` / ${product.variation.subVariation}` : ''}</span>
                               : ''
                           }
                         </div>

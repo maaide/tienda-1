@@ -7,6 +7,7 @@ export interface ICartProduct {
   price: number
   beforePrice?: number
   variation?: IVariation
+  subVariation?: string
   slug: string
   quantity: number
   stock?: number
