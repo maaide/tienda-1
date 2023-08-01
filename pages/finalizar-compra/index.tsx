@@ -147,8 +147,6 @@ const CheckOut = () => {
     setSell({ ...sell, [e.target.name]: e.target.value, buyOrder: `${storeData?.name ? storeData.name : 'ORDEN'}${Math.floor(Math.random() * 10000) + 1}` })
     if (e.target.name === 'pay' && e.target.value === 'WebPay Plus') {
       const pago = {
-        buyOrder: `${storeData?.name ? storeData.name : 'ORDEN'}${Math.floor(Math.random() * 10000) + 1}`,
-        sessionId: `S-${Math.floor(Math.random() * 10000) + 1}`,
         amount: sell.total,
         returnUrl: `${process.env.NEXT_PUBLIC_WEB_URL}/procesando-pago`
       }
