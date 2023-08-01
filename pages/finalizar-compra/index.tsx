@@ -150,7 +150,7 @@ const CheckOut = () => {
         buyOrder: `${storeData?.name ? storeData.name : 'ORDEN'}${Math.floor(Math.random() * 10000) + 1}`,
         sessionId: `S-${Math.floor(Math.random() * 10000) + 1}`,
         amount: sell.total,
-        returnUrl: `https://${domain}/procesando-pago`
+        returnUrl: `${process.env.NEXT_PUBLIC_WEB_URL}/procesando-pago`
       }
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/pay/create`, pago)
       setToken(response.data.token)
