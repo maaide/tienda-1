@@ -12,12 +12,14 @@ import { SessionProvider } from "next-auth/react"
 
 const poppins = Poppins({
   weight: ['300', '400', '500', '600'],
-  preload: false
+  preload: false,
+  subsets: ['latin']
 })
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '600', '700'],
-  preload: false
+  preload: false,
+  subsets: ['latin']
 })
 
 export default function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
